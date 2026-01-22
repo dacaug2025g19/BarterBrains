@@ -1,6 +1,7 @@
 import React from "react";
 import AppLayout from "../layouts/applayout_temp";
 
+
 const Home = () => {
   return (
     <AppLayout>
