@@ -27,4 +27,15 @@ public class UserService {
 		user.setPassword(encoder.encode(user.getPassword()));
 		return urepo.save(user);
 	}
+	
+	//User login
+		public String LoginUser(String email,String rawPassword) {
+			
+			 User user = urepo.findByEmail(email);
+			 
+			 if(user!=null && encoder.matches(rawPassword,user.getPassword())) {
+				 return jwtutil.generateToken(email);  //if valid credentials then give jwt token to user
+			 }
+			 return null;  //invalid
+		}
 }
