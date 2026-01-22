@@ -6,68 +6,48 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(email, password);
-  };
-
   return (
     <AppLayout>
-      <div className="row justify-content-center">
+      <div className="row justify-content-center section">
         <div className="col-md-5">
-          <div className="card bg-black text-light border-secondary shadow-lg">
-            <div className="card-body p-4">
+          <div className="card p-5">
 
-              <h3 className="text-center text-info fw-bold mb-4">
-                Login to BarterBrains
-              </h3>
+            <h3 className="fw-bold text-center mb-2">
+              Welcome Back
+            </h3>
+            <p className="text-muted text-center mb-4">
+              Login to continue
+            </p>
 
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label>Email Address</label>
-                  <input
-                    type="email"
-                    className="form-control bg-dark text-light border-secondary"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="mb-3">
-                  <label>Password</label>
-                  <input
-                    type="password"
-                    className="form-control bg-dark text-light border-secondary"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="text-end mb-3">
-                  <Link to="/forgot-password" className="text-info">
-                    Forgot Password?
-                  </Link>
-                </div>
-
-                <div className="d-grid">
-                  <button className="btn btn-info btn-lg text-dark">
-                    Login
-                  </button>
-                </div>
-              </form>
-
-              <div className="text-center mt-4">
-                <p className="text-secondary">
-                  Don't have an account?{" "}
-                  <Link to="/register" className="text-info">
-                    Register
-                  </Link>
-                </p>
+            <form>
+              <div className="mb-3">
+                <input
+                  className="form-control"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </div>
 
-            </div>
+              <div className="mb-4">
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+
+              <button className="btn btn-primary w-100">
+                Login
+              </button>
+            </form>
+
+            <p className="text-center text-muted mt-4">
+              New here? <Link to="/register">Create account</Link>
+            </p>
+
           </div>
         </div>
       </div>

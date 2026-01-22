@@ -1,22 +1,19 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-      {/* Logo */}
-      <Link className="navbar-brand fw-bold" to="/">
-        BarterBrain
+    <nav className="navbar navbar-expand-lg px-4 py-3">
+      <Link className="navbar-brand fw-bold fs-4" to="/">
+        <span style={{ color: "#8b5cf6" }}>Barter</span>
+        <span style={{ color: "#22d3ee" }}>Brains</span>
       </Link>
 
-      {/* Buttons */}
       <div className="ms-auto">
-        <Link to="/login" className="btn btn-outline-info me-2">
+        <Link className="btn btn-outline-primary me-2" to="/login">
           Login
         </Link>
-
-        <Link to="/register" className="btn btn-info text-dark">
-          Register
+        <Link className="btn btn-primary" to="/register">
+          Get Started
         </Link>
       </div>
     </nav>
