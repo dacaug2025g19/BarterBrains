@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "react-redux": "^9.2.0",
+    "routing": "^0.0.2"
+  }
+}
