@@ -1,5 +1,7 @@
 package com.example.demo.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,9 @@ public class UserService {
 	
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
+	public List<User> getAll(){
+		return urepo.findAll();
+	}
 
 	//user register
 	public User RegisterUser(User user) {
