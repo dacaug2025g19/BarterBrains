@@ -1,5 +1,4 @@
 # -BarterBrains
 
-
-//Short abstract about the project
+Short abstract about the project
 Developed a microservice-based full-stack application that enables users to exchange skills through scheduled learning sessions using a point-based barter system. The system was divided into three services: User & Skill Management and Session & Booking Management implemented in Advanced Java (Spring Boot), and a Points & Transaction service developed using ASP.NET Core (.NET). Designed RESTful APIs with layered architecture and JPA/Hibernate for database interaction. Built a modular React frontend with Redux Toolkit for centralized state management and seamless frontend-backend communication using Axios. Implemented session scheduling, booking workflows, role-based access, and transaction tracking, following scalable and maintainable software design principles.
