@@ -56,7 +56,7 @@ DROP TABLE IF EXISTS `category_table`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `category_table` (
   `cid` int NOT NULL AUTO_INCREMENT,
-  `cname` varchar(45) NOT NULL,
+  `cname` varchar(255) DEFAULT NULL,
   `cdesc` varchar(255) NOT NULL,
   PRIMARY KEY (`cid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -115,7 +115,7 @@ DROP TABLE IF EXISTS `role`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `role` (
   `rid` int NOT NULL AUTO_INCREMENT,
-  `rname` varchar(45) NOT NULL,
+  `rname` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`rid`),
   UNIQUE KEY `rname_UNIQUE` (`rname`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -172,7 +172,7 @@ DROP TABLE IF EXISTS `skill_table`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `skill_table` (
   `sid` int NOT NULL AUTO_INCREMENT,
-  `sname` varchar(45) NOT NULL,
+  `sname` varchar(255) DEFAULT NULL,
   `cid` int DEFAULT NULL,
   `skdesc` varchar(255) NOT NULL,
   `basepoints` int NOT NULL,
@@ -201,18 +201,17 @@ DROP TABLE IF EXISTS `user_table`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_table` (
   `uid` int NOT NULL AUTO_INCREMENT,
-  `uname` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `phone` varchar(45) NOT NULL,
+  `uname` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
   `rid` int DEFAULT NULL,
-  `adhar_id` varchar(45) NOT NULL,
+  `adhar_id` varchar(255) DEFAULT NULL,
   `bdate` date NOT NULL,
-  `age` int NOT NULL,
   PRIMARY KEY (`uid`),
   KEY `rid_idx` (`rid`),
   CONSTRAINT `rid` FOREIGN KEY (`rid`) REFERENCES `role` (`rid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,7 +220,7 @@ CREATE TABLE `user_table` (
 
 LOCK TABLES `user_table` WRITE;
 /*!40000 ALTER TABLE `user_table` DISABLE KEYS */;
-INSERT INTO `user_table` VALUES (1,'chetan','123','chetan@gmail.com','124578',1,'4512','2004-10-10',22);
+INSERT INTO `user_table` VALUES (1,'test','123','test@gmail.com','124578',1,'1235','2004-11-10'),(2,'test2','12354','test@gmail.com','124578',1,'123455','2004-11-10'),(3,'test3','$2a$10$x3NeN5VQxRBOBqGa.9hEneP2RzkKq450BgmGmMndvn1dofJvVOpfe','test3@gmail.com','124578',1,'123455','2005-09-10'),(4,'test4','$2a$10$OReHE7wGF.AkKR3iq6R9Ru1Gsqc98TWUQirY9vm2fNLcg6nHKJm/6','test4@gmail.com','124578',1,'123455','2004-11-10'),(5,'test5','$2a$10$U7960r6.Dx0higMm2F.piuWx22/2WS59n8TcJ6O7b8UR/aqe5miK6','test5@gmail.com','124578',1,'123455','2004-11-10'),(6,'Shinde Mansi Sanjay','$2a$10$rlRvdMOTh2YnEPda9AkKT.aAPncLCFQ3fTJYupZ/LWRRQa6dDDe3u','mansishinde2101@gmail.com','08080596029',1,'830230804545','2004-01-21'),(7,'sonal ','$2a$10$wa7Non1sxkOyU3o36Ay.gu0I86UGCohMu.sOR5wWDeX7az5.w6UYy','sonal@gmail.com','124536789',1,'415263','2026-01-13'),(8,'Rohan Sapkale','$2a$10$CKXvnR0ZZWXPy3A4Nxkg6.5ng12i0ijEuFiPKsNZArcvo1bi6uA1.','rohan@gmail.com','45123678',1,'78456912','2003-01-22'),(9,'Rutuja kumbhar','$2a$10$Z9l.EIfIY6lcfF1DNxuexOdesf7yUgMSl3P1BqQxUHdnqTkDbqIfe','rutuja@gmail.com','45123678',1,'78456912','2003-01-22'),(10,'test7','$2a$10$GrBsZnRSwSdakCUG4zkfaOKvOEh1RfM9TPd6F38/GGT0RcXtODpiq','test7@gmail.com','123456',1,'789456123','2026-01-06');
 /*!40000 ALTER TABLE `user_table` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -234,4 +233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-01-19 15:26:44
+-- Dump completed on 2026-01-24 13:35:37
