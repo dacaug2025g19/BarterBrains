@@ -1,52 +1,25 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { loginUser } from "../../api/authApi";
+import { createSlice } from "@reduxjs/toolkit";
 
-// async login action
-export const login = createAsyncThunk(
-  "auth/login",
-  async ({ email, password }, thunkAPI) => {
-    try {
-      const response = await loginUser(email, password);
-      return response.data; // JWT token
-    } catch (error) {
-      return thunkAPI.rejectWithValue("Invalid credentials");
-    }
-  }
-);
+const initialState = {
+  user: null,   // stores user info like name, email, role, etc.
+  token: null,  // stores JWT token
+  isLoggedIn: false,
+};
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    token: localStorage.getItem("token"),
-    isAuthenticated: !!localStorage.getItem("token"),
-    loading: false,
-    error: null,
-  },
+  initialState,
   reducers: {
-    logout: (state) => {
-      state.token = null;
-      state.isAuthenticated = false;
-      localStorage.removeItem("token");
+    setLogin: (state, action) => {
+      state.user = action.payload.user;
+      state.isLoggedIn = true;
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(login.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(login.fulfilled, (state, action) => {
-        state.loading = false;
-        state.token = action.payload;
-        state.isAuthenticated = true;
-        localStorage.setItem("token", action.payload);
-      })
-      .addCase(login.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+    logout: (state) => {
+      state.user = null;
+      state.isLoggedIn = false;
+    },
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { setLogin, logout } = authSlice.actions;
 export default authSlice.reducer;

@@ -6,6 +6,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="D:\BarterBrainsProject\BarterBrains\RESTapi\UserAndSkillService"/>
 			<item value="D:\BarterBrainsProject\BarterBrains\RESTapi\UserAndSkillService\UserAndSkill"/>
 			<item value="C:\Projects\BarterBrains\RESTapi\UserAndSkillService\UserAndSkill"/>
 		</list>

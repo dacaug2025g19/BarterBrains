@@ -1,17 +1,33 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import AppLayout from "../layouts/applayout_temp";
+import { registerUser } from "../api/authApi";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     uname: "",
     email: "",
     password: "",
     phone: "",
+    bdate: "",
+    adhar_id: "",
   });
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
+
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Registering user with data:", form);
+    try {
+      await registerUser(form);
+      alert("Registration successful. Please login.");
+      navigate("/login");
+    } catch (err) {
+      alert("Registration failed. Please try again.");
+    }
+  };
 
   return (
     <AppLayout>
@@ -19,34 +35,39 @@ const Register = () => {
         <div className="col-md-6">
           <div className="card p-5">
 
-            <h3 className="fw-bold text-center mb-2">
+            <h3 className="fw-semibold text-center mb-2 text-primary">
               Create Your Account
             </h3>
             <p className="text-muted text-center mb-4">
               Join the skill-sharing community
             </p>
 
-            {[
-              ["uname", "Full Name"],
-              ["email", "Email"],
-              ["password", "Password"],
-              ["phone", "Phone"],
-            ].map(([name, label]) => (
-              <div className="mb-3" key={name}>
-                <input
-                  type={name === "password" ? "password" : "text"}
-                  name={name}
-                  className="form-control"
-                  placeholder={label}
-                  value={form[name]}
-                  onChange={handleChange}
-                />
-              </div>
-            ))}
+            <form onSubmit={handleSubmit}>
+              {[
+                ["uname", "Full Name", "text"],
+                ["email", "Email", "email"],
+                ["password", "Password", "password"],
+                ["phone", "Phone", "text"],
+                ["bdate", "Birth Date", "date"],
+                ["adhar_id", "Aadhar ID", "text"],
+              ].map(([name, label, type]) => (
+                <div className="mb-3" key={name}>
+                  <input
+                    type={type}
+                    name={name}
+                    className="form-control"
+                    placeholder={label}
+                    value={form[name]}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              ))}
 
-            <button className="btn btn-primary w-100 mt-3">
-              Create Account
-            </button>
+              <button type="submit" className="btn btn-primary w-100 mt-3">
+                Create Account
+              </button>
+            </form>
 
             <p className="text-center text-muted mt-4">
               Already have an account?{" "}

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.LoginRequestDTO;
+import com.example.demo.dto.ProfileDTO;
 import com.example.demo.entities.User;
 import com.example.demo.services.UserService;
 
@@ -34,13 +35,13 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> userLogin(@RequestBody LoginRequestDTO request) {
-	  String token = userv.LoginUser(request.getEmail(), request.getPassword());
+	  ProfileDTO profile = userv.LoginUser(request.getEmail(), request.getPassword());
 	  
-	  if(token == null) {
+	  if(profile == null) {
 		  return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
 	  }
 	  
-	  return ResponseEntity.ok(token);
+	  return ResponseEntity.ok(profile);
 	}
 	
-}
+} 

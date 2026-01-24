@@ -30,7 +30,6 @@ public class User {
 	  String phone;
 	  Date bdate;
 	  String adhar_id;
-	  int age;
 	  
 	  @ManyToOne
 	  @JoinColumn(name="rid")

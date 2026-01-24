@@ -10,21 +10,13 @@ const API = axios.create({
 });
 
 // LOGIN
-export const loginUser = (email, password) => {
-  return API.post("/user/login", {
-    email: email,
-    password: password,
-  });
+export const loginUser = (userData) => {
+  return API.post("/user/login", userData);
 };
 
 // REGISTER
 export const registerUser = (userData) => {
   return API.post("/user/register", userData);
-};
-
-// LOGOUT (frontend only)
-export const logoutUser = () => {
-  localStorage.removeItem("token");
 };
 
 // GET STORED TOKEN
@@ -33,6 +25,7 @@ export const getToken = () => {
 };
 
 // ATTACH TOKEN TO EVERY REQUEST
+// Interceptor = a function that runs automatically before every axios request “Before sending any request, run this code first.”
 API.interceptors.request.use(
   (config) => {
     const token = getToken();
@@ -40,8 +33,6 @@ API.interceptors.request.use(
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
-  },
-  (error) => Promise.reject(error)
-);
+  });
 
 export default API;
