@@ -19,6 +19,11 @@ export const registerUser = (userData) => {
   return API.post("/user/register", userData);
 };
 
+// FETCH USER PROFILE
+export const AddUserSkill = (skillData) => {
+  return API.post("/user/skill", skillData);
+}
+
 // GET STORED TOKEN
 export const getToken = () => {
   return localStorage.getItem("token");

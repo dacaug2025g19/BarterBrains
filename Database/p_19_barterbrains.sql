@@ -59,7 +59,7 @@ CREATE TABLE `category_table` (
   `cname` varchar(255) DEFAULT NULL,
   `cdesc` varchar(255) NOT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `category_table` (
 
 LOCK TABLES `category_table` WRITE;
 /*!40000 ALTER TABLE `category_table` DISABLE KEYS */;
-INSERT INTO `category_table` VALUES (1,'Technology','some tech skills');
+INSERT INTO `category_table` VALUES (1,'Technology','some tech skills'),(2,'Cooking','Cooking diff dishes');
 /*!40000 ALTER TABLE `category_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +179,7 @@ CREATE TABLE `skill_table` (
   PRIMARY KEY (`sid`),
   KEY `cid_idx` (`cid`),
   CONSTRAINT `cid` FOREIGN KEY (`cid`) REFERENCES `category_table` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,8 +188,37 @@ CREATE TABLE `skill_table` (
 
 LOCK TABLES `skill_table` WRITE;
 /*!40000 ALTER TABLE `skill_table` DISABLE KEYS */;
-INSERT INTO `skill_table` VALUES (1,'Java',1,'some Java things',50);
+INSERT INTO `skill_table` VALUES (1,'Java',1,'some Java things',50),(2,'C++',1,'Some c++ things',50);
 /*!40000 ALTER TABLE `skill_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_learn_skill`
+--
+
+DROP TABLE IF EXISTS `user_learn_skill`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_learn_skill` (
+  `lid` int NOT NULL AUTO_INCREMENT,
+  `uid` int DEFAULT NULL,
+  `sid` int DEFAULT NULL,
+  PRIMARY KEY (`lid`),
+  KEY `uidfk_idx` (`uid`),
+  KEY `sidfk_idx` (`sid`),
+  CONSTRAINT `sidfk` FOREIGN KEY (`sid`) REFERENCES `skill_table` (`sid`),
+  CONSTRAINT `uidfk` FOREIGN KEY (`uid`) REFERENCES `user_table` (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_learn_skill`
+--
+
+LOCK TABLES `user_learn_skill` WRITE;
+/*!40000 ALTER TABLE `user_learn_skill` DISABLE KEYS */;
+INSERT INTO `user_learn_skill` VALUES (1,1,1),(2,2,1),(3,3,2);
+/*!40000 ALTER TABLE `user_learn_skill` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -223,6 +252,34 @@ LOCK TABLES `user_table` WRITE;
 INSERT INTO `user_table` VALUES (1,'test','123','test@gmail.com','124578',1,'1235','2004-11-10'),(2,'test2','12354','test@gmail.com','124578',1,'123455','2004-11-10'),(3,'test3','$2a$10$x3NeN5VQxRBOBqGa.9hEneP2RzkKq450BgmGmMndvn1dofJvVOpfe','test3@gmail.com','124578',1,'123455','2005-09-10'),(4,'test4','$2a$10$OReHE7wGF.AkKR3iq6R9Ru1Gsqc98TWUQirY9vm2fNLcg6nHKJm/6','test4@gmail.com','124578',1,'123455','2004-11-10'),(5,'test5','$2a$10$U7960r6.Dx0higMm2F.piuWx22/2WS59n8TcJ6O7b8UR/aqe5miK6','test5@gmail.com','124578',1,'123455','2004-11-10'),(6,'Shinde Mansi Sanjay','$2a$10$rlRvdMOTh2YnEPda9AkKT.aAPncLCFQ3fTJYupZ/LWRRQa6dDDe3u','mansishinde2101@gmail.com','08080596029',1,'830230804545','2004-01-21'),(7,'sonal ','$2a$10$wa7Non1sxkOyU3o36Ay.gu0I86UGCohMu.sOR5wWDeX7az5.w6UYy','sonal@gmail.com','124536789',1,'415263','2026-01-13'),(8,'Rohan Sapkale','$2a$10$CKXvnR0ZZWXPy3A4Nxkg6.5ng12i0ijEuFiPKsNZArcvo1bi6uA1.','rohan@gmail.com','45123678',1,'78456912','2003-01-22'),(9,'Rutuja kumbhar','$2a$10$Z9l.EIfIY6lcfF1DNxuexOdesf7yUgMSl3P1BqQxUHdnqTkDbqIfe','rutuja@gmail.com','45123678',1,'78456912','2003-01-22'),(10,'test7','$2a$10$GrBsZnRSwSdakCUG4zkfaOKvOEh1RfM9TPd6F38/GGT0RcXtODpiq','test7@gmail.com','123456',1,'789456123','2026-01-06');
 /*!40000 ALTER TABLE `user_table` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `user_teach_skill`
+--
+
+DROP TABLE IF EXISTS `user_teach_skill`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_teach_skill` (
+  `teid` int NOT NULL AUTO_INCREMENT,
+  `uid` int DEFAULT NULL,
+  `sid` int DEFAULT NULL,
+  `exp_level` enum('beginner','intermediate','expert') DEFAULT NULL,
+  `cert_url` varchar(45) DEFAULT NULL,
+  `bio` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`teid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_teach_skill`
+--
+
+LOCK TABLES `user_teach_skill` WRITE;
+/*!40000 ALTER TABLE `user_teach_skill` DISABLE KEYS */;
+INSERT INTO `user_teach_skill` VALUES (1,1,2,'beginner','https://google.com','Hi,Mansi here');
+/*!40000 ALTER TABLE `user_teach_skill` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -233,4 +290,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-01-24 13:35:37
+-- Dump completed on 2026-01-24 21:00:55
