@@ -116,12 +116,52 @@ select {
 }
 
 .skill-input button {
+  display: none;
+}
+.btn-skill-add {
   background: linear-gradient(135deg, #3b82f6, #9333ea);
   border: none;
-  padding: 0 16px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
   color: #fff;
-  border-radius: 8px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  box-shadow: 0 0 8px 2px #9333ea44;
+  margin-left: 4px;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+.btn-skill-add:hover {
+  box-shadow: 0 0 16px 4px #9333ea99;
+  background: linear-gradient(135deg, #9333ea, #3b82f6);
+}
+
+.profile-glow {
+  box-shadow: 0 0 24px 4px #0ea5e9, 0 0 60px 0 #0ea5e9aa;
+}
+.btn-glow {
+  box-shadow: 0 0 8px 2px #0ea5e9cc;
+  transition: box-shadow 0.3s;
+}
+.btn-glow:hover {
+  box-shadow: 0 0 16px 4px #0ea5e9ee;
+}
+.icon-info {
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.icon-section {
+  margin-right: 8px;
+  vertical-align: middle;
+  color: #0ea5e9;
+}
+.icon-skill {
+  margin-right: 6px;
+  vertical-align: middle;
+  color: #0ea5e9;
 }
 
 /* SAVE BUTTON RIGHT */
@@ -142,4 +182,82 @@ select {
 
 .muted {
   color: #94a3b8;
+}
+
+/* Overlay for loading and confirmation */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loading-overlay .loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #0ea5e9;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* .alert styles removed, replaced by .popup-message */
+/* Popup Message Styles */
+.popup-container {
+  position: fixed;
+  top: 32px;
+  right: 32px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.popup-message {
+  min-width: 220px;
+  max-width: 350px;
+  padding: 16px 24px;
+  border-radius: 10px;
+  font-weight: 500;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  animation: fadeIn 0.4s;
+}
+.popup-message.error {
+  background: #dc2626;
+  color: #fff;
+}
+.popup-message.success {
+  background: #22c55e;
+  color: #fff;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.confirm-overlay .confirm-box {
+  background: #fff;
+  color: #222;
+  padding: 32px 40px;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  min-width: 320px;
+  text-align: center;
+}
+.confirm-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 24px;
 }
