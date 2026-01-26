@@ -1,12 +1,17 @@
 package com.example.demo.services;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.MatchDTO;
 import com.example.demo.dto.ProfileDTO;
+import com.example.demo.entities.ExpLevel;
 import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
 import com.example.demo.repositories.RoleRepository;
@@ -64,5 +69,39 @@ public class UserService {
 			     return dto;
 			 }
 			 return null;  //invalid
+		}
+		
+		public List<MatchDTO> findMatchUser(Integer teachSkillId,Integer learnSkillId) {
+			List<Object[]> rows = urepo.findMatchUser(teachSkillId, learnSkillId);
+			
+			Map<Integer, MatchDTO> map = new HashMap<>();
+			
+			for(Object[] r : rows) {
+				 Integer uid = (Integer) r[0];
+			        String uname = (String) r[1];
+			        String email = (String) r[2];
+			        String teachSkill = (String) r[3];
+			        String learnSkill = (String) r[4];
+			        
+			        if(!map.containsKey(uid)) {
+			        	MatchDTO dto = new MatchDTO();
+			        	
+			        	dto.setUid(uid);
+			        	dto.setUname(uname);
+			        	dto.setEmail(email);
+			        	dto.setTeachSkillName(new ArrayList<>());
+			        	dto.setLearnSkillName(new ArrayList<>());
+			        	map.put(uid, dto);
+			        }
+			        
+			        if(!map.get(uid).getTeachSkillName().contains(teachSkill) && teachSkill != null) {
+			            map.get(uid).getTeachSkillName().add(teachSkill);
+			        }
+
+			        if(!map.get(uid).getLearnSkillName().contains(learnSkill) && learnSkill != null) {
+			            map.get(uid).getLearnSkillName().add(learnSkill);
+			        }
+			}
+			return new ArrayList<>(map.values());
 		}
 }
