@@ -3,7 +3,6 @@ import { useState } from "react";
 import { getAllSkills, getMatchedUsers } from "../api/authApi"
 import UserNavbar from "../components/UserNavbar";
 import UserSidebar from "../components/UserSidebar";
-import { useSelector } from "react-redux";
 import "../css/SkillSearch.css";
 
 const SkillSearch = () => {
@@ -16,8 +15,6 @@ const SkillSearch = () => {
     const toggleFilter = () => {
         setShowFilters(!showFilters);
     }
-
-    const email = useSelector((state) => state.auth.user?.email);
 
     useEffect(() => {
         fetchSkills();
