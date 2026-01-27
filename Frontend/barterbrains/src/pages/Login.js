@@ -30,11 +30,8 @@ const Login = () => {
 
       if (data.role === "User") {
         navigate("/user/profile");
-      } else {
+      } else if(data.role === "Admin"){
         navigate("/admin/dashboard");
-      }
-      if (data.role === "User") {
-        navigate("/user/dashboard");
       }
 
     } catch (err) {
