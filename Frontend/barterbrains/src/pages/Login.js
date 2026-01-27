@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AppLayout from "../layouts/applayout_temp";
 import { loginUser } from "../api/authApi";
 import { setLogin } from "../redux/slices/authslice";
@@ -9,7 +9,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -21,8 +21,8 @@ const Login = () => {
     try {
       const res = await loginUser({ email, password });
       const data = res.data;
-         const profileData = { ...data, email: email };
-       dispatch(setLogin({ user: profileData}));
+      const profileData = { ...data, email: email };
+      dispatch(setLogin({ user: profileData }));
 
       console.log("Login response data:", data);
       // localStorage.setItem("profileData", JSON.stringify(profileData));
@@ -31,7 +31,10 @@ const Login = () => {
       if (data.role === "User") {
         navigate("/user/profile");
       } else {
-         navigate("/admin/dashboard");
+        navigate("/admin/dashboard");
+      }
+      if (data.role === "User") {
+        navigate("/user/dashboard");
       }
 
     } catch (err) {
