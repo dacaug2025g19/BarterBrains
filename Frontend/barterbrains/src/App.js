@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UserProfile from "./pages/UserProfile";
+import SkillSearch from "./pages/SkillSearch";
+import UserDashboard from "./pages/dashboard";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/user/profile" element={<UserProfile/>} />
+        <Route path="/user/skill-search" element={<SkillSearch/>} />
+        <Route path="/user/dashboard" element={<UserDashboard />} />
       </Routes>
     </BrowserRouter>
   );

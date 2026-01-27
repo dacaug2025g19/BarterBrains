@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.LoginRequestDTO;
+import com.example.demo.dto.MatchDTO;
 import com.example.demo.dto.ProfileDTO;
 import com.example.demo.entities.User;
 import com.example.demo.services.UserService;
@@ -42,6 +44,15 @@ public class UserController {
 	  }
 	  
 	  return ResponseEntity.ok(profile);
+	}
+	
+	@GetMapping("/match")
+	public List<MatchDTO> findMatches(@RequestParam(required = false) Integer teachSkillId,@RequestParam Integer learnSkillId){
+		
+		if(learnSkillId == null) {
+			throw new RuntimeException("learnSkillId is required");
+		}
+	    return userv.findMatchUser(teachSkillId, learnSkillId);
 	}
 	
 } 
