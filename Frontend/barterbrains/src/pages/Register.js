@@ -32,15 +32,18 @@ const Register = () => {
   return (
     <AppLayout>
       <div className="row justify-content-center section">
-        <div className="col-md-6">
-          <div className="card p-5">
-
-            <h3 className="fw-semibold text-center mb-2 text-primary">
+        <div className="col-md-5">
+      <div
+        className="card p-4 text-light border"
+        style={{ background: "transparent" }}
+         >
+    <h3 className="fw-semibold text-center mb-2 text-primary">
               Create Your Account
             </h3>
-            <p className="text-muted text-center mb-4">
-              Join the skill-sharing community
-            </p>
+            <p className="text-light opacity-75 text-center mb-4">
+            Join the skill-sharing community
+             </p>
+
 
             <form onSubmit={handleSubmit}>
               {[
@@ -69,10 +72,11 @@ const Register = () => {
               </button>
             </form>
 
-            <p className="text-center text-muted mt-4">
-              Already have an account?{" "}
-              <Link to="/login">Login</Link>
+           <p className="text-center text-light opacity-75 mt-4">
+            Already have an account?{" "}
+             <Link to="/login" className="text-info fw-semibold">Login</Link>
             </p>
+
 
           </div>
         </div>

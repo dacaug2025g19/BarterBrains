@@ -1,0 +1,58 @@
+/* ===============================
+   REGISTER – FULL BACKGROUND COVER
+   =============================== */
+
+.row.justify-content-center.section {
+  min-height: 100vh;
+  width: 100vw;                 /* 🔥 FULL WIDTH */
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #020617;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dark overlay */
+.row.justify-content-center.section::before {
+  content: "";
+  position: fixed;              /* 🔥 FULL SCREEN */
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 0;
+}
+
+/* Smaller dark card */
+.row.justify-content-center.section .card {
+  position: relative;
+  z-index: 1;
+
+  background: #020617 !important;
+  color: #e5e7eb;
+
+  padding: 32px 28px !important;
+  max-width: 420px;
+
+  border-radius: 16px;
+  border: 1px solid #1f2933;
+
+  box-shadow:
+    0 18px 50px rgba(0,0,0,0.85),
+    0 0 25px rgba(168,85,247,0.18);
+}
+
+/* Inputs */
+.row.justify-content-center.section .form-control {
+  background: #020617;
+  border: 1.5px solid #1f2933;
+  color: #e5e7eb;
+}
+
+/* Button */
+.row.justify-content-center.section .btn-primary {
+  background: linear-gradient(90deg, #a855f7, #c084fc);
+  border: none;
+}

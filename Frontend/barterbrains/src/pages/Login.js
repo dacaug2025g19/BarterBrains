@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AppLayout from "../layouts/applayout_temp";
 import { loginUser } from "../api/authApi";
 import { setLogin } from "../redux/slices/authslice";
+import "../css/Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -47,12 +48,15 @@ const Login = () => {
     <AppLayout>
       <div className="row justify-content-center section">
         <div className="col-md-5">
-          <div className="card p-5">
+         <div
+        className="card p-4 text-light border"
+        style={{ background: "transparent" }}
+         >
 
             <h3 className="fw-bold text-center mb-2 text-primary">
               Welcome Back
             </h3>
-            <p className="text-muted text-center mb-4">
+           <p className="text-light opacity-75 text-center mb-4">
               Login to continue
             </p>
 
@@ -84,9 +88,10 @@ const Login = () => {
             </button>
 
 
-            <p className="text-center text-muted mt-4">
-              New here? <Link to="/register">Create account</Link>
+            <p className="text-center text-light opacity-75 mt-4">
+             New here? <Link to="/register" className="text-info">Create account</Link>
             </p>
+
 
           </div>
         </div>
