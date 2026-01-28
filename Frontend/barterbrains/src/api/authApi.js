@@ -38,6 +38,15 @@ export const getToken = () => {
   return localStorage.getItem("token");
 };
 
+//GET clicked user Profile
+export const getClickedProfile = (uid) => {
+  return API.get(`/user/sendprofile?uid=${uid}`);
+} 
+
+export const SendRequest = (requestData) => {
+  // return API.post("/user/sendrequest", requestData);
+}
+
 
 
 // ATTACH TOKEN TO EVERY REQUEST

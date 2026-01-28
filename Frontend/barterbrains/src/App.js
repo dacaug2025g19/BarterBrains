@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import UserProfile from "./pages/UserProfile";
 import SkillSearch from "./pages/SkillSearch";
 import UserDashboard from "./pages/dashboard";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/user/profile" element={<UserProfile/>} />
         <Route path="/user/skill-search" element={<SkillSearch/>} />
         <Route path="/user/dashboard" element={<UserDashboard />} />
+        <Route path="/profile/:uid" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );

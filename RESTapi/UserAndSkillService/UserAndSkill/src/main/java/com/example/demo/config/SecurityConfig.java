@@ -41,6 +41,7 @@ public class SecurityConfig {
 	                "/user/register",
 	                "/user/all",
 	                "/skill/all"
+	                
 	            ).permitAll()
 	            .anyRequest().authenticated()
 	        ).addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

@@ -2,13 +2,16 @@ package com.example.demo.services;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.ClickedUserProfileDTO;
 import com.example.demo.dto.MatchDTO;
 import com.example.demo.dto.ProfileDTO;
 import com.example.demo.entities.ExpLevel;
@@ -104,4 +107,31 @@ public class UserService {
 			}
 			return new ArrayList<>(map.values());
 		}
+		
+		
+	public ClickedUserProfileDTO UserProfile(int id) {
+		List<Object[]> rows = urepo.findByUid(id);
+		
+		
+		ClickedUserProfileDTO dto = 	new ClickedUserProfileDTO();
+		Set<String> teachSet = new HashSet<>();
+		Set<String> learnSet = new HashSet<>();
+		
+		
+		for(Object[] r : rows) {
+			dto.setUid((Integer) r[0]);
+	        dto.setUname((String) r[1]);
+	        dto.setEmail((String) r[2]);
+	        dto.setPhone((String) r[3]);
+	        dto.setBio((String) r[7]);
+
+	        teachSet.add((String) r[4]);
+	        learnSet.add((String) r[8]);
+		}
+		
+		   dto.setTeachSkills(new ArrayList<>(teachSet));
+		    dto.setLearnSkills(new ArrayList<>(learnSet));
+		    return dto;
+	}
+	
 }

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { getAllSkills, getMatchedUsers } from "../api/authApi"
 import UserNavbar from "../components/UserNavbar";
 import UserSidebar from "../components/UserSidebar";
-import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import "../css/SkillSearch.css";
 
 const SkillSearch = () => {
@@ -13,12 +13,11 @@ const SkillSearch = () => {
     const [skills, setSkills] = useState([]);
     const [matchedUsers, setMatchedUsers] = useState([]);
 
+    const navigate = useNavigate();
+
     const toggleFilter = () => {
         setShowFilters(!showFilters);
     }
-
-    const email = useSelector((state) => state.auth.user?.email);
-
     useEffect(() => {
         fetchSkills();
     }, [])
@@ -46,6 +45,7 @@ const SkillSearch = () => {
         setMatchedUsers(res.data);
         console.log("Matched Users:", res.data);
     }
+
     const reset = () => {
         // Reset filters
         setTeachSkill("");
@@ -108,8 +108,8 @@ const SkillSearch = () => {
                                         <div className="match-card h-100">
 
                                             <h5 className="card-title">{user.uname}</h5>
-                                            <p className="text-muted">{user.email}</p>
-
+                                            <p className="text-muted" >{user.email}</p>
+                                            
                                             <hr />
 
                                             <p>
@@ -123,7 +123,7 @@ const SkillSearch = () => {
                                             </p>
 
 
-                                            <button className="view-btn mt-3">
+                                            <button onClick={()=> navigate(`/profile/${user.uid}`)} className="view-btn mt-3">
                                                 View Profile
                                             </button>
                                         </div>
