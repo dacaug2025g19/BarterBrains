@@ -59,6 +59,7 @@ public class UserService {
 				 
 				 ProfileDTO dto = new ProfileDTO();
 				 
+				 dto.setUid(user.getUid());				 
 				 dto.setUname(user.getUname());
 				 dto.setAdhar_id(user.getAdhar_id());
 			     dto.setBdate(user.getBdate());

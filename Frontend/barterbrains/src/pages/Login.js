@@ -21,20 +21,17 @@ const Login = () => {
     try {
       const res = await loginUser({ email, password });
       const data = res.data;
-      const profileData = { ...data, email: email };
-      dispatch(setLogin({ user: profileData }));
+      // data = { ...data, email: email };
+      dispatch(setLogin(data));   
 
-      console.log("Login response data:", data);
+    console.log("Login response data:", data);
       // localStorage.setItem("profileData", JSON.stringify(profileData));
       localStorage.setItem("token", data.token);
 
       if (data.role === "User") {
         navigate("/user/profile");
-      } else {
+      } else if(data.role === "Admin") {
         navigate("/admin/dashboard");
-      }
-      if (data.role === "User") {
-        navigate("/user/dashboard");
       }
 
     } catch (err) {

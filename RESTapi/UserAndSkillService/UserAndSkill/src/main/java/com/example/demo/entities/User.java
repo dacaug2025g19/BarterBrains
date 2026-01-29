@@ -33,6 +33,8 @@ public class User {
 	  String phone;
 	  Date bdate;
 	  String adhar_id;
+	  String bio;
+	  
 	  
 	  @ManyToOne
 	  @JoinColumn(name="rid")

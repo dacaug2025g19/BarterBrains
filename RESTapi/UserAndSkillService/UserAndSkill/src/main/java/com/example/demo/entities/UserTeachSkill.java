@@ -9,9 +9,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "user_teach_skill")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserTeachSkill {
 
     @Id
@@ -32,5 +40,5 @@ public class UserTeachSkill {
 
 
     private String cert_url;
-    private String bio;
+    
 }
