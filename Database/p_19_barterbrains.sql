@@ -59,7 +59,7 @@ CREATE TABLE `category_table` (
   `cname` varchar(255) DEFAULT NULL,
   `cdesc` varchar(255) NOT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `category_table` (
 
 LOCK TABLES `category_table` WRITE;
 /*!40000 ALTER TABLE `category_table` DISABLE KEYS */;
-INSERT INTO `category_table` VALUES (1,'Technology','some tech skills'),(2,'Cooking','Cooking diff dishes');
+INSERT INTO `category_table` VALUES (1,'Programming','Software development and coding skills'),(2,'Music','Instrumental and vocal music skills'),(3,'Art & Craft','Creative art and handmade craft skills'),(4,'Home Skills','Cooking, home management and daily life skills'),(5,'Academics','Subject knowledge and teaching skills'),(6,'Fitness','Physical training, yoga and wellness skills');
 /*!40000 ALTER TABLE `category_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +179,7 @@ CREATE TABLE `skill_table` (
   PRIMARY KEY (`sid`),
   KEY `cid_idx` (`cid`),
   CONSTRAINT `cid` FOREIGN KEY (`cid`) REFERENCES `category_table` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,7 +188,7 @@ CREATE TABLE `skill_table` (
 
 LOCK TABLES `skill_table` WRITE;
 /*!40000 ALTER TABLE `skill_table` DISABLE KEYS */;
-INSERT INTO `skill_table` VALUES (1,'Java',1,'some Java things',50),(2,'C++',1,'Some c++ things',50);
+INSERT INTO `skill_table` VALUES (1,'Java Programming',1,'Core and advanced Java development',50),(2,'Web Development',1,'Frontend and backend web technologies',60),(3,'Data Structures',1,'DSA concepts for problem solving',55),(4,'Python Programming',1,'Python for scripting and automation',50),(5,'Guitar Playing',2,'Acoustic and electric guitar skills',40),(6,'Singing',2,'Vocal training and singing techniques',35),(7,'Piano Playing',2,'Keyboard and piano basics to advanced',45),(8,'Sketching',3,'Pencil sketching and drawing techniques',30),(9,'Painting',3,'Watercolor and acrylic painting',35),(10,'Handmade Crafts',3,'DIY crafts and decorations',25),(11,'Cooking',4,'Preparing various cuisines and dishes',30),(12,'Baking',4,'Cakes, breads and bakery items',35),(13,'Gardening',4,'Plant care and gardening basics',25),(14,'Mathematics Teaching',5,'Teaching maths concepts clearly',45),(15,'Science Teaching',5,'Teaching physics, chemistry, biology',45),(16,'English Speaking',5,'Spoken English and communication',40),(17,'Yoga Training',6,'Yoga poses and breathing techniques',30),(18,'Gym Training',6,'Workout routines and fitness plans',35),(19,'Meditation',6,'Mindfulness and meditation practices',25);
 /*!40000 ALTER TABLE `skill_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,7 +208,7 @@ CREATE TABLE `user_learn_skill` (
   KEY `sidfk_idx` (`sid`),
   CONSTRAINT `sidfk` FOREIGN KEY (`sid`) REFERENCES `skill_table` (`sid`),
   CONSTRAINT `uidfk` FOREIGN KEY (`uid`) REFERENCES `user_table` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +217,7 @@ CREATE TABLE `user_learn_skill` (
 
 LOCK TABLES `user_learn_skill` WRITE;
 /*!40000 ALTER TABLE `user_learn_skill` DISABLE KEYS */;
-INSERT INTO `user_learn_skill` VALUES (1,1,1),(2,2,1),(3,3,2);
+INSERT INTO `user_learn_skill` VALUES (1,1,6),(2,2,5),(3,3,1),(4,4,3),(5,5,2),(6,6,8),(7,7,4),(8,8,7),(9,9,10),(10,10,9),(11,1,3),(12,2,7),(13,3,5),(14,4,1),(15,5,6);
 /*!40000 ALTER TABLE `user_learn_skill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -237,6 +237,7 @@ CREATE TABLE `user_table` (
   `rid` int DEFAULT NULL,
   `adhar_id` varchar(255) DEFAULT NULL,
   `bdate` date NOT NULL,
+  `bio` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`uid`),
   KEY `rid_idx` (`rid`),
   CONSTRAINT `rid` FOREIGN KEY (`rid`) REFERENCES `role` (`rid`)
@@ -249,7 +250,7 @@ CREATE TABLE `user_table` (
 
 LOCK TABLES `user_table` WRITE;
 /*!40000 ALTER TABLE `user_table` DISABLE KEYS */;
-INSERT INTO `user_table` VALUES (1,'test','123','test@gmail.com','124578',1,'1235','2004-11-10'),(2,'test2','12354','test@gmail.com','124578',1,'123455','2004-11-10'),(3,'test3','$2a$10$x3NeN5VQxRBOBqGa.9hEneP2RzkKq450BgmGmMndvn1dofJvVOpfe','test3@gmail.com','124578',1,'123455','2005-09-10'),(4,'test4','$2a$10$OReHE7wGF.AkKR3iq6R9Ru1Gsqc98TWUQirY9vm2fNLcg6nHKJm/6','test4@gmail.com','124578',1,'123455','2004-11-10'),(5,'test5','$2a$10$U7960r6.Dx0higMm2F.piuWx22/2WS59n8TcJ6O7b8UR/aqe5miK6','test5@gmail.com','124578',1,'123455','2004-11-10'),(6,'Shinde Mansi Sanjay','$2a$10$rlRvdMOTh2YnEPda9AkKT.aAPncLCFQ3fTJYupZ/LWRRQa6dDDe3u','mansishinde2101@gmail.com','08080596029',1,'830230804545','2004-01-21'),(7,'sonal ','$2a$10$wa7Non1sxkOyU3o36Ay.gu0I86UGCohMu.sOR5wWDeX7az5.w6UYy','sonal@gmail.com','124536789',1,'415263','2026-01-13'),(8,'Rohan Sapkale','$2a$10$CKXvnR0ZZWXPy3A4Nxkg6.5ng12i0ijEuFiPKsNZArcvo1bi6uA1.','rohan@gmail.com','45123678',1,'78456912','2003-01-22'),(9,'Rutuja kumbhar','$2a$10$Z9l.EIfIY6lcfF1DNxuexOdesf7yUgMSl3P1BqQxUHdnqTkDbqIfe','rutuja@gmail.com','45123678',1,'78456912','2003-01-22'),(10,'test7','$2a$10$GrBsZnRSwSdakCUG4zkfaOKvOEh1RfM9TPd6F38/GGT0RcXtODpiq','test7@gmail.com','123456',1,'789456123','2026-01-06');
+INSERT INTO `user_table` VALUES (1,'test','123','test@gmail.com','124578',1,'1235','2004-11-10','hrloo'),(2,'test2','12354','test@gmail.com','124578',1,'123455','2004-11-10','fvdd'),(3,'test3','$2a$10$x3NeN5VQxRBOBqGa.9hEneP2RzkKq450BgmGmMndvn1dofJvVOpfe','test3@gmail.com','124578',1,'123455','2005-09-10','fsdSF'),(4,'test4','$2a$10$OReHE7wGF.AkKR3iq6R9Ru1Gsqc98TWUQirY9vm2fNLcg6nHKJm/6','test4@gmail.com','124578',1,'123455','2004-11-10','SDfsV'),(5,'test5','$2a$10$U7960r6.Dx0higMm2F.piuWx22/2WS59n8TcJ6O7b8UR/aqe5miK6','test5@gmail.com','124578',1,'123455','2004-11-10','DSVDSV'),(6,'Shinde Mansi Sanjay','$2a$10$rlRvdMOTh2YnEPda9AkKT.aAPncLCFQ3fTJYupZ/LWRRQa6dDDe3u','mansishinde2101@gmail.com','08080596029',1,'830230804545','2004-01-21','Hii i am mansi shinde'),(7,'sonal ','$2a$10$wa7Non1sxkOyU3o36Ay.gu0I86UGCohMu.sOR5wWDeX7az5.w6UYy','sonal@gmail.com','124536789',1,'415263','2026-01-13','ASfdsf'),(8,'Rohan Sapkale','$2a$10$CKXvnR0ZZWXPy3A4Nxkg6.5ng12i0ijEuFiPKsNZArcvo1bi6uA1.','rohan@gmail.com','45123678',1,'78456912','2003-01-22','safdsaf'),(9,'Rutuja kumbhar','$2a$10$Z9l.EIfIY6lcfF1DNxuexOdesf7yUgMSl3P1BqQxUHdnqTkDbqIfe','rutuja@gmail.com','45123678',1,'78456912','2003-01-22','Hi i am rutuja '),(10,'test7','$2a$10$GrBsZnRSwSdakCUG4zkfaOKvOEh1RfM9TPd6F38/GGT0RcXtODpiq','test7@gmail.com','123456',1,'789456123','2026-01-06','asfsa');
 /*!40000 ALTER TABLE `user_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,9 +267,12 @@ CREATE TABLE `user_teach_skill` (
   `sid` int DEFAULT NULL,
   `exp_level` enum('beginner','intermediate','expert') DEFAULT NULL,
   `cert_url` varchar(45) DEFAULT NULL,
-  `bio` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`teid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`teid`),
+  KEY `FKjsuvfr9c7946qamijwcx1l9n9` (`sid`),
+  KEY `FKsd2e6cgk39a07byq33ynnv6gw` (`uid`),
+  CONSTRAINT `FKjsuvfr9c7946qamijwcx1l9n9` FOREIGN KEY (`sid`) REFERENCES `skill_table` (`sid`),
+  CONSTRAINT `FKsd2e6cgk39a07byq33ynnv6gw` FOREIGN KEY (`uid`) REFERENCES `user_table` (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -277,7 +281,7 @@ CREATE TABLE `user_teach_skill` (
 
 LOCK TABLES `user_teach_skill` WRITE;
 /*!40000 ALTER TABLE `user_teach_skill` DISABLE KEYS */;
-INSERT INTO `user_teach_skill` VALUES (1,1,2,'beginner','https://google.com','Hi,Mansi here');
+INSERT INTO `user_teach_skill` VALUES (1,1,1,'expert','http://cert.com/java1'),(2,2,2,'intermediate','http://cert.com/python1'),(3,3,3,'expert','http://cert.com/guitar1'),(4,4,5,'beginner','http://cert.com/cook1'),(5,5,5,'expert','http://cert.com/web1'),(6,6,6,'intermediate','http://cert.com/ml1'),(7,7,7,'expert','http://cert.com/photography1'),(8,8,8,'beginner','http://cert.com/english1'),(9,9,9,'expert','http://cert.com/yoga1'),(10,10,10,'intermediate','http://cert.com/graphic1');
 /*!40000 ALTER TABLE `user_teach_skill` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -290,4 +294,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-01-24 21:00:55
+-- Dump completed on 2026-01-29 13:54:02

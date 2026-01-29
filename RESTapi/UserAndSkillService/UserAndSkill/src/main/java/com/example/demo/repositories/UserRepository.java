@@ -40,7 +40,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	@Query("""
 			 SELECT u.uid, u.uname, u.email, u.phone,
-			 ts.skill.sname, ts.expLevel, ts.cert_url, ts.bio,
+			 ts.skill.sname, ts.expLevel, ts.cert_url, u.bio,
 			 ls.skill.sname
 			 FROM UserTeachSkill ts
 			 JOIN ts.user u

@@ -32,5 +32,4 @@ public class UserTeachSkill {
 
 
     private String cert_url;
-    private String bio;
 }

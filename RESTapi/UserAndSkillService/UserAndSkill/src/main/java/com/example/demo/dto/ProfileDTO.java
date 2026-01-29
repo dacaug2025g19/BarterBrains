@@ -14,6 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
  public class ProfileDTO {
+	Integer uid;
 	String uname;
 	String adhar_id;
 	Date bdate;

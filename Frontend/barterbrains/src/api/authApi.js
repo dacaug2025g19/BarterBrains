@@ -47,8 +47,6 @@ export const SendRequest = (requestData) => {
   // return API.post("/user/sendrequest", requestData);
 }
 
-
-
 // ATTACH TOKEN TO EVERY REQUEST
 // Interceptor = a function that runs automatically before every axios request “Before sending any request, run this code first.”
 API.interceptors.request.use(

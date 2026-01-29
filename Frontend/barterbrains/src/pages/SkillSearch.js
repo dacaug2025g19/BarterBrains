@@ -4,6 +4,7 @@ import { getAllSkills, getMatchedUsers } from "../api/authApi"
 import UserNavbar from "../components/UserNavbar";
 import UserSidebar from "../components/UserSidebar";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "../css/SkillSearch.css";
 
 const SkillSearch = () => {
@@ -14,6 +15,8 @@ const SkillSearch = () => {
     const [matchedUsers, setMatchedUsers] = useState([]);
 
     const navigate = useNavigate();
+
+    const uid = useSelector((state)=>state.auth.user?.uid);
 
     const toggleFilter = () => {
         setShowFilters(!showFilters);
@@ -46,6 +49,12 @@ const SkillSearch = () => {
         console.log("Matched Users:", res.data);
     }
 
+    const filteredLearnSkills = skills.filter(skill => skill.sid !== Number(teachSkill));
+
+    const filteredTeachSkills = skills.filter(skill => skill.sid !== Number(learnSkill));
+
+    const filteredMatchedUsers = matchedUsers.filter(user =>  user.uid !== Number(uid));
+
     const reset = () => {
         // Reset filters
         setTeachSkill("");
@@ -74,7 +83,7 @@ const SkillSearch = () => {
                             <select className="form-select" value={teachSkill} onChange={(e) => setTeachSkill(e.target.value)}>
                                 <option value="">Select Skill to teach</option>
                                 {
-                                    skills.map((skill) => (<option key={skill.sid} value={skill.sid}>
+                                    filteredTeachSkills.map((skill) => (<option key={skill.sid} value={skill.sid}>
                                         {skill.sname} ({skill.category.cname})
                                     </option>))
                                 }
@@ -86,7 +95,7 @@ const SkillSearch = () => {
                             <select className="form-select" value={learnSkill} onChange={(e) => setLearnSkill(e.target.value)}>
                                 <option value="">Select Skill to learn</option>
                                 {
-                                    skills.map((skill) => (<option key={skill.sid} value={skill.sid}>
+                                    filteredLearnSkills.map((skill) => (<option key={skill.sid} value={skill.sid}>
                                         {skill.sname} ({skill.category.cname})
                                     </option>))
                                 }
@@ -102,7 +111,7 @@ const SkillSearch = () => {
                             <p>No matched users found.</p>
                         ) : (
                             <div className="card-grid">
-                                {matchedUsers.map((user) => (
+                                {filteredMatchedUsers.map((user) => (
                                     <div key={`${user.uid}`}
                                     >
                                         <div className="match-card h-100">
@@ -132,8 +141,6 @@ const SkillSearch = () => {
                             </div>
                         )}
                     </div>
-
-
                 </div>
             </div>
         </>

@@ -61,7 +61,7 @@ public class UserService {
 				 String token = jwtutil.generateToken(email);  //if valid credentials then give jwt token to user
 				 
 				 ProfileDTO dto = new ProfileDTO();
-				 
+				 dto.setUid(user.getUid());
 				 dto.setUname(user.getUname());
 				 dto.setAdhar_id(user.getAdhar_id());
 			     dto.setBdate(user.getBdate());
@@ -124,6 +124,10 @@ public class UserService {
 	        dto.setEmail((String) r[2]);
 	        dto.setPhone((String) r[3]);
 	        dto.setBio((String) r[7]);
+	        dto.setCert_url((String)r[6]);
+	        
+	        ExpLevel level = (ExpLevel)r[5];
+	        dto.setExp_level(level.name());
 
 	        teachSet.add((String) r[4]);
 	        learnSet.add((String) r[8]);
