@@ -15,22 +15,19 @@ const UserDashboard = () => {
         <div className="dashboard-content">
           <div className="dashboard-text">
             {/* Slogan */}
-            <h1>
-              🚀 Level Up Your Skills.<br />
-              🌟 Share Knowledge.<br />
-              💡 Make an Impact.
+            <h1 className="dashboard-main-title">
+              Welcome to Your <br />
+              <span className="dashboard-main-title-accent">Learning Hub</span>
             </h1>
 
             {/* Description */}
-            <p>
-              Step into BarterBrains and explore a world of learning. Discover new skills, 
-              share your expertise, earn rewards, and connect with a community of learners—all 
-              in one place.
+            <p className="dashboard-main-desc">
+              Track your progress, share skills, earn points, and connect with a vibrant community of learners and teachers—all in one personalized dashboard.
             </p>
 
             {/* CTA */}
             <button className="dashboard-btn">
-              Start Your Adventure →
+              Explore Features →
             </button>
           </div>
 
@@ -43,6 +40,7 @@ const UserDashboard = () => {
           </div>
         </div>
       </div>
+
     </>
   );
 };

@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import AppLayout from "../layouts/applayout_temp";
 import { loginUser } from "../api/authApi";
 import { setLogin } from "../redux/slices/authslice";
-import "../css/Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");

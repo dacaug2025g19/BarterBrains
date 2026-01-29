@@ -1,55 +1,288 @@
+/* ===============================
+   ROOT THEME
+================================ */
+:root {
+  --bg-main: #020617;
+  --bg-card: #0f172a;
+  --border-soft: rgba(148, 163, 184, 0.15);
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+  --accent: #38bdf8;
+  --gradient: linear-gradient(90deg, #22d3ee, #3b82f6);
+}
+
+/* ===============================
+   LAYOUT
+================================ */
+.user-layout {
+  min-height: calc(100vh - 64px);
+  background: radial-gradient(circle at top, #0f172a, #020617);
+}
+
 .dashboard-content {
   flex: 1;
+  padding: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 60px;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  color: white;
-  min-height: calc(100vh - 60px);
+  gap: 40px;
 }
 
+/* ===============================
+   TEXT SECTION
+================================ */
 .dashboard-text {
-  max-width: 550px;
+  max-width: 520px;
+  animation: fadeUp 0.8s ease-in-out;
 }
 
-.dashboard-text h1 {
-  font-size: 52px;
-  font-weight: 900;
+.dashboard-main-title {
+  font-size: 42px;
+  font-weight: 800;
   line-height: 1.2;
+  margin-bottom: 20px;
+  color: var(--text-main);
 }
 
-.dashboard-text h1 span {
-  color: #22d3ee; /* accent color for highlights */
+.dashboard-main-title-accent {
+  color: var(--accent);
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
 
-.dashboard-text p {
-  margin-top: 20px;
-  font-size: 18px;
-  color: #cbd5e1;
-  line-height: 1.6;
-}
-
-.dashboard-btn {
-  margin-top: 30px;
-  padding: 14px 36px;
+.dashboard-main-desc {
   font-size: 16px;
-  font-weight: 700;
-  border-radius: 14px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+/* ===============================
+   CTA BUTTON
+================================ */
+.dashboard-btn {
+  background: var(--gradient);
   border: none;
-  background: linear-gradient(90deg, #22d3ee, #8b5cf6);
-  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 14px;
+  color: #020617;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .dashboard-btn:hover {
-  transform: scale(1.05);
-  opacity: 0.95;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(56, 189, 248, 0.35);
+}
+
+/* ===============================
+   IMAGE SECTION
+================================ */
+.dashboard-image {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-soft);
+  border-radius: 20px;
+  padding: 30px;
+  backdrop-filter: blur(16px);
+  animation: float 5s ease-in-out infinite;
 }
 
 .dashboard-image img {
-  width: 450px;
+  width: 420px;
+  max-width: 100%;
+}
+
+/* ===============================
+   ANIMATIONS
+================================ */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* ===============================
+   DASHBOARD WIDGETS
+================================ */
+.dashboard-widgets {
+  padding: 40px 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  background: var(--bg-main);
+}
+
+.widget-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  padding: 24px;
+  backdrop-filter: blur(16px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.widget-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 32px rgba(56, 189, 248, 0.2);
+}
+
+.widget-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 16px;
+}
+
+.widget-card p {
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.widget-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.widget-card li {
+  color: var(--text-muted);
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.widget-card li:last-child {
+  border-bottom: none;
+}
+
+.progress-bar {
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  height: 8px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  background: var(--gradient);
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.5s ease;
+}
+
+/* ===============================
+   DASHBOARD FEATURES SECTION
+================================ */
+.dashboard-features-section {
+  background: var(--bg-main);
+  padding: 64px 0 80px 0;
+  text-align: center;
+}
+
+.dashboard-features-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.dashboard-features-title-accent {
+  color: var(--accent);
+}
+
+.dashboard-features-desc {
+  color: var(--text-muted);
+  font-size: 1.15rem;
+  margin-bottom: 40px;
+}
+
+.dashboard-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.dashboard-feature-card {
+  background: var(--bg-card);
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(56, 189, 248, 0.1);
+  padding: 36px 24px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.18s, transform 0.18s;
+  border: 1.5px solid var(--border-soft);
+}
+
+.dashboard-feature-card:hover {
+  box-shadow: 0 8px 32px rgba(56, 189, 248, 0.18);
+  transform: translateY(-4px) scale(1.03);
+}
+
+.dashboard-feature-icon {
+  font-size: 2.2rem;
+  margin-bottom: 18px;
+  color: var(--accent);
+}
+
+.dashboard-feature-title {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.dashboard-feature-desc {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 992px) {
+  .dashboard-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .dashboard-text h1 {
+    font-size: 34px;
+  }
+
+  .dashboard-image img {
+    width: 320px;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-content {
+    padding: 30px 20px;
+  }
+
+  .dashboard-text h1 {
+    font-size: 28px;
+  }
 }
