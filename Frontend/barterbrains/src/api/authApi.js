@@ -34,8 +34,24 @@ export const registerUser = (userData) => {
 
 
 export const AddUserSkill = (skillData) => {
-  return API.post("/user/skill", skillData);
-};
+//   return API.post("/user/skill", skillData);
+// };
+  return API.post("/userskill/save", skillData);
+}
+/*
+export const AddUserSkill = (data) => {
+  return axios.post(
+    "http://localhost:8081/userskill/save",
+    data,
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }
+  );
+};*/
+
+// FETCH SkillS
 
 export const getAllSkills = () => {
   return API.get("/skill/all");

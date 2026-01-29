@@ -267,6 +267,10 @@ CREATE TABLE `user_teach_skill` (
   `sid` int DEFAULT NULL,
   `exp_level` enum('beginner','intermediate','expert') DEFAULT NULL,
   `cert_url` varchar(45) DEFAULT NULL,
+<<<<<<< HEAD
+=======
+  `bio` varchar(255) DEFAULT NULL,
+>>>>>>> b0860f96735162d96291aa73cd012c03024eeca4
   PRIMARY KEY (`teid`),
   KEY `FKjsuvfr9c7946qamijwcx1l9n9` (`sid`),
   KEY `FKsd2e6cgk39a07byq33ynnv6gw` (`uid`),
@@ -281,7 +285,11 @@ CREATE TABLE `user_teach_skill` (
 
 LOCK TABLES `user_teach_skill` WRITE;
 /*!40000 ALTER TABLE `user_teach_skill` DISABLE KEYS */;
+<<<<<<< HEAD
 INSERT INTO `user_teach_skill` VALUES (1,1,1,'expert','http://cert.com/java1'),(2,2,2,'intermediate','http://cert.com/python1'),(3,3,3,'expert','http://cert.com/guitar1'),(4,4,5,'beginner','http://cert.com/cook1'),(5,5,5,'expert','http://cert.com/web1'),(6,6,6,'intermediate','http://cert.com/ml1'),(7,7,7,'expert','http://cert.com/photography1'),(8,8,8,'beginner','http://cert.com/english1'),(9,9,9,'expert','http://cert.com/yoga1'),(10,10,10,'intermediate','http://cert.com/graphic1');
+=======
+INSERT INTO `user_teach_skill` VALUES (1,1,1,'expert','http://cert.com/java1','Java backend developer with 3 years experience'),(2,2,2,'intermediate','http://cert.com/python1','Python for data analysis and scripting'),(3,3,3,'expert','http://cert.com/guitar1','Professional guitarist and music trainer'),(4,4,5,'beginner','http://cert.com/cook1','Home chef specialized in Indian cuisine'),(5,5,5,'expert','http://cert.com/web1','Frontend web developer using React'),(6,6,6,'intermediate','http://cert.com/ml1','Machine learning enthusiast and trainer'),(7,7,7,'expert','http://cert.com/photography1','Wildlife photographer'),(8,8,8,'beginner','http://cert.com/english1','Spoken English trainer'),(9,9,9,'expert','http://cert.com/yoga1','Certified yoga instructor'),(10,10,10,'intermediate','http://cert.com/graphic1','Graphic designer with branding skills');
+>>>>>>> b0860f96735162d96291aa73cd012c03024eeca4
 /*!40000 ALTER TABLE `user_teach_skill` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -294,4 +302,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< HEAD
 -- Dump completed on 2026-01-29 13:54:02
+=======
+-- Dump completed on 2026-01-27 12:07:53
+>>>>>>> b0860f96735162d96291aa73cd012c03024eeca4

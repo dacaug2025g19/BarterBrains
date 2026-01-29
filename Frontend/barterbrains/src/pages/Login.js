@@ -19,17 +19,31 @@ const Login = () => {
       // 🔐 COMMON LOGIN (USER + ADMIN)
       const res = await loginCommon({ email, password });
       const data = res.data;
+// <<<<<<< HEAD
 
-      // Store profile data in redux
-      dispatch(setLogin({ user: { email, role: data.role } }));
+//       // Store profile data in redux
+//       dispatch(setLogin({ user: { email, role: data.role } }));
 
-      // Redirect based on role
-      if (data.role === "Admin") {
-        localStorage.setItem("admin_token", data.token);
+//       // Redirect based on role
+//       if (data.role === "Admin") {
+//         localStorage.setItem("admin_token", data.token);
+//         navigate("/admin/dashboard");
+//       } else {
+//         localStorage.setItem("token", data.token);
+//         navigate("/user/dashboard");
+
+      // data = { ...data, email: email };
+      dispatch(setLogin(data));   
+
+    console.log("Login response data:", data);
+      // localStorage.setItem("profileData", JSON.stringify(profileData));
+      localStorage.setItem("token", data.token);
+
+      if (data.role === "User") {
+        navigate("/user/profile");
+      } else if(data.role === "Admin") {
         navigate("/admin/dashboard");
-      } else {
-        localStorage.setItem("token", data.token);
-        navigate("/user/dashboard");
+
       }
 
     } catch (err) {

@@ -11,6 +11,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setLogin: (state, action) => {
+
       state.user = {
         uid: action.payload.uid,
         uname: action.payload.uname,
@@ -20,7 +21,7 @@ const authSlice = createSlice({
         bdate: action.payload.bdate,
         adhar_id: action.payload.adhar_id,
       };
-      state.token = action.payload.token;
+      state.token = action.payload.token;   
       state.isLoggedIn = true;
     },
 

@@ -56,9 +56,11 @@ public class UserController {
 	    return userv.findMatchUser(teachSkillId, learnSkillId);
 	}
 	
+
 	@GetMapping("/sendprofile")
 	public ClickedUserProfileDTO UserProfile(@RequestParam int uid) {
 	   return userv.UserProfile(uid);
 	}
+
 	
 } 
