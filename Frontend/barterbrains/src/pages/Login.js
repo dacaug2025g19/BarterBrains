@@ -10,34 +10,33 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //fetch api
-    //data - name,aadhar,bdate,token,role
-    // if(data.role==="user")
+
     try {
+      // 🔐 COMMON LOGIN (USER + ADMIN)
       const res = await loginUser({ email, password });
       const data = res.data;
-      const profileData = { ...data, email: email };
-      dispatch(setLogin({ user: profileData }));
 
-      console.log("Login response data:", data);
+      dispatch(setLogin(data));   
+
+    console.log("Login response data:", data);
       // localStorage.setItem("profileData", JSON.stringify(profileData));
       localStorage.setItem("token", data.token);
 
       if (data.role === "User") {
         navigate("/user/profile");
+
       } else if(data.role === "Admin"){
         navigate("/admin/dashboard");
       }
-
+     
     } catch (err) {
+      console.error(err);
       alert("Login failed. Please check your credentials.");
     }
-    // console.log("Logged in user:", { email, password });
   }
 
   return (
@@ -55,10 +54,12 @@ const Login = () => {
 
             <div className="mb-3">
               <input
+                type="email"
                 className="form-control"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
 
@@ -69,6 +70,7 @@ const Login = () => {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
 
@@ -79,7 +81,6 @@ const Login = () => {
             >
               Login
             </button>
-
 
             <p className="text-center text-muted mt-4">
               New here? <Link to="/register">Create account</Link>

@@ -16,9 +16,9 @@ const UserDashboard = () => {
           <div className="dashboard-text">
             {/* Slogan */}
             <h1>
-              🚀 Level Up Your Skills.<br />
-              🌟 Share Knowledge.<br />
-              💡 Make an Impact.
+              🚀 Level Up Your Skills<br />
+              🌟 Share Knowledge<br />
+              💡 Make an Impact
             </h1>
 
             {/* Description */}
@@ -34,13 +34,7 @@ const UserDashboard = () => {
             </button>
           </div>
 
-          {/* Illustration */}
-          <div className="dashboard-image">
-            <img
-              src="/dashboard-illustration-5.png"
-              alt="Dashboard Illustration"
-            />
-          </div>
+          
         </div>
       </div>
     </>

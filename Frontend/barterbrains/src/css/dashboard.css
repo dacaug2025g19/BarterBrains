@@ -14,7 +14,7 @@
 }
 
 .dashboard-text h1 {
-  font-size: 52px;
+  font-size: 45px;
   font-weight: 900;
   line-height: 1.2;
 }
@@ -27,7 +27,7 @@
   margin-top: 20px;
   font-size: 18px;
   color: #cbd5e1;
-  line-height: 1.6;
+  line-height: 0.8;
 }
 
 .dashboard-btn {

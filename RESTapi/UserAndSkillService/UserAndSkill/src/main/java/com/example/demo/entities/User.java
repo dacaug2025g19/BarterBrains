@@ -33,7 +33,8 @@ public class User {
 	  String phone;
 	  Date bdate;
 	  String adhar_id;
-	  
+	  String bio;
+
 	  @ManyToOne
 	  @JoinColumn(name="rid")
 	  Role role;
@@ -43,5 +44,7 @@ public class User {
 	  
 	  @OneToMany(mappedBy = "user")
 	  private List<UserLearnSkill> learnSkills;
+	  
+	 
 
 }
