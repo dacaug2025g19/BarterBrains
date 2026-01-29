@@ -1,0 +1,165 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|c:\\projects\\barterbrainsproject\\barterbrains\\restapi\\adminservice\\admin\\admin\\controllers\\adminskillcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|solutionrelative:admin\\controllers\\adminskillcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|c:\\projects\\barterbrainsproject\\barterbrains\\restapi\\adminservice\\admin\\admin\\dtos\\skilldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|solutionrelative:admin\\dtos\\skilldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|c:\\projects\\barterbrainsproject\\barterbrains\\restapi\\adminservice\\admin\\admin\\dtos\\updateskilldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|solutionrelative:admin\\dtos\\updateskilldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|c:\\projects\\barterbrainsproject\\barterbrains\\restapi\\adminservice\\admin\\admin\\dtos\\createskilldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|solutionrelative:admin\\dtos\\createskilldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|c:\\projects\\barterbrainsproject\\barterbrains\\restapi\\adminservice\\admin\\admin\\models\\skilltable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|solutionrelative:admin\\models\\skilltable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|c:\\projects\\barterbrainsproject\\barterbrains\\restapi\\adminservice\\admin\\admin\\services\\adminskillservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|solutionrelative:admin\\services\\adminskillservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|c:\\projects\\barterbrainsproject\\barterbrains\\restapi\\adminservice\\admin\\admin\\dtos\\adminskilldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|solutionrelative:admin\\dtos\\adminskilldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|c:\\projects\\barterbrainsproject\\barterbrains\\restapi\\adminservice\\admin\\admin\\repositories\\interfaces\\iskillrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|solutionrelative:admin\\repositories\\interfaces\\iskillrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|c:\\projects\\barterbrainsproject\\barterbrains\\restapi\\adminservice\\admin\\admin\\repositories\\skillrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFE82388-C3AD-41A9-B3FC-EC73DCD7FF2C}|Admin\\Admin.csproj|solutionrelative:admin\\repositories\\skillrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SkillDTO.cs",
+              "DocumentMoniker": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\DTOs\\SkillDTO.cs",
+              "RelativeDocumentMoniker": "Admin\\DTOs\\SkillDTO.cs",
+              "ToolTip": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\DTOs\\SkillDTO.cs",
+              "RelativeToolTip": "Admin\\DTOs\\SkillDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T11:28:53.402Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CreateSkillDTO.cs",
+              "DocumentMoniker": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\DTOs\\CreateSkillDTO.cs",
+              "RelativeDocumentMoniker": "Admin\\DTOs\\CreateSkillDTO.cs",
+              "ToolTip": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\DTOs\\CreateSkillDTO.cs",
+              "RelativeToolTip": "Admin\\DTOs\\CreateSkillDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T11:28:09.436Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SkillTable.cs",
+              "DocumentMoniker": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\Models\\SkillTable.cs",
+              "RelativeDocumentMoniker": "Admin\\Models\\SkillTable.cs",
+              "ToolTip": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\Models\\SkillTable.cs",
+              "RelativeToolTip": "Admin\\Models\\SkillTable.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwBEAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T10:54:16.479Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AdminSkillService.cs",
+              "DocumentMoniker": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\Services\\AdminSkillService.cs",
+              "RelativeDocumentMoniker": "Admin\\Services\\AdminSkillService.cs",
+              "ToolTip": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\Services\\AdminSkillService.cs",
+              "RelativeToolTip": "Admin\\Services\\AdminSkillService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T10:51:21.156Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UpdateSkillDTO.cs",
+              "DocumentMoniker": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\DTOs\\UpdateSkillDTO.cs",
+              "RelativeDocumentMoniker": "Admin\\DTOs\\UpdateSkillDTO.cs",
+              "ToolTip": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\DTOs\\UpdateSkillDTO.cs",
+              "RelativeToolTip": "Admin\\DTOs\\UpdateSkillDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T10:49:46.462Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ISkillRepository.cs",
+              "DocumentMoniker": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\Repositories\\Interfaces\\ISkillRepository.cs",
+              "RelativeDocumentMoniker": "Admin\\Repositories\\Interfaces\\ISkillRepository.cs",
+              "ToolTip": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\Repositories\\Interfaces\\ISkillRepository.cs",
+              "RelativeToolTip": "Admin\\Repositories\\Interfaces\\ISkillRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T10:40:36.344Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SkillRepository.cs",
+              "DocumentMoniker": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\Repositories\\SkillRepository.cs",
+              "RelativeDocumentMoniker": "Admin\\Repositories\\SkillRepository.cs",
+              "ToolTip": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\Repositories\\SkillRepository.cs",
+              "RelativeToolTip": "Admin\\Repositories\\SkillRepository.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAgwC8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T10:40:34.041Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AdminSkillDto.cs",
+              "DocumentMoniker": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\DTOs\\AdminSkillDto.cs",
+              "RelativeDocumentMoniker": "Admin\\DTOs\\AdminSkillDto.cs",
+              "ToolTip": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\DTOs\\AdminSkillDto.cs",
+              "RelativeToolTip": "Admin\\DTOs\\AdminSkillDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T10:40:01.705Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AdminSkillController.cs",
+              "DocumentMoniker": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\Controllers\\AdminSkillController.cs",
+              "RelativeDocumentMoniker": "Admin\\Controllers\\AdminSkillController.cs",
+              "ToolTip": "C:\\Projects\\BarterBrainsProject\\BarterBrains\\RESTapi\\AdminService\\Admin\\Admin\\Controllers\\AdminSkillController.cs",
+              "RelativeToolTip": "Admin\\Controllers\\AdminSkillController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T10:37:47.04Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

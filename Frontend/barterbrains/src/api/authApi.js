@@ -2,53 +2,78 @@
 
 import axios from "axios";
 
+/* =========================
+   COMMON API INSTANCE
+   ========================= */
+
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "http://localhost:8081",
+  baseURL: "https://localhost:7124/api", // 🔴 CHANGE PORT IF NEEDED
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-// LOGIN
-export const loginUser = (userData) => {
-  return API.post("/user/login", userData);
+/* =========================
+   COMMON LOGIN (USER + ADMIN)
+   ========================= */
+
+export const loginCommon = (data) => {
+  return API.post("/auth/login", data);
 };
 
-// REGISTER
+/* =========================
+   USER APIs (UNCHANGED)
+   ========================= */
+
 export const registerUser = (userData) => {
   return API.post("/user/register", userData);
 };
 
-// FETCH USER PROFILE
+
+
+
+
 export const AddUserSkill = (skillData) => {
   return API.post("/user/skill", skillData);
-}
+};
 
-// FETCH SkillS
-export const getAllSkills = () =>{
+export const getAllSkills = () => {
   return API.get("/skill/all");
-}
+};
 
 export const getMatchedUsers = (teachSkillId, learnSkillId) => {
-  return API.get(`/user/match?teachSkillId=${teachSkillId}&learnSkillId=${learnSkillId}`);
-}
+  return API.get(
+    `/user/match?teachSkillId=${teachSkillId}&learnSkillId=${learnSkillId}`
+  );
+};
 
-// GET STORED TOKEN
-export const getToken = () => {
+/* =========================
+   TOKEN HELPERS
+   ========================= */
+
+export const getUserToken = () => {
   return localStorage.getItem("token");
 };
 
+export const getAdminToken = () => {
+  return localStorage.getItem("admin_token");
+};
 
+/* =========================
+   ATTACH TOKEN AUTOMATICALLY
+   ========================= */
 
-// ATTACH TOKEN TO EVERY REQUEST
-// Interceptor = a function that runs automatically before every axios request “Before sending any request, run this code first.”
-API.interceptors.request.use(
-  (config) => {
-    const token = getToken();
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  });
+API.interceptors.request.use((config) => {
+  const adminToken = getAdminToken();
+  const userToken = getUserToken();
+
+  if (adminToken) {
+    config.headers.Authorization = `Bearer ${adminToken}`;
+  } else if (userToken) {
+    config.headers.Authorization = `Bearer ${userToken}`;
+  }
+
+  return config;
+});
 
 export default API;
