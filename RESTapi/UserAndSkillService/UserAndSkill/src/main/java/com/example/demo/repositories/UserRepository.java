@@ -7,14 +7,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.dto.ClickedUserProfileDTO;
 import com.example.demo.dto.MatchDTO;
 import com.example.demo.entities.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer>{
+public interface UserRepository extends JpaRepository<User, Integer> {
 
 	public User findByEmail(String email);
-	
+
 //	@Query(value = "SELECT DISTINCT u.* " +
 //	        "FROM user_table u " +
 //	        "JOIN user_teach_skill uts ON u.uid = uts.uid " +
@@ -22,7 +23,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 //	        "WHERE uts.sid = :learnSkillId " +
 //	        "AND ( :teachSkillId IS NULL OR uls.sid = :teachSkillId )",
 //	        nativeQuery = true)
-	
+
 	@Query("""
 			SELECT u.uid, u.uname, u.email,
 			       ts.skill.sname,
@@ -34,8 +35,18 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 			AND (:teachSkillId IS NULL OR ls.skill.sid = :teachSkillId)
 			""")
 
-	public List<Object[]> findMatchUser(
-	        @Param("teachSkillId") Integer teachSkillId,
-	        @Param("learnSkillId") Integer learnSkillId);
+	public List<Object[]> findMatchUser(@Param("teachSkillId") Integer teachSkillId,
+			@Param("learnSkillId") Integer learnSkillId);
+
+	@Query("""
+			 SELECT u.uid, u.uname, u.email, u.phone,
+			 ts.skill.sname, ts.expLevel, ts.cert_url, u.bio,
+			 ls.skill.sname
+			 FROM UserTeachSkill ts
+			 JOIN ts.user u
+			 JOIN UserLearnSkill ls ON ls.user = u
+			 WHERE u.uid = :uid
+		   """)
+	public List<Object[]> findByUid(@Param("uid") Integer uid);
 
 }

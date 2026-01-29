@@ -1,0 +1,122 @@
+.clickedprofile-container {
+  flex: 1;
+  padding: 40px;
+  background: #050505;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  justify-content: center;
+}
+
+.clickedprofile-card {
+  width: 850px;
+  background: #0a0a0a;
+  border: 1px solid #1f1f1f;
+  border-radius: 16px;
+  padding: 30px;
+  color: #e5e5e5;
+  box-shadow: 0 0 25px rgba(34, 211, 238, 0.08);
+  animation: fadeIn 0.4s ease;
+}
+
+/* Header */
+.cp-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #1f1f1f;
+  padding-bottom: 20px;
+}
+
+.cp-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #22d3ee, #06b6d4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #000;
+}
+
+.cp-userinfo h2 {
+  margin: 0;
+}
+
+.cp-userinfo p {
+  margin: 2px 0;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* Sections */
+.cp-section {
+  margin-top: 25px;
+}
+
+.cp-section h4 {
+  margin-bottom: 10px;
+  color: #22d3ee;
+}
+
+/* Skill badges */
+.skill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.skill-badge.teach {
+  background: #062a30;
+  border: 1px solid #22d3ee;
+  color: #22d3ee;
+}
+
+.skill-badge.learn {
+  background: #1e1b0a;
+  border: 1px solid #facc15;
+  color: #facc15;
+}
+
+/* Info grid */
+.cp-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 25px;
+  padding: 15px;
+  background: #111;
+  border-radius: 10px;
+}
+
+/* Button */
+.send-btn {
+  margin-top: 30px;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #22d3ee, #06b6d4);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #000;
+  transition: 0.3s ease;
+}
+
+.send-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px #22d3ee;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
+}

@@ -11,6 +11,7 @@ import Register from "./pages/Register";
 import UserProfile from "./pages/UserProfile";
 import SkillSearch from "./pages/SkillSearch";
 import UserDashboard from "./pages/dashboard";
+import Profile from "./pages/Profile";
 
 /* ADMIN PAGES */
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -35,6 +36,7 @@ function App() {
         <Route path="/user/profile" element={<UserProfile />} />
         <Route path="/user/skill-search" element={<SkillSearch />} />
         <Route path="/user/dashboard" element={<UserDashboard />} />
+
 
         {/* ===== ADMIN (PROTECTED) ===== */}
         <Route
@@ -77,6 +79,8 @@ function App() {
             </AdminPrivateRoute>
           }
         />
+=======
+        <Route path="/profile/:uid" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );

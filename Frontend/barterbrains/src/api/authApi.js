@@ -55,6 +55,7 @@ export const getUserToken = () => {
   return localStorage.getItem("token");
 };
 
+
 export const getAdminToken = () => {
   return localStorage.getItem("admin_token");
 };
@@ -62,6 +63,16 @@ export const getAdminToken = () => {
 /* =========================
    ATTACH TOKEN AUTOMATICALLY
    ========================= */
+
+//GET clicked user Profile
+export const getClickedProfile = (uid) => {
+  return API.get(`/user/sendprofile?uid=${uid}`);
+} 
+
+export const SendRequest = (requestData) => {
+  // return API.post("/user/sendrequest", requestData);
+}
+
 
 API.interceptors.request.use((config) => {
   const adminToken = getAdminToken();

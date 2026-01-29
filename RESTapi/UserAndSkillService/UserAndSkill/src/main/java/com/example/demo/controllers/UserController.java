@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.ClickedUserProfileDTO;
 import com.example.demo.dto.LoginRequestDTO;
 import com.example.demo.dto.MatchDTO;
 import com.example.demo.dto.ProfileDTO;
@@ -53,6 +54,11 @@ public class UserController {
 			throw new RuntimeException("learnSkillId is required");
 		}
 	    return userv.findMatchUser(teachSkillId, learnSkillId);
+	}
+	
+	@GetMapping("/sendprofile")
+	public ClickedUserProfileDTO UserProfile(@RequestParam int uid) {
+	   return userv.UserProfile(uid);
 	}
 	
 } 
