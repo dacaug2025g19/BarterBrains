@@ -31,13 +31,7 @@ const UserDashboard = () => {
             </button>
           </div>
 
-          {/* Illustration */}
-          <div className="dashboard-image">
-            <img
-              src="/dashboard-illustration-5.png"
-              alt="Dashboard Illustration"
-            />
-          </div>
+         
         </div>
       </div>
 
