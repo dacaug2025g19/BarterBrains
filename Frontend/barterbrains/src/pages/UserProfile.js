@@ -5,7 +5,7 @@ import { logout } from "../redux/slices/authslice";
 import { useNavigate } from "react-router-dom";
 import UserSidebar from "../components/UserSidebar";
 import UserNavbar from "../components/UserNavbar";
-import axios, { all } from "axios";
+
 import "../css/UserProfile.css";
 import { AddUserSkill, getAllSkills, loginUser } from "../api/authApi"
 
@@ -36,8 +36,8 @@ const UserProfile = () => {
   const [editMode, setEditMode] = useState(false);
   const [about, setAbout] = useState("");
 
-  const [experienceLevel, setExperienceLevel] = useState("");
-  const [certificationUrl, setCertificationUrl] = useState("");
+  //const [teachExpLevel, setTeachExpLevel] = useState("");
+  //const [certificationUrl, setCertificationUrl] = useState("");
   const [profileImg, setProfileImg] = useState(DEFAULT_IMG);
   const [showImgMenu, setShowImgMenu] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -57,11 +57,11 @@ const UserProfile = () => {
   // ================= FETCH PROFILE =================
   useEffect(() => {
     if (!user) return;
-
+    console.log("This is userid: " + user.uid);
     setAbout(user.about ?? "");
-    setTeachSkills(user.teachSkills ?? []);
+    setTeachSkills([]);
     setLearnSkills(user.learnSkills ?? []);
-    setExperienceLevel(user.experienceLevel ?? "");
+    // setExperienceLevel(user.experienceLevel ?? "");
   }, [user]);
 
 
@@ -134,42 +134,63 @@ const UserProfile = () => {
   const addTeachSkill = () => {
     if (!teachInput) return;
 
-    if (teachSkills.includes(Number(teachInput))) {
+    if (teachSkills.some(s => s.skillId === Number(teachInput))) {
       setError(MSGS.duplicateSkill);
       return;
     }
 
-    setTeachSkills((prev) => [...prev, Number(teachInput)]);
-    setTeachSkills("");
+    setTeachSkills(prev => [
+      ...prev,
+      {
+        skillId: Number(teachInput),
+        experienceLevel: "",
+        certificate: null
+      }
+    ]);
+
+    setTeachInput("");
   };
 
+
+
   const saveProfile = async () => {
-    if (!isValidUrl(certificationUrl)) {
-      setError(MSGS.invalidCertUrl);
-      return;
-    }
     setLoading(true);
-    console.log("User: " + user)
+
     try {
-      const skillData = {
-        uid: user.uid,
-        about,
-        experienceLevel: experienceLevel.toLowerCase(),
-        certificationUrl,
-        teachSkillId: teachSkills ? [Number(teachInput)] : [],          // already IDs
-        learnSkillId: learnSkills ? [Number(learnInput)] : [],
-      };
-      console.log(skillData);
-      await AddUserSkill(skillData);
+      const formData = new FormData();
+
+      formData.append("uid", user.uid);
+      formData.append("bio", about);
+
+      // Data is in the form of formData
+      teachSkills.forEach((skill, index) => {
+        formData.append(`teachSkills[${index}].skillId`, skill.skillId);
+        formData.append(
+          `teachSkills[${index}].experienceLevel`,
+          skill.experienceLevel
+        );
+        formData.append(
+          `teachSkills[${index}].certificate`,
+          skill.certificate
+        );
+      });
+
+      learnSkills.forEach(id =>
+        formData.append("learnSkillId", id)
+      );
+      console.log("This is formdata: " + formData);
+      await AddUserSkill(formData);
 
       setSuccess(MSGS.profileSaved);
       setEditMode(false);
     } catch (err) {
+      console.error(err);
       setError(MSGS.profileSaveError);
     } finally {
       setLoading(false);
     }
   };
+
 
   // ================= LOGOUT =================
 
@@ -186,7 +207,7 @@ const UserProfile = () => {
 
 
   // ================= SKILL HANDLERS =================
-  const addSkill = (type) => {
+  /*const addSkill = (type) => {
     if (type === "teach" && teachInput) {
       const skillId = Number(teachInput);
       if (!teachSkills.includes(skillId)) {
@@ -194,18 +215,35 @@ const UserProfile = () => {
       }
       setTeachInput("");
     }
-
+*/
+  const addSkill = (type) => {
     if (type === "learn" && learnInput) {
       if (!learnSkills.includes(Number(learnInput))) {
         setLearnSkills([...learnSkills, Number(learnInput)]);
       }
       setLearnInput("");
     }
-
-    console.log("Teach skills:", teachSkills);
-
+  };
+  // =================  HANDLERS =================
+  const handleCertificateChange = (skillId, file) => {
+    setTeachSkills(prev =>
+      prev.map(skill =>
+        skill.skillId === skillId
+          ? { ...skill, certificate: file }
+          : skill
+      )
+    );
   };
 
+  const handleExperienceChange = (skillId, level) => {
+    setTeachSkills(prev =>
+      prev.map(skill =>
+        skill.skillId === skillId
+          ? { ...skill, experienceLevel: level }
+          : skill
+      )
+    );
+  };
 
   // ================= RENDER =================
   if (!user) return <p>Loading...</p>;
@@ -335,37 +373,95 @@ const UserProfile = () => {
               <h4><FaUserGraduate /> I Can Teach</h4>
 
               {editMode && (
-                <div className="skill-input">
-                  <select
-                    className="form-select"
-                    value={teachInput}
-                    onChange={(e) => setTeachInput(e.target.value)}
-                  >
-                    <option value="">Select skill</option>
-                    {skills.map(skill => (
-                      <option key={skill.sid} value={skill.sid}>
-                        {skill.sname}
-                      </option>
-                    ))}
-                  </select>
+                <>
+                  {/* ===== ADD NEW TEACH SKILL ===== */}
+                  <div className="skill-input">
 
-                  <button
-                    className="btn-skill-add"
-                    onClick={() => addSkill("teach")}
-                  >
-                    <FaPlus />
-                  </button>
-                </div>
+                    {/* SELECT SKILL (RESTORED ✅) */}
+                    <select
+                      className="form-select"
+                      value={teachInput}
+                      onChange={(e) => setTeachInput(e.target.value)}
+                    >
+                      <option value="">Select skill</option>
+                      {skills.map(skill => (
+                        <option key={skill.sid} value={skill.sid}>
+                          {skill.sname}
+                        </option>
+                      ))}
+                    </select>
+
+                    <button className="btn-skill-add" onClick={addTeachSkill}>
+                      <FaPlus />
+                    </button>
+                  </div>
+
+                  {/* ===== ADDED TEACH SKILLS ===== */}
+                  <div className="skill-list">
+
+                    {/* SHOW DEFAULT FIELDS WHEN NO SKILL IS ADDED */}
+                    {teachSkills.length === 0 && (
+                      <div className="skill-chip-column">
+
+                        <span className="skill-chip muted">
+                          Select a skill
+                        </span>
+
+                        <select className="form-select">
+                          <option>Experience Level</option>
+                        </select>
+
+                        <label className="cert-label">
+                          <FaCertificate /> Certification
+                        </label>
+                        <input type="file" />
+                      </div>
+                    )}
+
+                    {/* NORMAL FLOW AFTER CLICKING PLUS */}
+                    {teachSkills.map(skill => (
+                      <div key={skill.skillId} className="skill-chip-column">
+
+                        <span className="skill-chip">
+                          {getSkillNameById(skill.skillId)}
+                        </span>
+
+                        <select
+                          className="form-select"
+                          value={skill.experienceLevel}
+                          onChange={(e) =>
+                            handleExperienceChange(skill.skillId, e.target.value)
+                          }
+                        >
+                          <option value="">Experience Level</option>
+                          <option value="BEGINNER">Beginner</option>
+                          <option value="INTERMEDIATE">Intermediate</option>
+                          <option value="EXPERT">Expert</option>
+                        </select>
+
+                        <label className="cert-label">
+                          <FaCertificate /> Certification
+                        </label>
+                        <input
+                          type="file"
+                          accept=".pdf,.doc,.docx"
+                          onChange={(e) =>
+                            handleCertificateChange(
+                              skill.skillId,
+                              e.target.files[0]
+                            )
+                          }
+                        />
+                      </div>
+                    ))}
+
+                  </div>
+
+                </>
               )}
 
-              <div className="skill-list">
-                {teachSkills.map(id => (
-                  <span key={id} className="skill-chip">
-                    {getSkillNameById(id)}
-                  </span>
-                ))}
-              </div>
             </div>
+
 
 
             {/* I WANT TO LEARN */}
@@ -408,49 +504,9 @@ const UserProfile = () => {
                 )}
               </div>
             </div>
-            <div className="profile-card">
-              <h4><FaCertificate /> Experience Level</h4>
 
-              {editMode ? (
-                <div className="skill-input">
-                  <select
-                    className="form-select"
-                    value={experienceLevel}
-                    onChange={(e) => setExperienceLevel(e.target.value)}
-                  >
-                    <option value="">Select level</option>
-                    <option value="Beginner">Beginner</option>
-                    <option value="Intermediate">Intermediate</option>
-                    <option value="Expert">Expert</option>
-                  </select>
-                </div>
-              ) : (
-                <p className="muted">{experienceLevel || "Not specified"}</p>
-              )}
-            </div>
 
-            <div className="profile-card">
-              <h4><FaCertificate /> Certification</h4>
 
-              {editMode ? (
-                <input
-                  className="form-input"
-                  value={certificationUrl}
-                  onChange={(e) => setCertificationUrl(e.target.value)}
-                  placeholder="Paste certification link"
-                />
-              ) : (
-                <p className="muted">
-                  {certificationUrl ? (
-                    <a href={certificationUrl} target="_blank" rel="noopener noreferrer">
-                      View Certification
-                    </a>
-                  ) : (
-                    "No certification added"
-                  )}
-                </p>
-              )}
-            </div>
 
 
 

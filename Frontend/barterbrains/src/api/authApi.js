@@ -4,9 +4,6 @@ import axios from "axios";
 
 const API = axios.create({
   baseURL: process.env.REACT_APP_API_URL || "http://localhost:8081",
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
 
 // LOGIN
@@ -20,9 +17,12 @@ export const registerUser = (userData) => {
 };
 
 // FETCH USER PROFILE
-export const AddUserSkill = (skillData) => {
-  return API.post("/userskill/save", skillData);
-}
+export const AddUserSkill = (formData) => {
+  return API.post("/userskill/save", formData);
+};
+
+
+
 /*
 export const AddUserSkill = (data) => {
   return axios.post(

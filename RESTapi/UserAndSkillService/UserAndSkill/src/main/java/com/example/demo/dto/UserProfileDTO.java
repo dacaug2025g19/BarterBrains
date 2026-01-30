@@ -3,36 +3,22 @@ package com.example.demo.dto;
 import java.util.List;
 
 import com.example.demo.entities.ExpLevel;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 public class UserProfileDTO {
 
-    private int uid;
+    private Integer uid;          // ✅ Integer, not int
 
-    @JsonProperty("about")
-    private String bio;
+    private String bio;           // ✅ no JsonProperty
 
-    @JsonProperty("experienceLevel")
-    private ExpLevel expLevel;
+    private List<TeachSkillDTO> teachSkills;  // ✅ exact match
 
-    @JsonProperty("certificationUrl")
-    private String cer_url;
-
-    @JsonProperty("teachSkillId")
-    private List<Integer> tseid;
-
-    @JsonProperty("learnSkillId")
-    private List<Integer> lsid;
-	    
+    private List<Integer> learnSkillId;   // ✅ exact match
 }

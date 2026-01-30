@@ -1,9 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const UserNavbar = () => {
   const navigate = useNavigate();
-
+  const user = useSelector((state) => state.auth.user);
   return (
     <nav
       style={{
@@ -26,6 +27,21 @@ const UserNavbar = () => {
       >
         BarterBrains
       </h4>
+      {/* Right side - Username */}
+      <h4
+        style={{
+          marginLeft: "auto",
+          color: "#0a0a0a",
+          backgroundColor: "#22d3ee",
+          padding: "6px 14px",
+          borderRadius: "20px",
+          fontWeight: "800",
+          fontSize: "14px",
+        }}
+      >
+        {user?.uname}
+      </h4>
+
     </nav>
   );
 };
