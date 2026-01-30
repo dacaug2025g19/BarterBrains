@@ -1,47 +1,37 @@
-import API from "./authApi";
 
-/* =========================
-   DASHBOARD
-   ========================= */
+import axios from "axios";
+
+const netAPI = axios.create({
+  baseURL: "https://localhost:7124/api", 
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
 export const getAdminDashboard = () =>
-  API.get("/admin/dashboard");
+  netAPI.get("/admin/dashboard");
 
-/* =========================
-   USERS
-   ========================= */
 export const getAllUsers = () =>
-  API.get("/admin/users");
+  netAPI.get("/admin/users");
 
 export const deleteUser = (id) =>
-  API.delete(`/admin/users/${id}`);
-
-/* =========================
-   SKILLS
-   ========================= */
+  netAPI.delete(`/admin/users/${id}`);
 
 // GET ALL SKILLS
 export const getAllAdminSkills = () =>
-  API.get("/admin/skills");
+  netAPI.get("/admin/skills");
 
-// ADD SKILL
-// 🔴 Payload MUST MATCH CreateSkillDTO
-// {
-//   sname,
-//   skdesc,
-//   cid,
-//   basepoints
-// }
+// ADD NEW SKILL
 export const addSkill = (data) =>
-  API.post("/admin/skills", data);
+  netAPI.post("/admin/skills", data);
 
 // UPDATE SKILL
-// 🔴 Payload MUST MATCH UpdateSkillDTO
 export const updateSkill = (id, data) =>
-  API.put(`/admin/skills/${id}`, data);
+  netAPI.put(`/admin/skills/${id}`, data);
 
 // DELETE SKILL
 export const deleteSkill = (id) =>
-  API.delete(`/admin/skills/${id}`);
+  netAPI.delete(`/admin/skills/${id}`);
 
 /* =========================
    CATEGORIES
@@ -49,21 +39,21 @@ export const deleteSkill = (id) =>
 
 // GET ALL CATEGORIES (dropdown + listing)
 export const getAllCategories = () =>
-  API.get("/admin/categories");
+  netAPI.get("/admin/categories");
 
 // ADD CATEGORY
 export const addCategory = (data) =>
-  API.post("/admin/categories", data);
+  netAPI.post("/admin/categories", data);
 
 // DELETE CATEGORY
 export const deleteCategory = (id) =>
-  API.delete(`/admin/categories/${id}`);
+  netAPI.delete(`/admin/categories/${id}`);
 
 /* =========================
    REPORTS
    ========================= */
 export const getSessions = () =>
-  API.get("/admin/reports/sessions");
+  netAPI.get("/admin/reports/sessions");
 
 export const getBookings = () =>
-  API.get("/admin/reports/bookings");
+  netAPI.get("/admin/reports/bookings");

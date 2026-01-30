@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Admin",
+    "\\Admin\\Admin",
+    "\\Admin\\Admin\\bin",
+    "\\Admin\\Admin\\DTOs"
   ],
+  "SelectedNode": "\\Admin",
   "PreviewInSolutionExplorer": false
 }

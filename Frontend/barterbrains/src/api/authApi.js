@@ -2,9 +2,8 @@
 
 import axios from "axios";
 
-
 const API = axios.create({
-  baseURL: "https://localhost:7124/api", 
+  baseURL: process.env.REACT_APP_API_URL || "http://localhost:8081",
   headers: {
     "Content-Type": "application/json",
   },
@@ -12,7 +11,7 @@ const API = axios.create({
 
 
 export const loginUser = (data) => {
-  return API.post("/auth/login", data);
+  return API.post("/user/login", data);
 };
 
 
@@ -22,8 +21,7 @@ export const registerUser = (userData) => {
 
 
 export const AddUserSkill = (skillData) => {
-//   return API.post("/user/skill", skillData);
-// };
+
   return API.post("/userskill/save", skillData);
 }
 /*
@@ -51,8 +49,6 @@ export const getMatchedUsers = (teachSkillId, learnSkillId) => {
   );
 };
 
-
-
 export const getUserToken = () => {
   return localStorage.getItem("token");
 };
@@ -67,10 +63,21 @@ export const getClickedProfile = (uid) => {
   return API.get(`/user/sendprofile?uid=${uid}`);
 } 
 
-export const SendRequest = (requestData) => {
-  // return API.post("/user/sendrequest", requestData);
+export const SendRequestapi = (requestData) => {
+  return API.post("/user/sendrequest", requestData);
 }
 
+export const FetchNotifications = (uid) => {
+  return API.get(`/user/notifications?uid=${uid}`);
+}
+
+export const AcceptRequestapi = (request_id) => {
+  return API.get(`/user/acceptrequest?request_id=${request_id}`);
+}
+
+export const RejectRequestapi = (request_id) => {
+  return API.get(`/user/rejectrequest?request_id=${request_id}`);
+}
 
 API.interceptors.request.use((config) => {
   const adminToken = getAdminToken();

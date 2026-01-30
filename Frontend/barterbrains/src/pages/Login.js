@@ -16,14 +16,14 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      // 🔐 COMMON LOGIN (USER + ADMIN)
+
       const res = await loginUser({ email, password });
       const data = res.data;
 
       dispatch(setLogin(data));   
 
     console.log("Login response data:", data);
-      // localStorage.setItem("profileData", JSON.stringify(profileData));
+  
       localStorage.setItem("token", data.token);
 
       if (data.role === "User") {

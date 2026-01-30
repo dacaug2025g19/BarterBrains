@@ -13,10 +13,15 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ClickedUserProfileDTO;
 import com.example.demo.dto.MatchDTO;
+import com.example.demo.dto.NotificationDTO;
 import com.example.demo.dto.ProfileDTO;
+import com.example.demo.dto.RequestDTO;
 import com.example.demo.entities.ExpLevel;
+import com.example.demo.entities.Request;
+import com.example.demo.entities.RequestStatus;
 import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
+import com.example.demo.repositories.RequestRepository;
 import com.example.demo.repositories.RoleRepository;
 import com.example.demo.repositories.UserRepository;
 import com.example.demo.security.JWTUtil;
@@ -31,6 +36,9 @@ public class UserService {
 	
 	@Autowired
 	private RoleRepository rrepo;
+	
+	@Autowired 
+	private RequestRepository reqrepo;
 
 	@Autowired
 	private JWTUtil jwtutil;
@@ -142,4 +150,34 @@ public class UserService {
 		    return dto;
 	}
 	
+	public void requestSave(RequestDTO dto) {
+		
+		User sender = urepo.findById(dto.getSender_id())
+				.orElseThrow(() -> new RuntimeException("Sender not found"));
+		User receiver = urepo.findById(dto.getReceiver_id())
+				.orElseThrow(() -> new RuntimeException("Sender not found"));	
+	
+		Request request = new Request();
+		request.setSender(sender);
+        request.setReceiver(receiver);
+        request.setStatus(RequestStatus.PENDING);
+        
+		reqrepo.save(request);
+	}
+	
+	public List<NotificationDTO> DisplayNotifications(int uid) {
+		return reqrepo.GiveUserNotification(uid);
+	}
+	
+	public void AcceptStatus(int request_id) {
+	    Request rq = reqrepo.findById(request_id).get();
+	    rq.setStatus(RequestStatus.ACCEPTED);
+	    reqrepo.save(rq);
+	}
+	
+	public void RejectStatus(int request_id) {
+	    Request rq = reqrepo.findById(request_id).get();
+	    rq.setStatus(RequestStatus.REJECTED);
+	    reqrepo.save(rq);
+	}
 }
