@@ -38,7 +38,7 @@ public class UserTeachSkill {
     @Column(name = "exp_level")
     private ExpLevel expLevel;
 
-
+    @Column(columnDefinition = "TEXT")
     private String cert_url;
 
 }

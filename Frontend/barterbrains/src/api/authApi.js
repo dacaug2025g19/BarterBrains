@@ -3,10 +3,9 @@
 import axios from "axios";
 
 const API = axios.create({
+
   baseURL: process.env.REACT_APP_API_URL || "http://localhost:8081",
-  headers: {
-    "Content-Type": "application/json",
-  },
+ 
 });
 
 
@@ -19,23 +18,11 @@ export const registerUser = (userData) => {
   return API.post("/user/register", userData);
 };
 
+// FETCH USER PROFILE
+export const AddUserSkill = (formData) => {
+  return API.post("/userskill/save", formData);
+};
 
-export const AddUserSkill = (skillData) => {
-
-  return API.post("/userskill/save", skillData);
-}
-/*
-export const AddUserSkill = (data) => {
-  return axios.post(
-    "http://localhost:8081/userskill/save",
-    data,
-    {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    }
-  );
-};*/
 
 // FETCH SkillS
 
@@ -80,15 +67,11 @@ export const RejectRequestapi = (request_id) => {
 }
 
 API.interceptors.request.use((config) => {
-  const adminToken = getAdminToken();
   const userToken = getUserToken();
 
-  if (adminToken) {
-    config.headers.Authorization = `Bearer ${adminToken}`;
-  } else if (userToken) {
+  if (userToken) {
     config.headers.Authorization = `Bearer ${userToken}`;
-  }
-
+  } 
   return config;
 });
 

@@ -12,7 +12,8 @@ const UserNavbar = () => {
   const [hasUnread, setHasUnread] = useState(false);
 
   const uid = useSelector((state) => state.auth.user?.uid);
-
+  
+  const user = useSelector((state) => state.auth.user);
   const handleAccept = async (rid) => {
     await AcceptRequestapi(rid);
 
@@ -135,6 +136,21 @@ const UserNavbar = () => {
           </div>
         )}
       </div>
+
+      {/* Right side - Username */}
+      <h4
+        style={{
+          marginLeft: "auto",
+          color: "#0a0a0a",
+          backgroundColor: "#22d3ee",
+          padding: "6px 14px",
+          borderRadius: "20px",
+          fontWeight: "800",
+          fontSize: "14px",
+        }}
+      >
+        {user?.uname}
+      </h4>
     </nav>
   );
 };
