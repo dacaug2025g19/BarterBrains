@@ -237,6 +237,7 @@ CREATE TABLE `user_table` (
   `rid` int DEFAULT NULL,
   `adhar_id` varchar(255) DEFAULT NULL,
   `bdate` date NOT NULL,
+  `bio` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`uid`),
   KEY `rid_idx` (`rid`),
   CONSTRAINT `rid` FOREIGN KEY (`rid`) REFERENCES `role` (`rid`)
@@ -249,7 +250,7 @@ CREATE TABLE `user_table` (
 
 LOCK TABLES `user_table` WRITE;
 /*!40000 ALTER TABLE `user_table` DISABLE KEYS */;
-INSERT INTO `user_table` VALUES (1,'test','123','test@gmail.com','124578',1,'1235','2004-11-10'),(2,'test2','12354','test@gmail.com','124578',1,'123455','2004-11-10'),(3,'test3','$2a$10$x3NeN5VQxRBOBqGa.9hEneP2RzkKq450BgmGmMndvn1dofJvVOpfe','test3@gmail.com','124578',1,'123455','2005-09-10'),(4,'test4','$2a$10$OReHE7wGF.AkKR3iq6R9Ru1Gsqc98TWUQirY9vm2fNLcg6nHKJm/6','test4@gmail.com','124578',1,'123455','2004-11-10'),(5,'test5','$2a$10$U7960r6.Dx0higMm2F.piuWx22/2WS59n8TcJ6O7b8UR/aqe5miK6','test5@gmail.com','124578',1,'123455','2004-11-10'),(6,'Shinde Mansi Sanjay','$2a$10$rlRvdMOTh2YnEPda9AkKT.aAPncLCFQ3fTJYupZ/LWRRQa6dDDe3u','mansishinde2101@gmail.com','08080596029',1,'830230804545','2004-01-21'),(7,'sonal ','$2a$10$wa7Non1sxkOyU3o36Ay.gu0I86UGCohMu.sOR5wWDeX7az5.w6UYy','sonal@gmail.com','124536789',1,'415263','2026-01-13'),(8,'Rohan Sapkale','$2a$10$CKXvnR0ZZWXPy3A4Nxkg6.5ng12i0ijEuFiPKsNZArcvo1bi6uA1.','rohan@gmail.com','45123678',1,'78456912','2003-01-22'),(9,'Rutuja kumbhar','$2a$10$Z9l.EIfIY6lcfF1DNxuexOdesf7yUgMSl3P1BqQxUHdnqTkDbqIfe','rutuja@gmail.com','45123678',1,'78456912','2003-01-22'),(10,'test7','$2a$10$GrBsZnRSwSdakCUG4zkfaOKvOEh1RfM9TPd6F38/GGT0RcXtODpiq','test7@gmail.com','123456',1,'789456123','2026-01-06');
+INSERT INTO `user_table` VALUES (1,'test','123','test@gmail.com','124578',1,'1235','2004-11-10','hrloo'),(2,'test2','12354','test@gmail.com','124578',1,'123455','2004-11-10','fvdd'),(3,'test3','$2a$10$x3NeN5VQxRBOBqGa.9hEneP2RzkKq450BgmGmMndvn1dofJvVOpfe','test3@gmail.com','124578',1,'123455','2005-09-10','fsdSF'),(4,'test4','$2a$10$OReHE7wGF.AkKR3iq6R9Ru1Gsqc98TWUQirY9vm2fNLcg6nHKJm/6','test4@gmail.com','124578',1,'123455','2004-11-10','SDfsV'),(5,'test5','$2a$10$U7960r6.Dx0higMm2F.piuWx22/2WS59n8TcJ6O7b8UR/aqe5miK6','test5@gmail.com','124578',1,'123455','2004-11-10','DSVDSV'),(6,'Shinde Mansi Sanjay','$2a$10$rlRvdMOTh2YnEPda9AkKT.aAPncLCFQ3fTJYupZ/LWRRQa6dDDe3u','mansishinde2101@gmail.com','08080596029',1,'830230804545','2004-01-21','Hii i am mansi shinde'),(7,'sonal ','$2a$10$wa7Non1sxkOyU3o36Ay.gu0I86UGCohMu.sOR5wWDeX7az5.w6UYy','sonal@gmail.com','124536789',1,'415263','2026-01-13','ASfdsf'),(8,'Rohan Sapkale','$2a$10$CKXvnR0ZZWXPy3A4Nxkg6.5ng12i0ijEuFiPKsNZArcvo1bi6uA1.','rohan@gmail.com','45123678',1,'78456912','2003-01-22','safdsaf'),(9,'Rutuja kumbhar','$2a$10$Z9l.EIfIY6lcfF1DNxuexOdesf7yUgMSl3P1BqQxUHdnqTkDbqIfe','rutuja@gmail.com','45123678',1,'78456912','2003-01-22','Hi i am rutuja '),(10,'test7','$2a$10$GrBsZnRSwSdakCUG4zkfaOKvOEh1RfM9TPd6F38/GGT0RcXtODpiq','test7@gmail.com','123456',1,'789456123','2026-01-06','asfsa');
 /*!40000 ALTER TABLE `user_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,7 +267,10 @@ CREATE TABLE `user_teach_skill` (
   `sid` int DEFAULT NULL,
   `exp_level` enum('beginner','intermediate','expert') DEFAULT NULL,
   `cert_url` varchar(45) DEFAULT NULL,
+<<<<<<< HEAD
+=======
   `bio` varchar(255) DEFAULT NULL,
+>>>>>>> b0860f96735162d96291aa73cd012c03024eeca4
   PRIMARY KEY (`teid`),
   KEY `FKjsuvfr9c7946qamijwcx1l9n9` (`sid`),
   KEY `FKsd2e6cgk39a07byq33ynnv6gw` (`uid`),
@@ -281,7 +285,11 @@ CREATE TABLE `user_teach_skill` (
 
 LOCK TABLES `user_teach_skill` WRITE;
 /*!40000 ALTER TABLE `user_teach_skill` DISABLE KEYS */;
+<<<<<<< HEAD
+INSERT INTO `user_teach_skill` VALUES (1,1,1,'expert','http://cert.com/java1'),(2,2,2,'intermediate','http://cert.com/python1'),(3,3,3,'expert','http://cert.com/guitar1'),(4,4,5,'beginner','http://cert.com/cook1'),(5,5,5,'expert','http://cert.com/web1'),(6,6,6,'intermediate','http://cert.com/ml1'),(7,7,7,'expert','http://cert.com/photography1'),(8,8,8,'beginner','http://cert.com/english1'),(9,9,9,'expert','http://cert.com/yoga1'),(10,10,10,'intermediate','http://cert.com/graphic1');
+=======
 INSERT INTO `user_teach_skill` VALUES (1,1,1,'expert','http://cert.com/java1','Java backend developer with 3 years experience'),(2,2,2,'intermediate','http://cert.com/python1','Python for data analysis and scripting'),(3,3,3,'expert','http://cert.com/guitar1','Professional guitarist and music trainer'),(4,4,5,'beginner','http://cert.com/cook1','Home chef specialized in Indian cuisine'),(5,5,5,'expert','http://cert.com/web1','Frontend web developer using React'),(6,6,6,'intermediate','http://cert.com/ml1','Machine learning enthusiast and trainer'),(7,7,7,'expert','http://cert.com/photography1','Wildlife photographer'),(8,8,8,'beginner','http://cert.com/english1','Spoken English trainer'),(9,9,9,'expert','http://cert.com/yoga1','Certified yoga instructor'),(10,10,10,'intermediate','http://cert.com/graphic1','Graphic designer with branding skills');
+>>>>>>> b0860f96735162d96291aa73cd012c03024eeca4
 /*!40000 ALTER TABLE `user_teach_skill` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -294,4 +302,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< HEAD
+-- Dump completed on 2026-01-29 13:54:02
+=======
 -- Dump completed on 2026-01-27 12:07:53
+>>>>>>> b0860f96735162d96291aa73cd012c03024eeca4

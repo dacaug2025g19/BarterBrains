@@ -40,5 +40,5 @@ public class UserTeachSkill {
 
     @Column(columnDefinition = "TEXT")
     private String cert_url;
-    
+
 }
