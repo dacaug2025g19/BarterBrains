@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../css/UserSidebar.css";
+import ConfirmBadge from "./ConfirmBadge";
 
 const UserSidebar = () => {
   
@@ -21,12 +22,22 @@ const UserSidebar = () => {
           Chat
         </NavLink>
 
+        <NavLink to="/user/session" className="sidebar-link">
+          Session
+        </NavLink>
+
+
+        <NavLink to="/user/confirm" className="sidebar-link">
+          Confirmation <ConfirmBadge />
+        </NavLink>
+
         <NavLink to="/user/profile" className="sidebar-link">
           Profile
         </NavLink>
       </nav>
     </div>
   );
+
 };
 
 export default UserSidebar;

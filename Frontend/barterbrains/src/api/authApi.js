@@ -66,9 +66,15 @@ export const RejectRequestapi = (request_id) => {
   return API.get(`/user/rejectrequest?request_id=${request_id}`);
 }
 
+
+export const SendRequest = (sender_id, receiver_id) => {
+  return API.get(`/user/checkRequest?sender_id=${sender_id}&receiver_id=${receiver_id}`);
+}
+
 export const getAcceptedChatRequests = (receiverId) => {
   return API.get(`/chat/accepted-requests?receiver_id=${receiverId}`);
 };
+
 
 API.interceptors.request.use((config) => {
   const userToken = getUserToken();

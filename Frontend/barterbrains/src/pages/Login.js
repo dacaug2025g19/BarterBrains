@@ -25,6 +25,8 @@ const Login = () => {
     console.log("Login response data:", data);
   
       localStorage.setItem("token", data.token);
+      localStorage.setItem("uid", data.uid);   // ✅ STORE UID
+      localStorage.setItem("role", data.role); // (optional but useful)
 
       if (data.role === "User") {
         navigate("/user/profile");

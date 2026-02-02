@@ -180,4 +180,11 @@ public class UserService {
 	    rq.setStatus(RequestStatus.REJECTED);
 	    reqrepo.save(rq);
 	}
+	
+	public boolean checkRequest(int sender_id,int receiver_id) {
+		 User sender = urepo.findById(sender_id).get();
+		    User receiver = urepo.findById(receiver_id).get();
+
+		    return reqrepo.existsBySenderAndReceiver(sender, receiver);
+	}
 }

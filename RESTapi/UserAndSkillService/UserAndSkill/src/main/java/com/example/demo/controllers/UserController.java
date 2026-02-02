@@ -71,6 +71,14 @@ public class UserController {
 		    userv.requestSave(request);
 		}
 	
+	@GetMapping("/checkRequest")
+	public boolean checkRequest(@RequestParam int senderId,
+	                            @RequestParam int receiverId) {
+
+	   return userv.checkRequest(senderId,receiverId);
+	}
+
+	
 	@GetMapping("/notifications")
 	public List<NotificationDTO> DisplayNotifications(@RequestParam int uid) {
 		return userv.DisplayNotifications(uid);

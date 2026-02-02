@@ -11,3 +11,15 @@ obj/
 
 # OS / misc
 Thumbs.db
+
+# Eclipse
+.metadata/
+.recommenders/
+.settings/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

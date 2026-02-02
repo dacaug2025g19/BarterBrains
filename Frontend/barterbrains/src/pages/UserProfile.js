@@ -8,7 +8,7 @@ import UserNavbar from "../components/UserNavbar";
 
 
 import "../css/UserProfile.css";
-import { AddUserSkill, getAllSkills, loginUser } from "../api/authApi"
+import { AddUserSkill, getAllSkills} from "../api/authApi"
 
 
 // ================= CONSTANTS =================
@@ -29,7 +29,6 @@ const UserProfile = () => {
   const fileRef = useRef();
 
   const user = useSelector((state) => state.auth.user);
-  const token = localStorage.getItem("token");
 
 
   // ================= STATES =================
@@ -44,13 +43,12 @@ const UserProfile = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [showConfirm, setShowConfirm] = useState({ type: null, open: false });
-  const [profileData, setData] = useState([]);
   const [skills, setSkills] = useState([]);
 
   const [teachInput, setTeachInput] = useState("");
   const [teachSkills, setTeachSkills] = useState([]);
 
-  const [learnInput, setLearnInput] = useState("");
+  const [learnInput, setLearnInput] = useState(""); 
   const [learnSkills, setLearnSkills] = useState([]);
 
 
@@ -96,19 +94,6 @@ const UserProfile = () => {
     setProfileImg(DEFAULT_IMG);
     setShowImgMenu(false);
     setShowConfirm({ type: null, open: false });
-  };
-
-  // ================= SAVE PROFILE =================
-
-  // ================= VALIDATION =================
-  const isValidUrl = (url) => {
-    try {
-      if (!url) return true;
-      new URL(url);
-      return true;
-    } catch {
-      return false;
-    }
   };
 
   // ================= SAVE PROFILE =================
@@ -495,8 +480,50 @@ const UserProfile = () => {
                 )}
               </div>
             </div>
+   <div className="profile-card">
+              <h4><FaCertificate /> Experience Level</h4>
 
 
+              {editMode ? (
+                <div className="skill-input">
+                  <select
+                    className="form-select"
+                    value={experienceLevel}
+                    onChange={(e) => setExperienceLevel(e.target.value)}
+                  >
+                    <option value="">Select level</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Expert">Expert</option>
+                  </select>
+                </div>
+              ) : (
+                <p className="muted">{experienceLevel || "Not specified"}</p>
+              )}
+            </div>
+
+            <div className="profile-card">
+              <h4><FaCertificate /> Certification</h4>
+
+              {editMode ? (
+                <input
+                  className="form-input"
+                  value={certificationUrl}
+                  onChange={(e) => setCertificationUrl(e.target.value)}
+                  placeholder="Paste certification link"
+                />
+              ) : (
+                <p className="muted">
+                  {certificationUrl ? (
+                    <a href={certificationUrl} target="_blank" rel="noopener noreferrer">
+                      View Certification
+                    </a>
+                  ) : (
+                    "No certification added"
+                  )}
+                </p>
+              )}
+            </div>
 
 
 
