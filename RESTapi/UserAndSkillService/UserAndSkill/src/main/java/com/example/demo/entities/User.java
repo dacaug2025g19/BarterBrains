@@ -20,7 +20,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name="user_table")
-@Getter
+@Getter 
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,6 +34,7 @@ public class User {
 	  String phone;
 	  Date bdate;
 	  String adhar_id;
+
 	  @Column(columnDefinition = "TEXT")
 	  String bio;
 

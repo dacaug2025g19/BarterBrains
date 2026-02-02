@@ -12,6 +12,8 @@ import UserProfile from "./pages/UserProfile";
 import SkillSearch from "./pages/SkillSearch";
 import UserDashboard from "./pages/dashboard";
 import Profile from "./pages/Profile";
+import Session from "./pages/session";              // ✅ EXISTING
+import CreateSession from "./pages/CreateSession";  // ✅ ADDED
 
 /* ADMIN PAGES */
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -21,9 +23,15 @@ import AdminCategories from "./pages/admin/AdminCategories";
 import AdminReports from "./pages/admin/AdminReports";
 
 /* ROUTE GUARD */
-import AdminPrivateRoute from "./Routes/AdminPrivateRoute";
+
 import ChatRoom from "./pages/ChatRoom";
 import ChatDashboard from "./pages/ChatDashboard";
+
+
+import Confirmation from "./pages/ConfirmPage"; 
+
+
+
 
 function App() {
   return (
@@ -38,6 +46,7 @@ function App() {
         <Route path="/user/profile" element={<UserProfile />} />
         <Route path="/user/skill-search" element={<SkillSearch />} />
         <Route path="/user/dashboard" element={<UserDashboard />} />
+
           <Route path="/user/chatroom" element={<ChatRoom />} />
           <Route path="/user/chat" element={<ChatDashboard />} />
 
@@ -82,7 +91,21 @@ function App() {
           }
         />
 
+
+        <Route path="/user/session" element={<Session />} />              {/* ✅ EXISTING */}
+        <Route path="/user/session/create" element={<CreateSession />} /> {/* ✅ ADDED */}
+        <Route path="/user/confirm" element={<Confirmation />} /> 
+        
+        
+
         <Route path="/profile/:uid" element={<Profile />} />
+
+        {/* ===== ADMIN ===== */}
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/users" element={<AdminUsers />} />
+        <Route path="/admin/skills" element={<AdminSkills />} />
+        <Route path="/admin/categories" element={<AdminCategories />} />
+        <Route path="/admin/reports" element={<AdminReports />} />
       </Routes>
     </BrowserRouter>
   );
