@@ -1,2 +1,3 @@
-2026/01/22-10:27:28.116 15c10 Creating DB C:\Users\rohit\OneDrive\Desktop\SessionAndBookingService\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb since it was missing.
-2026/01/22-10:27:28.203 15c10 Reusing MANIFEST C:\Users\rohit\OneDrive\Desktop\SessionAndBookingService\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
+2026/02/02-09:31:25.861 6624 Reusing MANIFEST C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
+2026/02/02-09:31:25.878 6624 Recovering log #3
+2026/02/02-09:31:25.884 6624 Reusing old log C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/000003.log 

@@ -14,12 +14,16 @@
   cursor: pointer;
 }
 
+
+
+
+
 /* Notification */
 .notif-wrapper {
   position: relative;
   display: flex;
   align-items: center;
-}n 
+}
 
 
 .bell-icon {
@@ -137,6 +141,7 @@
   box-shadow: 0 0 6px #ef4444;
 }
 
+
 .right-section {
   margin-left: auto;
   display: flex;
@@ -152,3 +157,4 @@
   font-weight: 800;
   font-size: 14px;
 }
+

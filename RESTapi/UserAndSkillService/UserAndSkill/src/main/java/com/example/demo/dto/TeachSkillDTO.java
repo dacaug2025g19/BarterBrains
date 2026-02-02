@@ -7,6 +7,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.entities.ExpLevel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -22,6 +25,8 @@ public class TeachSkillDTO {
 
 	 private int skillId;
 	 
+	 @Enumerated(EnumType.STRING)
+	 @Column(name = "exp_level")
 	    private ExpLevel experienceLevel;
 	    
 	    private MultipartFile certificate;
