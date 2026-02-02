@@ -22,6 +22,8 @@ import AdminReports from "./pages/admin/AdminReports";
 
 /* ROUTE GUARD */
 import AdminPrivateRoute from "./Routes/AdminPrivateRoute";
+import ChatRoom from "./pages/ChatRoom";
+import ChatDashboard from "./pages/ChatDashboard";
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
         <Route path="/user/profile" element={<UserProfile />} />
         <Route path="/user/skill-search" element={<SkillSearch />} />
         <Route path="/user/dashboard" element={<UserDashboard />} />
+          <Route path="/user/chatroom" element={<ChatRoom />} />
+          <Route path="/user/chat" element={<ChatDashboard />} />
 
 
         {/* ===== ADMIN (PROTECTED) ===== */}
@@ -77,7 +81,7 @@ function App() {
        
           }
         />
-=======
+
         <Route path="/profile/:uid" element={<Profile />} />
       </Routes>
     </BrowserRouter>
