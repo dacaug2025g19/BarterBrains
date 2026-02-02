@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.ClickedUserProfileDTO;
 import com.example.demo.dto.LoginRequestDTO;
 import com.example.demo.dto.MatchDTO;
+import com.example.demo.dto.NotificationDTO;
 import com.example.demo.dto.ProfileDTO;
+import com.example.demo.dto.RequestDTO;
+import com.example.demo.entities.Request;
 import com.example.demo.entities.User;
 import com.example.demo.services.UserService;
 
@@ -25,6 +28,7 @@ public class UserController {
 
 	@Autowired
 	UserService userv;
+	
 	
 	@GetMapping("/all")
 	public List<User> getAll(){
@@ -62,5 +66,23 @@ public class UserController {
 	   return userv.UserProfile(uid);
 	}
 
+	@PostMapping("/sendrequest")
+	public void UserProfile(@RequestBody RequestDTO request) {
+		    userv.requestSave(request);
+		}
 	
-} 
+	@GetMapping("/notifications")
+	public List<NotificationDTO> DisplayNotifications(@RequestParam int uid) {
+		return userv.DisplayNotifications(uid);
+	}
+	
+	@GetMapping("/acceptrequest")
+	public void AcceptRequest(@RequestParam int request_id) {
+		userv.AcceptStatus(request_id);
+	}
+	
+	@GetMapping("/rejectrequest")
+	public void RejectRequest(@RequestParam int request_id) {
+		userv.RejectStatus(request_id);
+	}
+}

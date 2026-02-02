@@ -48,5 +48,9 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 			 WHERE u.uid = :uid
 		   """)
 	public List<Object[]> findByUid(@Param("uid") Integer uid);
+	
+	
+//	public User findById(int uid);
+
 
 }

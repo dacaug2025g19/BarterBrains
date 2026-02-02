@@ -2,32 +2,21 @@
 
 import axios from "axios";
 
-/* =========================
-   COMMON API INSTANCE
-   ========================= */
-
 const API = axios.create({
 
-  baseURL: process.env.REACT_APP_API_URL || "http://localhost:8081"
-
+  baseURL: process.env.REACT_APP_API_URL || "http://localhost:8081",
+ 
 });
 
-/* =========================
-   COMMON LOGIN (USER + ADMIN)
-   ========================= */
 
-export const loginCommon = (data) => {
-  return API.post("/auth/login", data);
+export const loginUser = (data) => {
+  return API.post("/user/login", data);
 };
 
-/* =========================
-   USER APIs (UNCHANGED)
-   ========================= */
 
 export const registerUser = (userData) => {
   return API.post("/user/register", userData);
 };
-
 
 // FETCH USER PROFILE
 export const AddUserSkill = (formData) => {
@@ -47,10 +36,6 @@ export const getMatchedUsers = (teachSkillId, learnSkillId) => {
   );
 };
 
-/* =========================
-   TOKEN HELPERS
-   ========================= */
-
 export const getUserToken = () => {
   return localStorage.getItem("token");
 };
@@ -60,34 +45,37 @@ export const getAdminToken = () => {
   return localStorage.getItem("admin_token");
 };
 
-/* =========================
-   ATTACH TOKEN AUTOMATICALLY
-   ========================= */
-
 //GET clicked user Profile
 export const getClickedProfile = (uid) => {
   return API.get(`/user/sendprofile?uid=${uid}`);
 } 
 
-export const SendRequest = (requestData) => {
-  // return API.post("/user/sendrequest", requestData);
+export const SendRequestapi = (requestData) => {
+  return API.post("/user/sendrequest", requestData);
 }
 
+export const FetchNotifications = (uid) => {
+  return API.get(`/user/notifications?uid=${uid}`);
+}
+
+export const AcceptRequestapi = (request_id) => {
+  return API.get(`/user/acceptrequest?request_id=${request_id}`);
+}
+
+export const RejectRequestapi = (request_id) => {
+  return API.get(`/user/rejectrequest?request_id=${request_id}`);
+}
 
 export const getAcceptedChatRequests = (receiverId) => {
   return API.get(`/chat/accepted-requests?receiver_id=${receiverId}`);
 };
 
 API.interceptors.request.use((config) => {
-  const adminToken = getAdminToken();
   const userToken = getUserToken();
 
-  if (adminToken) {
-    config.headers.Authorization = `Bearer ${adminToken}`;
-  } else if (userToken) {
+  if (userToken) {
     config.headers.Authorization = `Bearer ${userToken}`;
-  }
-
+  } 
   return config;
 });
 

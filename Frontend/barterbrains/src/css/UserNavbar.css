@@ -1,27 +1,32 @@
-.user-navbar {
+.navbar {
   height: 60px;
   background: #0a0a0a;
   border-bottom: 1px solid #1f1f1f;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 24px;
+  position: relative;   /* ✅ add this */
 }
 
-.user-navbar-title {
+
+.logo {
   color: #22d3ee;
   font-weight: 700;
   cursor: pointer;
 }
 
 
+
+
+
 /* Notification */
 .notif-wrapper {
-  position: absolute;          /* change */
-  left: 50%;                   /* center horizontally */
-  transform: translateX(-50%); /* exact center */
-  display: flex;
-  align-items: center;
-  height: 100%;
+  position: relative;
+  display: flex;          /* ✅ */
+  align-items: center;    /* ✅ vertical center */
+  height: 100%;           /* ✅ take full navbar height */
+
 }
 
 

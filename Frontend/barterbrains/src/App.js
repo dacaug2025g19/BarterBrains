@@ -43,41 +43,39 @@ function App() {
         <Route
           path="/admin/dashboard"
           element={
-            <AdminPrivateRoute>
               <AdminDashboard />
-            </AdminPrivateRoute>
           }
         />
         <Route
           path="/admin/users"
           element={
-            <AdminPrivateRoute>
+
               <AdminUsers />
-            </AdminPrivateRoute>
+
           }
         />
         <Route
           path="/admin/skills"
           element={
-            <AdminPrivateRoute>
+
               <AdminSkills />
-            </AdminPrivateRoute>
+
           }
         />
         <Route
           path="/admin/categories"
           element={
-            <AdminPrivateRoute>
+
               <AdminCategories />
-            </AdminPrivateRoute>
+         
           }
         />
         <Route
           path="/admin/reports"
           element={
-            <AdminPrivateRoute>
+ 
               <AdminReports />
-            </AdminPrivateRoute>
+       
           }
         />
 =======

@@ -1,1 +1,13 @@
 .metadata
+# Visual Studio / .NET
+.vs/
+bin/
+obj/
+
+# IDE / cache
+*.vsidx
+*.sqlite
+*.db
+
+# OS / misc
+Thumbs.db

@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import { getClickedProfile } from "../api/authApi";
 import UserNavbar from "../components/UserNavbar";
 import UserSidebar from "../components/UserSidebar";
-import { SendRequest } from "../api/authApi";
+import { useSelector } from "react-redux";
+import { SendRequestapi } from "../api/authApi";
 import "../css/Profile.css";
 
 
@@ -12,6 +13,8 @@ const Profile = () => {
   const { uid } = useParams();
 
   const [profile, setProfile] = useState(null);
+
+   const redux_uid = useSelector((state)=>state.auth.user?.uid);
 
   useEffect(() => {
     fetchProfile();
@@ -28,6 +31,20 @@ const Profile = () => {
       console.error("Error fetching profile:", error);
     }
   }
+
+  const sendRequest = async () => {
+    try {
+      const requestData = {
+        sender_id: redux_uid,
+        receiver_id: profile.uid,
+      };
+     console.log("Sending request with data:", requestData);
+     await SendRequestapi(requestData);
+      alert("Request sent successfully!");
+  }catch (error) {
+      console.error("Error sending request:", error);
+  }
+}
 if(profile){
   return (
     <>
@@ -95,7 +112,7 @@ if(profile){
           </div>
 
           {/* Button */}
-          <button className="send-btn" onClick={SendRequest}>
+          <button className="send-btn" onClick={sendRequest}>
             Send Request
           </button>
           </div>

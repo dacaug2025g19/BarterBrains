@@ -6,13 +6,13 @@ import { useNavigate } from "react-router-dom";
 import UserSidebar from "../components/UserSidebar";
 import UserNavbar from "../components/UserNavbar";
 
+
 import "../css/UserProfile.css";
 import { AddUserSkill, getAllSkills, loginUser } from "../api/authApi"
 
 
 // ================= CONSTANTS =================
 const DEFAULT_IMG = "https://cdn-icons-png.flaticon.com/512/847/847969.png";
-const API_BASE = "http://localhost:8081";
 const MSGS = {
   profileSaved: "Profile saved successfully",
   profileSaveError: "Error saving profile. Please try again.",
@@ -207,15 +207,6 @@ const UserProfile = () => {
 
 
   // ================= SKILL HANDLERS =================
-  /*const addSkill = (type) => {
-    if (type === "teach" && teachInput) {
-      const skillId = Number(teachInput);
-      if (!teachSkills.includes(skillId)) {
-        setTeachSkills([...teachSkills, skillId]);
-      }
-      setTeachInput("");
-    }
-*/
   const addSkill = (type) => {
     if (type === "learn" && learnInput) {
       if (!learnSkills.includes(Number(learnInput))) {

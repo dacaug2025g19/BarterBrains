@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import AppLayout from "../layouts/applayout_temp";
-import { loginCommon } from "../api/authApi";
+import { loginUser } from "../api/authApi";
 import { setLogin } from "../redux/slices/authslice";
 
 const Login = () => {
@@ -16,41 +16,28 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      // 🔐 COMMON LOGIN (USER + ADMIN)
-      const res = await loginCommon({ email, password });
+
+      const res = await loginUser({ email, password });
       const data = res.data;
-// <<<<<<< HEAD
 
-//       // Store profile data in redux
-//       dispatch(setLogin({ user: { email, role: data.role } }));
-
-//       // Redirect based on role
-//       if (data.role === "Admin") {
-//         localStorage.setItem("admin_token", data.token);
-//         navigate("/admin/dashboard");
-//       } else {
-//         localStorage.setItem("token", data.token);
-//         navigate("/user/dashboard");
-
-      // data = { ...data, email: email };
       dispatch(setLogin(data));   
 
     console.log("Login response data:", data);
-      // localStorage.setItem("profileData", JSON.stringify(profileData));
+  
       localStorage.setItem("token", data.token);
 
       if (data.role === "User") {
         navigate("/user/profile");
-      } else if(data.role === "Admin") {
+
+      } else if(data.role === "Admin"){
         navigate("/admin/dashboard");
-
       }
-
+     
     } catch (err) {
       console.error(err);
       alert("Login failed. Please check your credentials.");
     }
-  };
+  }
 
   return (
     <AppLayout>
