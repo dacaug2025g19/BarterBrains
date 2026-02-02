@@ -13,6 +13,8 @@ const UserNavbar = () => {
 
   const uid = useSelector((state) => state.auth.user?.uid);
 
+  const user = useSelector((state) => state.auth.user);
+
   const handleAccept = async (rid) => {
     await AcceptRequestapi(rid);
 
@@ -83,59 +85,67 @@ const UserNavbar = () => {
         BarterBrains
       </h4>
 
-      {/* Notification Bell */}
-      <div className="notif-wrapper">
-        <div className="bell-container" onClick={() => {
-          setShowNotif(!showNotif);
-          setHasUnread(false);  
-        }}>
-          <FaBell className="bell-icon" />
+      {/* Right Side */}
+      <div className="right-section">
 
-          {hasUnread && (
-            <span className="notif-dot"></span>
+        {/* Notification */}
+        <div className="notif-wrapper">
+          <div
+            className="bell-container"
+            onClick={() => {
+              setShowNotif(!showNotif);
+              setHasUnread(false);
+            }}
+          >
+            <FaBell className="bell-icon" />
+            {hasUnread && <span className="notif-dot"></span>}
+          </div>
+
+          {showNotif && (
+            <div className="notif-dropdown">
+              <h5>Notifications</h5>
+
+              {notifications?.length === 0 ? (
+                <p className="muted">No new notifications</p>
+              ) : (
+                notifications.map((n) => (
+                  <div key={n.request_id} className="notif-item">
+                    <div className="notif-text">
+                      <strong>{n.sender_name}</strong> sent you a request
+                      <div className="time">{timeAgo(n.timestamp)}</div>
+                    </div>
+
+                    {n.status === "PENDING" && (
+                      <div className="notif-actions">
+                        <button
+                          className="accept-btn"
+                          onClick={() => handleAccept(n.request_id)}
+                        >
+                          Accept
+                        </button>
+                        <button
+                          className="reject-btn"
+                          onClick={() => handleReject(n.request_id)}
+                        >
+                          Reject
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))
+              )}
+            </div>
           )}
         </div>
 
+        {/* Username */}
+        <div className="username-pill">
+          {user?.uname}
+        </div>
 
-        {showNotif && (
-          <div className="notif-dropdown">
-            <h5>Notifications</h5>
-            {notifications?.length === 0 ? (
-              <p className="muted">No new notifications</p>
-            ) : (
-              notifications.map((n) => (
-                <div key={n.request_id} className="notif-item">
-                  <div className="notif-text">
-                    <strong>{n.sender_name}</strong> sent you a request
-                    <div className="time">
-                      {timeAgo(n.timestamp)}
-                    </div>
-                  </div>
-
-                  {n.status === "PENDING" && (
-                    <div className="notif-actions">
-                      <button
-                        className="accept-btn"
-                        onClick={() => handleAccept(n.request_id)}
-                      >
-                        Accept
-                      </button>
-                      <button
-                        className="reject-btn"
-                        onClick={() => handleReject(n.request_id)}
-                      >
-                        Reject
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ))
-
-            )}
-          </div>
-        )}
       </div>
     </nav>
+
   );
 };
 

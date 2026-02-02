@@ -3,6 +3,7 @@ package com.example.demo.entities;
 import java.sql.Date;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,6 +34,7 @@ public class User {
 	  String phone;
 	  Date bdate;
 	  String adhar_id;
+	  @Column(columnDefinition = "TEXT")
 	  String bio;
 
 	  @ManyToOne

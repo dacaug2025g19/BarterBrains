@@ -4,9 +4,7 @@
   border-bottom: 1px solid #1f1f1f;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 0 24px;
-  position: relative;   /* ✅ add this */
 }
 
 
@@ -19,10 +17,9 @@
 /* Notification */
 .notif-wrapper {
   position: relative;
-  display: flex;          /* ✅ */
-  align-items: center;    /* ✅ vertical center */
-  height: 100%;           /* ✅ take full navbar height */
-}
+  display: flex;
+  align-items: center;
+}ll
 
 
 .bell-icon {
@@ -138,4 +135,20 @@
   background: #ef4444;
   border-radius: 50%;
   box-shadow: 0 0 6px #ef4444;
+}
+
+.right-section {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.username-pill {
+  color: #0a0a0a;
+  background-color: #22d3ee;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 14px;
 }

@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.example.demo.dto.NotificationDTO;
 import com.example.demo.entities.Request;
+import com.example.demo.entities.User;
 
 public interface RequestRepository extends JpaRepository<Request, Integer> {
     
@@ -26,7 +27,7 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
 	
 	public List<NotificationDTO> GiveUserNotification(@Param("uid") int uid);
 	
-	
+	public boolean existsBySenderAndReceiver(User sender, User receiver);
 }
 
 
