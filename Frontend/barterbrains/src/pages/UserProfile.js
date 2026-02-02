@@ -480,6 +480,53 @@ const UserProfile = () => {
                 )}
               </div>
             </div>
+   <div className="profile-card">
+              <h4><FaCertificate /> Experience Level</h4>
+
+
+              {editMode ? (
+                <div className="skill-input">
+                  <select
+                    className="form-select"
+                    value={experienceLevel}
+                    onChange={(e) => setExperienceLevel(e.target.value)}
+                  >
+                    <option value="">Select level</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Expert">Expert</option>
+                  </select>
+                </div>
+              ) : (
+                <p className="muted">{experienceLevel || "Not specified"}</p>
+              )}
+            </div>
+
+            <div className="profile-card">
+              <h4><FaCertificate /> Certification</h4>
+
+              {editMode ? (
+                <input
+                  className="form-input"
+                  value={certificationUrl}
+                  onChange={(e) => setCertificationUrl(e.target.value)}
+                  placeholder="Paste certification link"
+                />
+              ) : (
+                <p className="muted">
+                  {certificationUrl ? (
+                    <a href={certificationUrl} target="_blank" rel="noopener noreferrer">
+                      View Certification
+                    </a>
+                  ) : (
+                    "No certification added"
+                  )}
+                </p>
+              )}
+            </div>
+
+
+
 
             {/* SAVE BUTTON RIGHT */}
             {editMode && (

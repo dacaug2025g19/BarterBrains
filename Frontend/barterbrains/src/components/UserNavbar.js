@@ -14,6 +14,7 @@ const UserNavbar = () => {
   const uid = useSelector((state) => state.auth.user?.uid);
 
   const user = useSelector((state) => state.auth.user);
+
   const handleAccept = async (rid) => {
     await AcceptRequestapi(rid);
 
