@@ -74,6 +74,10 @@ export const SendRequest = (requestData) => {
 }
 
 
+export const getAcceptedChatRequests = (receiverId) => {
+  return API.get(`/chat/accepted-requests?receiver_id=${receiverId}`);
+};
+
 API.interceptors.request.use((config) => {
   const adminToken = getAdminToken();
   const userToken = getUserToken();

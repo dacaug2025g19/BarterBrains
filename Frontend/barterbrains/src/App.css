@@ -119,3 +119,10 @@ a:hover {
   text-align: center;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  background-color: #050505;
+}

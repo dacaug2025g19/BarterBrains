@@ -19,6 +19,7 @@ import AdminUsers from "./pages/admin/AdminUsers";
 import AdminSkills from "./pages/admin/AdminSkills";
 import AdminCategories from "./pages/admin/AdminCategories";
 import AdminReports from "./pages/admin/AdminReports";
+import ChatDashboard from "./pages/ChatDashboard";
 
 /* ROUTE GUARD */
 import AdminPrivateRoute from "./Routes/AdminPrivateRoute";
@@ -81,6 +82,9 @@ function App() {
         />
 =======
         <Route path="/profile/:uid" element={<Profile />} />
+
+       
+        <Route path="/user/chat" element={<ChatDashboard />} />
       </Routes>
     </BrowserRouter>
   );
