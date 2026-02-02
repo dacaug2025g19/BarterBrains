@@ -21,6 +21,7 @@ import AdminUsers from "./pages/admin/AdminUsers";
 import AdminSkills from "./pages/admin/AdminSkills";
 import AdminCategories from "./pages/admin/AdminCategories";
 import AdminReports from "./pages/admin/AdminReports";
+import ChatDashboard from "./pages/ChatDashboard";
 
 /* ROUTE GUARD */
 
@@ -100,12 +101,17 @@ function App() {
 
         <Route path="/profile/:uid" element={<Profile />} />
 
+
         {/* ===== ADMIN ===== */}
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/users" element={<AdminUsers />} />
         <Route path="/admin/skills" element={<AdminSkills />} />
         <Route path="/admin/categories" element={<AdminCategories />} />
         <Route path="/admin/reports" element={<AdminReports />} />
+
+       
+        <Route path="/user/chat" element={<ChatDashboard />} />
+
       </Routes>
     </BrowserRouter>
   );
