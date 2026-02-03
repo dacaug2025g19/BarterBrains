@@ -3,17 +3,25 @@ import createConnection from "../components/createConnection";
 import ChatRoom from "./ChatRoom";
 import { useSelector } from "react-redux";
 import { getAcceptedChatRequests } from "../api/authApi";
-import "../css/ChatDashboard.css";
 import UserNavbar from "../components/UserNavbar";
 import UserSidebar from "../components/UserSidebar";
+import "../css/ChatDashboard.css";
 
 const ChatDashboard = () => {
   const loggedUser = useSelector((state) => state.auth.user);
 
   const [senders, setSenders] = useState([]);
   const [conn, setConn] = useState(null);
-  const [chatUser, setChatUser] = useState(null); // 👈 who we chat with
+  const [chatUser, setChatUser] = useState(null);
 
+  // 🔴 CHAT STATES HERE
+  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState("");
+  const [typingUser, setTypingUser] = useState("");
+  const [chatUserName, setChatUserName] = useState("");
+
+
+  // Load accepted chats
   useEffect(() => {
     if (loggedUser?.uid) {
       getAcceptedChatRequests(loggedUser.uid)
@@ -22,21 +30,76 @@ const ChatDashboard = () => {
     }
   }, [loggedUser]);
 
-  // ✅ Start chat when button clicked
-  const startChat = async (otherUid) => {
+  const startChat = async (otherUid, otherName) => {
     const uid = loggedUser.uid;
 
+
+    setChatUserName(otherName);
     const roomId =
       uid < otherUid ? `${uid}_${otherUid}` : `${otherUid}_${uid}`;
 
     const connection = createConnection();
+    setConn(connection);
+
+    if (conn) {
+      await conn.stop();
+    }
+    // ✅ LISTEN FIRST
+    connection.on("LoadOldMessages", (msgs) => {
+      const formatted = msgs.map((m) => ({
+        senderId: m.senderId,
+        msg: m.message,
+        time: m.time,
+      }));
+      setMessages(formatted);
+    });
+
+    connection.on("ReceiveMessage", (senderId, msg, time) => {
+      setMessages((prev) => [...prev, { senderId, msg, time }]);
+    });
+
+    connection.on("UserTyping", (userId) => {
+      if (userId !== uid) {
+        setTypingUser("Typing...");
+        setTimeout(() => setTypingUser(""), 1500);
+      }
+    });
+
     await connection.start();
     await connection.invoke("JoinRoom", roomId);
 
-    setConn(connection);
-    setChatUser(otherUid); // 👈 important
+    setChatUser(otherUid);
   };
 
+  // ✅ Send message
+  const handleSend = async () => {
+    if (!message.trim()) return;
+
+    const uid = loggedUser.uid;
+    const roomId =
+      uid < chatUser ? `${uid}_${chatUser}` : `${chatUser}_${uid}`;
+
+    await conn.invoke("SendMessage", roomId, uid, message);
+    setMessage("");
+  };
+
+  // ✅ Typing
+  const handleTyping = async () => {
+    const uid = loggedUser.uid;
+    const roomId =
+      uid < chatUser ? `${uid}_${chatUser}` : `${chatUser}_${uid}`;
+
+    await conn.invoke("Typing", roomId, uid);
+  };
+
+
+  useEffect(() => {
+    return () => {
+      if (conn) {
+        conn.stop();
+      }
+    };
+  }, [conn]);
   return (
     <>
       <UserNavbar />
@@ -57,7 +120,7 @@ const ChatDashboard = () => {
 
                   <button
                     className="start-chat-btn"
-                    onClick={() => startChat(sender.senderId)}
+                    onClick={() => startChat(sender.senderId, sender.senderName)}
                   >
                     Start Chat
                   </button>
@@ -66,10 +129,17 @@ const ChatDashboard = () => {
             </div>
           ) : (
             <ChatRoom
-              connection={conn}
               user1={loggedUser.uid}
               user2={chatUser}
+              name={chatUserName}
+              messages={messages}
+              message={message}
+              setMessage={setMessage}
+              sendMessage={handleSend}
+              typingUser={typingUser}
+              onTyping={handleTyping}
             />
+
           )}
         </div>
       </div>

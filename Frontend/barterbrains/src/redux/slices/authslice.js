@@ -17,6 +17,7 @@ const authSlice = createSlice({
         uname: action.payload.uname,
         email: action.payload.email,
         phone: action.payload.phone,
+        points:action.payload.points,
         role: action.payload.role,
         bdate: action.payload.bdate,
         adhar_id: action.payload.adhar_id,

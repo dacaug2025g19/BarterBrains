@@ -127,7 +127,7 @@ const Profile = () => {
 
                 <div>
                   <h5>Certification</h5>
-                  <a href={profile.cert_url} target="_blank" rel="noreferrer">
+                  <a  href={`http://localhost:8081${profile.cert_url}`} target="_blank" rel="noreferrer">
                     View Certificate
                   </a>
                 </div>

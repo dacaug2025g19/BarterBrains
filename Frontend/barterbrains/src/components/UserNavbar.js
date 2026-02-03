@@ -16,23 +16,21 @@ const UserNavbar = () => {
   const user = useSelector((state) => state.auth.user);
 
   const handleAccept = async (rid) => {
-    await AcceptRequestapi(rid);
+  await AcceptRequestapi(rid);
 
-    setNotifications((prev) =>
-      prev.map((n) =>
-        n.request_id === rid ? { ...n, status: "ACCEPTED" } : n
-      )
-    );
-  }
+  setNotifications((prev) =>
+    prev.filter((n) => n.request_id !== rid)
+  );
+};
+
 
   const handleReject = async (rid) => {
     await RejectRequestapi(rid);
 
     setNotifications((prev) =>
-      prev.map((n) =>
-        n.request_id === rid ? { ...n, status: "REJECTED" } : n
-      )
+      prev.filter((n) => n.request_id !== rid)
     );
+
   }
 
   useEffect(() => {

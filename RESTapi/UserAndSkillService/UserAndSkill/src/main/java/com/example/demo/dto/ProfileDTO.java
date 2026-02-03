@@ -19,6 +19,7 @@ import lombok.Setter;
 	String adhar_id;
 	Date bdate;
 	String phone;
+	Integer points;
 	String role;	
 	String token;
 }

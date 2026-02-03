@@ -75,6 +75,9 @@ export const getAcceptedChatRequests = (receiverId) => {
   return API.get(`/chat/accepted-requests?receiver_id=${receiverId}`);
 };
 
+export const getFullProfile = (uid) => {
+  return API.get(`user/profile/${uid}`);
+}
 
 API.interceptors.request.use((config) => {
   const userToken = getUserToken();

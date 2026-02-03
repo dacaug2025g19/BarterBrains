@@ -20,7 +20,8 @@ const Login = () => {
       const res = await loginUser({ email, password });
       const data = res.data;
 
-      dispatch(setLogin(data));   
+      dispatch(setLogin({ ...data, email }));
+   
 
     console.log("Login response data:", data);
   
@@ -29,7 +30,7 @@ const Login = () => {
       localStorage.setItem("role", data.role); // (optional but useful)
 
       if (data.role === "User") {
-        navigate("/user/profile");
+        navigate("/user/dashboard");
 
       } else if(data.role === "Admin"){
         navigate("/admin/dashboard");

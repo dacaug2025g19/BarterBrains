@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 5:52:48 Microsoft.Shutdown.TabStripModel.CloseTabs
 5:52:48 Microsoft.Shutdown.TabStripModel.CloseTabs_EdgeBeforeClosingAllTabs
 5:52:48 Microsoft.Shutdown.TabStripModel.InternalCloseTabsImpl
@@ -28,3 +29,57 @@
 5:52:48 Microsoft.Shutdown.OnWindowClosing
 5:52:48 Microsoft.Shutdown.OnWindowClosing_DeleteScheduled
 5:52:48 Microsoft.Browser_Removed
+=======
+0:12:21 Memory Pressure: None
+0:14:46 Memory Pressure: Moderate
+0:14:51 Memory Pressure: None
+0:15:21 Memory Pressure: Moderate
+0:15:26 Memory Pressure: None
+0:15:31 Memory Pressure: Moderate
+0:15:41 Memory Pressure: Moderate
+0:15:51 Memory Pressure: None
+0:40:38 Memory Pressure: Moderate
+0:40:48 Memory Pressure: Moderate
+0:40:58 Memory Pressure: Moderate
+0:41:08 Memory Pressure: Moderate
+0:41:18 Memory Pressure: Moderate
+0:41:28 Memory Pressure: Moderate
+0:41:38 Memory Pressure: Moderate
+0:41:48 Memory Pressure: Moderate
+0:41:58 Memory Pressure: Moderate
+0:42:09 Memory Pressure: Moderate
+0:42:19 Memory Pressure: Moderate
+0:42:29 Memory Pressure: None
+0:45:04 Memory Pressure: Moderate
+0:45:09 Memory Pressure: None
+0:47:04 Memory Pressure: Moderate
+0:47:14 Memory Pressure: Moderate
+0:47:19 Memory Pressure: None
+0:47:59 Memory Pressure: Moderate
+0:48:04 Memory Pressure: None
+0:56:15 Memory Pressure: Moderate
+0:56:25 Memory Pressure: None
+0:56:30 Memory Pressure: Moderate
+0:56:40 Memory Pressure: Moderate
+0:56:45 Memory Pressure: None
+0:56:50 Memory Pressure: Moderate
+0:56:55 Memory Pressure: None
+0:57:15 Memory Pressure: Moderate
+0:57:25 Memory Pressure: None
+0:58:10 Memory Pressure: Moderate
+0:58:20 Memory Pressure: None
+0:58:25 Memory Pressure: Moderate
+0:58:35 Memory Pressure: Moderate
+0:58:45 Memory Pressure: Moderate
+0:58:55 Memory Pressure: Moderate
+0:59:05 Memory Pressure: Moderate
+0:59:15 Memory Pressure: Moderate
+0:59:20 Memory Pressure: None
+0:59:50 Memory Pressure: Moderate
+1:00:00 Memory Pressure: Moderate
+1:00:05 Memory Pressure: None
+1:00:15 Tab2 StartNav7 #typed
+1:00:15 Tab2 FinishNav7
+1:00:15 Tab2 PageLoad
+3:21:08 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
+>>>>>>> mansi
