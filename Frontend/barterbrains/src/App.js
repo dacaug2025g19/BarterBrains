@@ -24,13 +24,13 @@ import AdminReports from "./pages/admin/AdminReports";
 
 /* ROUTE GUARD */
 
-<<<<<<< Updated upstream
-=======
-import ChatRoom from "./pages/ChatRoom";
 
 
 
->>>>>>> Stashed changes
+
+
+
+
 import Confirmation from "./pages/ConfirmPage"; 
 
 
