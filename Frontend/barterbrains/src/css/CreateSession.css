@@ -1,5 +1,5 @@
 /* ===============================
-   SESSION – GLOBAL DARK THEME
+   CREATE SESSION – PREMIUM DARK UI
    =============================== */
 
 body {
@@ -12,22 +12,11 @@ body {
    CONTAINER
    =============================== */
 .session-container {
-  flex: 1;                     /* 🔑 TAKE ALL REMAINING SPACE */
   min-height: 100vh;
-  padding: 40px;
   display: flex;
-  justify-content: center;     /* center card horizontally */
-  align-items: flex-start;
-  color: #e5e5e5;
-}
-
-/* ===============================
-   TITLE
-   =============================== */
-.session-title {
-  color: #22d3ee;
-  margin-bottom: 25px;
-  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
 /* ===============================
@@ -35,12 +24,11 @@ body {
    =============================== */
 .session-card {
   width: 100%;
-  max-width: 520px;
+  max-width: 480px;
   background: linear-gradient(180deg, #0b0b0b, #050505);
   border: 1px solid #1f2937;
   border-radius: 22px;
-  padding: 28px;
-  margin-bottom: 30px;
+  padding: 30px 28px;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.75);
   transition: all 0.35s ease;
 }
@@ -48,63 +36,18 @@ body {
 .session-card:hover {
   border-color: #22d3ee;
   box-shadow: 0 22px 55px rgba(34, 211, 238, 0.18);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
 }
 
+/* ===============================
+   TITLE
+   =============================== */
 .session-card h3 {
-  margin-bottom: 22px;
-  color: #22d3ee;
   text-align: center;
   font-size: 22px;
   font-weight: 700;
-}
-
-/* ===============================
-   EMPTY / ERROR STATE
-   =============================== */
-.session-empty {
-  color: #6b7280;
-  text-align: center;
-  font-size: 16px;
-  margin-top: 40px;
-}
-
-/* ===============================
-   REQUEST ITEMS (Teacher Requests)
-   =============================== */
-.request-item {
-  background: linear-gradient(135deg, #22d3ee, #06b6d4);
-  padding: 16px 18px;
-  border-radius: 14px;
-  margin-bottom: 14px;
-
-  display: flex;                 /* 🔑 key fix */
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-
-  transition: all 0.25s ease;
-}
-
-
-.request-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(34, 211, 238, 0.35);
-}
-
-.request-item.active {
-  outline: 3px solid #6366f1;
-}
-
-.request-item-text {
-  color: #000;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.request-sub {
-  font-size: 13px;
-  color: #0f172a;
+  color: #22d3ee;
+  margin-bottom: 26px;
 }
 
 /* ===============================
@@ -132,14 +75,12 @@ body {
   box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.25);
 }
 
-/* Custom select arrow */
+/* Remove default select arrow quirks */
 select.session-input {
   appearance: none;
-  background-image:
-    linear-gradient(45deg, transparent 50%, #22d3ee 50%),
+  background-image: linear-gradient(45deg, transparent 50%, #22d3ee 50%),
     linear-gradient(135deg, #22d3ee 50%, transparent 50%);
-  background-position:
-    calc(100% - 20px) calc(1em + 2px),
+  background-position: calc(100% - 20px) calc(1em + 2px),
     calc(100% - 15px) calc(1em + 2px);
   background-size: 5px 5px, 5px 5px;
   background-repeat: no-repeat;
@@ -149,20 +90,18 @@ select.session-input {
    BUTTON
    =============================== */
 .session-btn {
-  width: auto;
-  margin-top: 10px;
-  background: #000;              /* 🖤 black button */
-  border: 1px solid #22d3ee;     /* optional accent border */
-  padding: 10px 16px;
+  width: 100%;
+  margin-top: 8px;
+  background: linear-gradient(135deg, #22d3ee, #06b6d4);
+  color: black;
+  border: none;
+  padding: 12px;
   border-radius: 14px;
   font-weight: 700;
   font-size: 15px;
   cursor: pointer;
-  color: #22d3ee;                /* cyan text */
   transition: all 0.25s ease;
-  white-space: nowrap;
 }
-
 
 .session-btn:hover {
   opacity: 0.95;
@@ -173,11 +112,6 @@ select.session-input {
 .session-btn:active {
   transform: translateY(0);
   box-shadow: none;
-}
-
-.session-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
 }
 
 /* ===============================
@@ -195,15 +129,21 @@ select.session-input {
 }
 
 /* ===============================
+   EMPTY / ERROR STATE
+   =============================== */
+.session-empty {
+  color: #9ca3af;
+  text-align: center;
+  font-size: 16px;
+  margin-top: 40px;
+}
+
+/* ===============================
    RESPONSIVE
    =============================== */
-@media (max-width: 768px) {
-  .session-container {
-    padding: 24px;
-  }
-
+@media (max-width: 480px) {
   .session-card {
-    padding: 22px;
+    padding: 24px 20px;
   }
 
   .session-card h3 {
