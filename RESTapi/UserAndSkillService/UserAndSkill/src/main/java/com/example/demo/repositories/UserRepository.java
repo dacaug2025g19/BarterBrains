@@ -1,6 +1,7 @@
 package com.example.demo.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -8,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.dto.ClickedUserProfileDTO;
+import com.example.demo.dto.FullProfileDTO;
 import com.example.demo.dto.MatchDTO;
 import com.example.demo.entities.User;
 
@@ -25,15 +27,15 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 //	        nativeQuery = true)
 
 	@Query("""
-			SELECT u.uid, u.uname, u.email,
-			       ts.skill.sname,
-			       ls.skill.sname
-			FROM UserTeachSkill ts
-			JOIN ts.user u
-			JOIN UserLearnSkill ls ON ls.user = u
-			WHERE ts.skill.sid = :learnSkillId
-			AND (:teachSkillId IS NULL OR ls.skill.sid = :teachSkillId)
-			""")
+		    SELECT u.uid, u.uname, u.email,
+		           ts.skill.sname,
+		           ls.skill.sname
+		    FROM UserTeachSkill ts
+		    JOIN ts.user u
+		    LEFT JOIN UserLearnSkill ls ON ls.user = u
+		           AND (:teachSkillId IS NULL OR ls.skill.sid = :teachSkillId)
+		    WHERE ts.skill.sid = :learnSkillId
+		""")
 
 	public List<Object[]> findMatchUser(@Param("teachSkillId") Integer teachSkillId,
 			@Param("learnSkillId") Integer learnSkillId);
@@ -51,6 +53,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	
 //	public User findById(int uid);
+
+	public Optional<User> findById(Integer uid);
 
 
 }

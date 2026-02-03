@@ -34,6 +34,7 @@ public class User {
 	  String phone;
 	  Date bdate;
 	  String adhar_id;
+	  Integer points;
 
 	  @Column(columnDefinition = "TEXT")
 	  String bio;

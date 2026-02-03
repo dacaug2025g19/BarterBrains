@@ -5,10 +5,11 @@ import { logout } from "../redux/slices/authslice";
 import { useNavigate } from "react-router-dom";
 import UserSidebar from "../components/UserSidebar";
 import UserNavbar from "../components/UserNavbar";
+import { getFullProfile } from "../api/authApi";
 
 
 import "../css/UserProfile.css";
-import { AddUserSkill, getAllSkills} from "../api/authApi"
+import { AddUserSkill, getAllSkills, loginUser } from "../api/authApi"
 
 
 // ================= CONSTANTS =================
@@ -29,13 +30,14 @@ const UserProfile = () => {
   const fileRef = useRef();
 
   const user = useSelector((state) => state.auth.user);
+  console.log("This is user from redux: " + user.email);
+  const token = localStorage.getItem("token");
 
 
-  // ================= STATES =================
   const [editMode, setEditMode] = useState(false);
   const [about, setAbout] = useState("");
 
-  //const [teachExpLevel, setTeachExpLevel] = useState("");
+  // const [teachExpLevel, setTeachExpLevel] = useState("");
   //const [certificationUrl, setCertificationUrl] = useState("");
   const [profileImg, setProfileImg] = useState(DEFAULT_IMG);
   const [showImgMenu, setShowImgMenu] = useState(false);
@@ -45,22 +47,54 @@ const UserProfile = () => {
   const [showConfirm, setShowConfirm] = useState({ type: null, open: false });
   const [skills, setSkills] = useState([]);
 
+
   const [teachInput, setTeachInput] = useState("");
   const [teachSkills, setTeachSkills] = useState([]);
 
-  const [learnInput, setLearnInput] = useState(""); 
+  const [learnInput, setLearnInput] = useState("");
   const [learnSkills, setLearnSkills] = useState([]);
 
 
   // ================= FETCH PROFILE =================
   useEffect(() => {
     if (!user) return;
-    console.log("This is userid: " + user.uid);
-    setAbout(user.about ?? "");
-    setTeachSkills([]);
-    setLearnSkills(user.learnSkills ?? []);
-    // setExperienceLevel(user.experienceLevel ?? "");
-  }, [user]);
+
+    const fetchProfile = async () => {
+      try {
+        const res = await getFullProfile(user.uid);
+        const data = res.data;
+
+        console.log("Fetched profile:", data);
+
+        // BIO
+        setAbout(data.bio || "");
+
+        // LEARN SKILLS (names already)
+        setLearnSkills(data.learnSkillId || []);
+
+        // TEACH SKILLS (convert backend -> UI format)
+        const formattedTeach = (data.teachSkills || []).map(ts => ({
+          skillId: skills.find(s => s.sname === ts.skillName)?.sid, // convert name -> id
+          experienceLevel: ts.experienceLevel,
+          certificate: null,              // file only when uploading
+          certificateUrl: ts.certificateUrl
+        }));
+
+        setTeachSkills(formattedTeach);
+
+      } catch (err) {
+        console.error("Failed to load profile", err);
+      }
+    };
+
+    // wait till skills are loaded (important!)
+    if (skills.length > 0) {
+      fetchProfile();
+    }
+
+  }, [user, skills]);
+
+
 
 
   // ================= IMAGE =================
@@ -71,11 +105,6 @@ const UserProfile = () => {
     if (!file) return;
     setLoading(true);
     try {
-      // Simulate upload: Replace with actual backend upload logic
-      // const formData = new FormData();
-      // formData.append("image", file);
-      // const res = await axios.post(`${API_BASE}/user/uploadProfileImg`, formData, { headers: { Authorization: `Bearer ${token}` } });
-      // setProfileImg(res.data.url);
       setProfileImg(URL.createObjectURL(file)); // fallback for now
       setError("");
     } catch {
@@ -94,6 +123,16 @@ const UserProfile = () => {
     setProfileImg(DEFAULT_IMG);
     setShowImgMenu(false);
     setShowConfirm({ type: null, open: false });
+  };
+  // ================= VALIDATION =================
+  const isValidUrl = (url) => {
+    try {
+      if (!url) return true;
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
   };
 
   // ================= SAVE PROFILE =================
@@ -136,8 +175,6 @@ const UserProfile = () => {
     setTeachInput("");
   };
 
-
-
   const saveProfile = async () => {
     setLoading(true);
 
@@ -160,10 +197,15 @@ const UserProfile = () => {
         );
       });
 
-      learnSkills.forEach(id =>
-        formData.append("learnSkillId", id)
+      learnSkills.forEach((id, index) =>
+        formData.append(`learnSkillId[${index}]`, id)
       );
-      console.log("This is formdata: " + formData);
+
+      console.table("This fromdata" + [...formData.entries()]);
+      for (let pair of formData.entries()) {
+        console.log(pair[0], pair[1]);
+      }
+
       await AddUserSkill(formData);
 
       setSuccess(MSGS.profileSaved);
@@ -277,40 +319,30 @@ const UserProfile = () => {
           )}
           {/* ================= HEADER ================= */}
           <div className="profile-header">
-            <div className="profile-img-wrapper">
-              <img
-                src={profileImg}
-                alt="profile"
-                className="profile-image profile-glow"
-                onClick={() => editMode && setShowImgMenu(!showImgMenu)}
-              />
-              {editMode && showImgMenu && (
-                <div className="img-menu">
-                  <label className="img-menu-item">
-                    Upload Photo
-                    <input
-                      type="file"
-                      hidden
-                      ref={fileRef}
-                      accept="image/*"
-                      onChange={handleImageChange}
-                    />
-                  </label>
-                  <div
-                    className="img-menu-item danger"
-                    onClick={removeImage}
-                  >
-                    Remove Photo
-                  </div>
-                </div>
-              )}
-            </div>
+            
             <div className="user-info">
-              <h2>{user.uname}</h2>
-              <p><FaEnvelope className="icon-info" /> {user.email}</p>
-              <p className="sub-info"><FaPhone className="icon-info" /> {user.phone}</p>
-              <p className="sub-info"><FaBirthdayCake className="icon-info" /> {user.bdate}</p>
+              <h2 className="user-name">{user.uname}</h2>
+
+              <p className="info-line">
+                <FaEnvelope className="icon-info" />
+                <span>{user.email}</span>
+              </p>
+
+              <p className="info-line">
+                <FaPhone className="icon-info" />
+                <span>{user.phone}</span>
+              </p>
+
+              <p className="info-line">
+                <FaBirthdayCake className="icon-info" />
+                <span>{user.bdate}</span>
+              </p>
+
+              <p className="info-line points">
+                Points: {user.points}
+              </p>
             </div>
+
             <div className="header-actions">
               <button
                 className="btn-toggle btn-glow"
@@ -347,6 +379,35 @@ const UserProfile = () => {
             {/* I CAN TEACH */}
             <div className="profile-card">
               <h4><FaUserGraduate /> I Can Teach</h4>
+              {!editMode && (
+                <div className="skill-list">
+                  {teachSkills.length === 0 ? (
+                    <span className="skill-chip muted">No teach skills added</span>
+                  ) : (
+                    teachSkills.map(skill => (
+                      <div key={skill.skillId} className="skill-chip-column">
+                        <span className="skill-chip">
+                          {getSkillNameById(skill.skillId)}
+                        </span>
+                        <span className="exp-text">
+                          {skill.experienceLevel}
+                        </span>
+
+                        {skill.certUrl && (
+                          <a
+                            href={`http://localhost:8080/${skill.certUrl}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="cert-link"
+                          >
+                            View Certificate
+                          </a>
+                        )}
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
 
               {editMode && (
                 <>
@@ -430,49 +491,20 @@ const UserProfile = () => {
                         />
                       </div>
                     ))}
-
                   </div>
-
                 </>
               )}
-
             </div>
-
-
 
             {/* I WANT TO LEARN */}
             <div className="profile-card">
               <h4><FaBookOpen /> I Want To Learn</h4>
 
-              {editMode && (
-                <div className="skill-input">
-                  <select
-                    className="form-select"
-                    value={learnInput}
-                    onChange={(e) => setLearnInput(e.target.value)}
-                  >
-                    <option value="">Select skill</option>
-                    {skills.map(skill => (
-                      <option key={skill.sid} value={skill.sid}>
-                        {skill.sname}
-                      </option>
-                    ))}
-                  </select>
-
-                  <button
-                    className="btn-skill-add"
-                    onClick={() => addSkill("learn")}
-                  >
-                    <FaPlus />
-                  </button>
-                </div>
-              )}
-
               <div className="skill-list">
                 {learnSkills.length > 0 ? (
-                  learnSkills.map(id => (
-                    <span key={id} className="skill-chip">
-                      {getSkillNameById(id)}
+                  learnSkills.map((name, i) => (
+                    <span key={i} className="skill-chip">
+                      {name}
                     </span>
                   ))
                 ) : (
@@ -480,53 +512,6 @@ const UserProfile = () => {
                 )}
               </div>
             </div>
-   <div className="profile-card">
-              <h4><FaCertificate /> Experience Level</h4>
-
-
-              {editMode ? (
-                <div className="skill-input">
-                  <select
-                    className="form-select"
-                    value={experienceLevel}
-                    onChange={(e) => setExperienceLevel(e.target.value)}
-                  >
-                    <option value="">Select level</option>
-                    <option value="Beginner">Beginner</option>
-                    <option value="Intermediate">Intermediate</option>
-                    <option value="Expert">Expert</option>
-                  </select>
-                </div>
-              ) : (
-                <p className="muted">{experienceLevel || "Not specified"}</p>
-              )}
-            </div>
-
-            <div className="profile-card">
-              <h4><FaCertificate /> Certification</h4>
-
-              {editMode ? (
-                <input
-                  className="form-input"
-                  value={certificationUrl}
-                  onChange={(e) => setCertificationUrl(e.target.value)}
-                  placeholder="Paste certification link"
-                />
-              ) : (
-                <p className="muted">
-                  {certificationUrl ? (
-                    <a href={certificationUrl} target="_blank" rel="noopener noreferrer">
-                      View Certification
-                    </a>
-                  ) : (
-                    "No certification added"
-                  )}
-                </p>
-              )}
-            </div>
-
-
-
 
             {/* SAVE BUTTON RIGHT */}
             {editMode && (

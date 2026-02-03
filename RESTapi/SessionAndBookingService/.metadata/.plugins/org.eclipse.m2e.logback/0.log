@@ -572,3 +572,30 @@
 2026-02-02 11:56:54,863 [Worker-33: Launching SessionAndBooking - SessionAndBookingApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2026-02-02 11:56:54,878 [Worker-33: Launching SessionAndBooking - SessionAndBookingApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2026-02-02 11:56:54,943 [Worker-33: Launching SessionAndBooking - SessionAndBookingApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-02 18:05:26,119 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2026-02-02 18:07:22,350 [Worker-8: Importing Maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:SessionAndBooking:0.0.1-SNAPSHOT @ D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\pom.xml.
+2026-02-02 18:07:33,304 [Worker-8: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /SessionAndBooking/src/main/java
+2026-02-02 18:07:33,308 [Worker-8: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /SessionAndBooking/src/main/resources
+2026-02-02 18:07:33,332 [Worker-8: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /SessionAndBooking/src/main/resources
+2026-02-02 18:07:33,357 [Worker-8: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /SessionAndBooking/src/test/java
+2026-02-02 18:07:33,359 [Worker-8: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /SessionAndBooking/src/test/resources
+2026-02-02 18:07:41,239 [Worker-8: Importing Maven projects] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 26 sec
+2026-02-02 18:07:43,706 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-02 18:07:43,747 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-02 18:07:43,754 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-02 18:20:27,228 [Worker-8: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-02 18:20:27,237 [Worker-8: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-02 18:20:27,243 [Worker-8: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-02 18:21:21,793 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-12.0.21; built: 2025-05-09T00:32:00.688Z; git: 1c4719601e31b05b7d68910d2edd980259f1f53c; jvm 21.0.7+6-LTS
+2026-02-02 18:21:21,935 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started oeje8n.ContextHandler$CoreContextHandler@20a7ccf8{/help,/help,b=null,a=AVAILABLE,h=oeje8n.ContextHandler$CoreContextHandler$CoreToNestedHandler@52b77414{STARTED}}
+2026-02-02 18:21:21,937 [Start Help Server] INFO  o.e.j.s.DefaultSessionIdManager - Session workerName=node0
+2026-02-02 18:21:21,994 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@40bf94a7{HTTP/1.1, (http/1.1)}{127.0.0.1:54448}
+2026-02-02 18:21:22,033 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@2b96418a{STARTING}[12.0.21,sto=0] @1107099ms
+2026-02-02 18:22:29,905 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-02 18:22:29,914 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-02 18:22:29,924 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-02 18:23:06,859 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-02 18:23:06,873 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-02 18:23:06,883 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-02 21:44:24,986 [Stop Help Server] INFO  org.eclipse.jetty.server.Server - Stopped oejs.Server@2b96418a{STOPPING}[12.0.21,sto=0]
+2026-02-02 21:44:24,991 [Stop Help Server] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@40bf94a7{HTTP/1.1, (http/1.1)}{127.0.0.1:0}

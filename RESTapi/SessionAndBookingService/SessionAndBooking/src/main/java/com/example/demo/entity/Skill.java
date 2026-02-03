@@ -1,9 +1,13 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "skill_table")   // ✅ VERY IMPORTANT
+@Getter
+@Setter
 public class Skill {
 
     @Id
@@ -13,12 +17,4 @@ public class Skill {
     @Column(name = "sname")
     private String sname;
 
-    // getters
-    public Integer getSid() {
-        return sid;
-    }
-
-    public String getSname() {
-        return sname;
-    }
 }

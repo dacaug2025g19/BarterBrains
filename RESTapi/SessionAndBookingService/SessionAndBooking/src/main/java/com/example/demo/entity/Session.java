@@ -1,11 +1,20 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
 @Table(name = "session_table")
+@Getter 
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Session {
 
     @Id
@@ -31,72 +40,4 @@ public class Session {
 
     @Column(name = "end_time")
     private LocalTime endTime;
-
-    // =====================
-    // GETTERS
-    // =====================
-
-    public Integer getSeid() {
-        return seid;
-    }
-
-    public Integer getTeacherUid() {
-        return teacherUid;
-    }
-
-    public Integer getLearnerUid() {
-        return learnerUid;
-    }
-
-    public Integer getSkillId() {
-        return skillId;
-    }
-
-    public String getMode() {
-        return mode;
-    }
-
-    public LocalDate getSDate() {
-        return sDate;
-    }
-
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-
-    public LocalTime getEndTime() {
-        return endTime;
-    }
-
-    // =====================
-    // SETTERS (REQUIRED)
-    // =====================
-
-    public void setTeacherUid(Integer teacherUid) {
-        this.teacherUid = teacherUid;
-    }
-
-    public void setLearnerUid(Integer learnerUid) {
-        this.learnerUid = learnerUid;
-    }
-
-    public void setSkillId(Integer skillId) {
-        this.skillId = skillId;
-    }
-
-    public void setMode(String mode) {
-        this.mode = mode;
-    }
-
-    public void setSDate(LocalDate sDate) {
-        this.sDate = sDate;
-    }
-
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = endTime;
-    }
 }

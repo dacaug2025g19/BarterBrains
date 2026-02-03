@@ -16,8 +16,9 @@ public class ChatRequestService {
     @Autowired
     private ChatRequestRepository chatRequestRepository;
 
-    public List<SenderDTO> getAcceptedSenders(Integer receiverId) {
-        return chatRequestRepository.findAcceptedSenderDTOs(receiverId);
+    public List<SenderDTO> getAcceptedSenders(Integer uid) {
+        return chatRequestRepository.findAcceptedChats(uid);
     }
+
 }
 

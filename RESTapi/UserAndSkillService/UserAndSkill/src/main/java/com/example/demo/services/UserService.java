@@ -12,10 +12,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ClickedUserProfileDTO;
+import com.example.demo.dto.FullProfileDTO;
 import com.example.demo.dto.MatchDTO;
 import com.example.demo.dto.NotificationDTO;
 import com.example.demo.dto.ProfileDTO;
 import com.example.demo.dto.RequestDTO;
+import com.example.demo.dto.TeachSkillResponseDTO;
 import com.example.demo.entities.ExpLevel;
 import com.example.demo.entities.Request;
 import com.example.demo.entities.RequestStatus;
@@ -78,6 +80,7 @@ public class UserService {
 				 dto.setAdhar_id(user.getAdhar_id());
 			     dto.setBdate(user.getBdate());
 			     dto.setPhone(user.getPhone());
+			     dto.setPoints(user.getPoints());
 			     dto.setRole(user.getRole().getRname());
 			     dto.setToken(token);
 			     
@@ -187,4 +190,41 @@ public class UserService {
 
 		    return reqrepo.existsBySenderAndReceiver(sender, receiver);
 	}
+	
+	public FullProfileDTO getFullProfile(Integer uid) {
+
+	    User user = urepo.findById(uid)
+	            .orElseThrow(() -> new RuntimeException("User not found"));
+
+	    FullProfileDTO dto = new FullProfileDTO();
+	    dto.setUid(user.getUid());
+	    dto.setBio(user.getBio());
+
+	    // ===== Teach Skills =====
+	    List<TeachSkillResponseDTO> teachList = user.getTeachSkills()
+	            .stream()
+	            .map(t -> {
+	                TeachSkillResponseDTO ts = new TeachSkillResponseDTO();
+	                ts.setSkillName(t.getSkill().getSname());
+	                ts.setExperienceLevel(t.getExpLevel());
+	                ts.setCertificateUrl(
+	                    "http://localhost:8080/uploads/certificate/" + t.getCert_url()
+	                );
+	                return ts;
+	            })
+	            .toList();
+
+	    dto.setTeachSkills(teachList);
+
+	    // ===== Learn Skills =====
+	    List<String> learnList = user.getLearnSkills()
+	            .stream()
+	            .map(l -> l.getSkill().getSname())
+	            .toList();
+
+	  dto.setLearnSkillId(learnList);
+
+	    return dto;
+	}
+
 }

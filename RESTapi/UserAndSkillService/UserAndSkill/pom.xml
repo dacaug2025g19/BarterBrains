@@ -9,7 +9,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.2</version>
+        <!-- <version>3.2.2</version> -->
+        <version>3.2.1</version>
         <relativePath/>
     </parent>
 
@@ -24,7 +25,7 @@
 	</properties>
 	
     
-    <dependencyManagement>
+  <!--  <dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -34,7 +35,7 @@
             <scope>import</scope>
         </dependency>
     </dependencies>
-	</dependencyManagement>
+	</dependencyManagement>  -->
 
 
     <dependencies>
@@ -57,11 +58,11 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         
-       <dependency>
+      <!-- <dependency>
    		 <groupId>org.springframework.cloud</groupId>
     	<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
     	<version>4.0.2</version>
-     </dependency>
+     </dependency>  -->
 
         <!-- MySQL -->
         <dependency>

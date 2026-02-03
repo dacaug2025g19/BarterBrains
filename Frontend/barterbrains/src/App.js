@@ -26,8 +26,6 @@ import ChatDashboard from "./pages/ChatDashboard";
 /* ROUTE GUARD */
 
 import ChatRoom from "./pages/ChatRoom";
-import ChatDashboard from "./pages/ChatDashboard";
-
 
 import Confirmation from "./pages/ConfirmPage"; 
 
