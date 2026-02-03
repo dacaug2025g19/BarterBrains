@@ -9,6 +9,8 @@ public class ConfirmationDTO {
     private Integer seid;
     private Integer teacherUid;
     private Integer learnerUid;
+    private String tName;
+    private String lName;
     private String mode;
     private LocalDate sDate;
     private LocalTime endTime;
@@ -20,6 +22,8 @@ public class ConfirmationDTO {
             Integer seid,
             Integer teacherUid,
             Integer learnerUid,
+            String tName,
+            String lName,
             String mode,
             LocalDate sDate,
             LocalTime endTime,
@@ -30,6 +34,8 @@ public class ConfirmationDTO {
         this.seid = seid;
         this.teacherUid = teacherUid;
         this.learnerUid = learnerUid;
+        this.tName = tName;          // 🔥 MISSING
+        this.lName = lName;          // 🔥 MISSING
         this.mode = mode;
         this.sDate = sDate;
         this.endTime = endTime;
@@ -41,6 +47,8 @@ public class ConfirmationDTO {
     public Integer getSeid() { return seid; }
     public Integer getTeacherUid() { return teacherUid; }
     public Integer getLearnerUid() { return learnerUid; }
+    public String getTName() { return tName; }     // 🔥 REQUIRED
+    public String getLName() { return lName; }     // 🔥 REQUIRED
     public String getMode() { return mode; }
     public LocalDate getsDate() { return sDate; }
     public LocalTime getEndTime() { return endTime; }

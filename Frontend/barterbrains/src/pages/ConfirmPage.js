@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "../css/ConfirmPage.css";
 
 const ConfirmPage = () => {
   const [sessions, setSessions] = useState([]);
-  const uid = Number(localStorage.getItem("uid")); // logged-in user id
+  const [feedbackMap, setFeedbackMap] = useState({});
+  const uid = Number(localStorage.getItem("uid"));
 
   useEffect(() => {
     fetchConfirmations();
@@ -23,11 +25,9 @@ const ConfirmPage = () => {
   const handleConfirm = async (session) => {
     let role = "";
 
-    if (uid === session.teacherUid) {
-      role = "teacher";
-    } else if (uid === session.learnerUid) {
-      role = "learner";
-    } else {
+    if (uid === session.teacherUid) role = "teacher";
+    else if (uid === session.learnerUid) role = "learner";
+    else {
       alert("You are not part of this session");
       return;
     }
@@ -35,11 +35,13 @@ const ConfirmPage = () => {
     try {
       await axios.post("http://localhost:8082/confirm", {
         bsid: session.bsid,
-        role: role
+        role,
+        feedback:
+          role === "learner" ? feedbackMap[session.bsid] || "" : null
       });
 
       alert("Confirmation submitted");
-      fetchConfirmations(); // refresh UI
+      fetchConfirmations();
     } catch (err) {
       console.error("Confirmation failed", err);
       alert("Error while confirming session");
@@ -47,45 +49,87 @@ const ConfirmPage = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Session Confirmation</h2>
+    <div className="confirm-container">
+      <h2 className="confirm-title">Session Confirmation</h2>
 
-      {sessions.length === 0 && <p>No sessions to confirm</p>}
+      {sessions
+        .filter(
+          (s) => !(s.teacherConfirm === "yes" && s.learnerConfirm === "yes")
+        )
+        .length === 0 && (
+        <p className="empty-text">No sessions to confirm</p>
+      )}
 
-      {sessions.map((s) => (
-        <div
-          key={s.bsid}
-          style={{
-            border: "1px solid #ccc",
-            padding: "15px",
-            marginBottom: "15px",
-            borderRadius: "6px"
-          }}
-        >
-          <p><strong>Session ID:</strong> {s.seid}</p>
-          <p><strong>Mode:</strong> {s.mode}</p>
+      {sessions
+        .filter(
+          (s) => !(s.teacherConfirm === "yes" && s.learnerConfirm === "yes")
+        )
+        .map((s) => {
+          const currentUserCanConfirm =
+            (uid === s.teacherUid && s.teacherConfirm !== "yes") ||
+            (uid === s.learnerUid && s.learnerConfirm !== "yes");
 
-          <p>
-            <strong>Teacher:</strong>{" "}
-            {s.teacherConfirm === "yes" ? "yes" : "no"}
-          </p>
+          const currentUserConfirmed =
+            (uid === s.teacherUid && s.teacherConfirm === "yes") ||
+            (uid === s.learnerUid && s.learnerConfirm === "yes");
 
-          <p>
-            <strong>Learner:</strong>{" "}
-            {s.learnerConfirm === "yes" ? "yes" : "no"}
-          </p>
+          return (
+            <div key={s.bsid} className="session-card">
+              <p><strong>Session ID:</strong> {s.seid}</p>
+              <p><strong>Mode:</strong> {s.mode}</p>
+              <p><strong>End Time:</strong> {s.endTime}</p>
 
-          {/* Show confirm button only if THIS user has not confirmed */}
-          {(uid === s.teacherUid && s.teacherConfirm !== "yes") ||
-          (uid === s.learnerUid && s.learnerConfirm !== "yes") ? (
-            <button onClick={() => handleConfirm(s)}>
-              Confirm
-            </button>
-          ) : (
-            <p style={{ color: "green" }}>You have confirmed</p>
-          )}
-        </div>
-      ))}
+              <p>
+                <strong>Teacher:</strong> {s.tName}{" "}
+                <span
+                  className={`status ${
+                    s.teacherConfirm === "yes" ? "yes" : "no"
+                  }`}
+                >
+                  {s.teacherConfirm}
+                </span>
+              </p>
+
+              <p>
+                <strong>Learner:</strong> {s.lName}{" "}
+                <span
+                  className={`status ${
+                    s.learnerConfirm === "yes" ? "yes" : "no"
+                  }`}
+                >
+                  {s.learnerConfirm}
+                </span>
+              </p>
+
+              {uid === s.learnerUid && s.learnerConfirm !== "yes" && (
+                <textarea
+                  placeholder="Write your feedback..."
+                  value={feedbackMap[s.bsid] || ""}
+                  onChange={(e) =>
+                    setFeedbackMap({
+                      ...feedbackMap,
+                      [s.bsid]: e.target.value
+                    })
+                  }
+                  rows={3}
+                />
+              )}
+
+              {currentUserCanConfirm ? (
+                <button
+                  className="confirm-btn"
+                  onClick={() => handleConfirm(s)}
+                >
+                  Confirm
+                </button>
+              ) : currentUserConfirmed ? (
+                <p style={{ color: "#facc15", marginTop: "12px" }}>
+                  Waiting for other user to confirm…
+                </p>
+              ) : null}
+            </div>
+          );
+        })}
     </div>
   );
 };

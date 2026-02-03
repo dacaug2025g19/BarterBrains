@@ -1,0 +1,180 @@
+/* ===============================
+   CONFIRM PAGE – PREMIUM DARK UI
+   (IMPROVED VISIBILITY)
+   =============================== */
+
+body {
+  background: radial-gradient(circle at top, #050505, #000);
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont;
+  color: #f3f4f6; /* brighter base text */
+}
+
+/* ===============================
+   PAGE CONTAINER
+   =============================== */
+.confirm-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* ===============================
+   HEADING
+   =============================== */
+.confirm-title {
+  color: #22d3ee;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+/* ===============================
+   SESSION CARD
+   =============================== */
+.session-card {
+  background: linear-gradient(180deg, #0b0b0b, #050505);
+  border: 1px solid #1f2937;
+  border-radius: 20px;
+  padding: 22px;
+  margin-bottom: 24px;
+  transition: all 0.35s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.session-card:hover {
+  border-color: #22d3ee;
+  box-shadow: 0 12px 38px rgba(34, 211, 238, 0.18);
+  transform: translateY(-3px);
+}
+
+/* ===============================
+   TEXT STYLES
+   =============================== */
+.session-card p {
+  font-size: 15px;
+  margin: 8px 0;
+  color: #f9fafb; /* 🔥 brighter text */
+  line-height: 1.6;
+}
+
+.session-card strong {
+  color: #60a5fa; /* brighter blue */
+  font-weight: 700;
+}
+
+/* Names (teacher / learner text after label) */
+.session-card p span:not(.status) {
+  color: #e5e7eb;
+  font-weight: 500;
+}
+
+/* ===============================
+   STATUS BADGES
+   =============================== */
+.status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+.status.yes {
+  background: rgba(34, 197, 94, 0.18);
+  color: #22c55e;
+}
+
+.status.no {
+  background: rgba(239, 68, 68, 0.18);
+  color: #ef4444;
+}
+
+/* ===============================
+   FEEDBACK TEXTAREA
+   =============================== */
+textarea {
+  width: 100%;
+  background: #020617;
+  color: #f9fafb;
+  border: 1px solid #1f2937;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 14px;
+  resize: none;
+  margin-top: 12px;
+  transition: all 0.25s ease;
+}
+
+textarea::placeholder {
+  color: #9ca3af;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #22d3ee;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.25);
+}
+
+/* ===============================
+   BUTTON
+   =============================== */
+.confirm-btn {
+  margin-top: 16px;
+  background: linear-gradient(135deg, #22d3ee, #06b6d4);
+  color: #020617;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.confirm-btn:hover {
+  opacity: 0.95;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(34, 211, 238, 0.35);
+}
+
+/* ===============================
+   CONFIRMED / WAITING TEXT
+   =============================== */
+.confirmed-text {
+  color: #22c55e;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.waiting-text {
+  color: #fde047;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+/* ===============================
+   EMPTY STATE
+   =============================== */
+.empty-text {
+  color: #d1d5db;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* ===============================
+   RESPONSIVE
+   =============================== */
+@media (max-width: 768px) {
+  .session-card {
+    padding: 18px;
+  }
+
+  .confirm-title {
+    font-size: 22px;
+  }
+
+  .confirm-btn {
+    width: 100%;
+  }
+}

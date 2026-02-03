@@ -31,35 +31,43 @@ public class ConfirmationService {
     // ✅ FETCH COMPLETED SESSIONS FOR CONFIRMATION PAGE
     public List<ConfirmationDTO> getCompletedSessions(Integer uid) {
 
-        List<Session> completedSessions = sessionRepo.findCompletedSessions();
-        List<ConfirmationDTO> result = new ArrayList<>();
-
-        for (Session s : completedSessions) {
-
-            BookedSession b = bookedRepo.findBySeid(s.getSeid()).orElse(null);
-            if (b == null) continue;
-
-            // show only sessions where user is teacher or learner
-            if (!uid.equals(s.getTeacherUid()) && !uid.equals(b.getLearnerUid())) {
-                continue;
-            }
-
-            ConfirmationDTO dto = new ConfirmationDTO(
-                    b.getBsid(),
-                    s.getSeid(),
-                    s.getTeacherUid(),
-                    b.getLearnerUid(),
-                    s.getMode(),
-                    s.getSDate(),
-                    s.getEndTime(),
-                    b.getTeacherConfirm(),
-                    b.getLearnerConfirm()
-            );
-
-            result.add(dto);
-        }
-
-        return result;
+//        List<Session> completedSessions = sessionRepo.findCompletedSessions();
+//        List<ConfirmationDTO> result = new ArrayList<>();
+//
+//        for (Session s : completedSessions) {
+//
+//            BookedSession b = bookedRepo.findBySeid(s.getSeid()).orElse(null);
+//            if (b == null) continue;
+//
+//            // show only sessions where user is teacher or learner
+//            if (!uid.equals(s.getTeacherUid()) && !uid.equals(b.getLearnerUid())) {
+//                continue;
+//            }
+//
+//            ConfirmationDTO dto = new ConfirmationDTO(
+//                    b.getBsid(),
+//                    s.getSeid(),
+//                    s.getTeacherUid(),
+//                    b.getLearnerUid(),
+//                    s.getMode(),
+//                    s.getSDate(),
+//                    s.getEndTime(),
+//                    b.getTeacherConfirm(),
+//                    b.getLearnerConfirm()
+//            );
+//
+//            result.add(dto);
+//        }
+//
+//        return result;
+    	return sessionRepo.findCompletedSessionsWithNames()
+                .stream()
+                .filter(dto ->
+                        uid.equals(dto.getTeacherUid())
+                     || uid.equals(dto.getLearnerUid())
+                )
+                .toList();
+    	
     }
 
     // ✅ CONFIRM SESSION (YOUR EXISTING LOGIC – UNCHANGED)
@@ -71,6 +79,11 @@ public class ConfirmationService {
             b.setTeacherConfirm("yes");
         } else {
             b.setLearnerConfirm("yes");
+            b.setFeedback(dto.getFeedback());
+            
+//         // 🔥 SAVE FEEDBACK ONLY FROM LEARNER
+//            if (dto.getFeedback() != null && !dto.getFeedback().isBlank()) {
+//            }
         }
 
         bookedRepo.save(b);
