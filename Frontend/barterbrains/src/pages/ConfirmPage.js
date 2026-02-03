@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/ConfirmPage.css";
+import UserNavbar from "../components/UserNavbar";
+import UserSidebar from "../components/UserSidebar";
 
 const ConfirmPage = () => {
   const [sessions, setSessions] = useState([]);
@@ -49,6 +51,11 @@ const ConfirmPage = () => {
   };
 
   return (
+    <>
+   <UserNavbar />
+            <div className="d-flex user-layout">
+
+                <UserSidebar />
     <div className="confirm-container">
       <h2 className="confirm-title">Session Confirmation</h2>
 
@@ -131,6 +138,8 @@ const ConfirmPage = () => {
           );
         })}
     </div>
+  </div>
+  </>
   );
 };
 

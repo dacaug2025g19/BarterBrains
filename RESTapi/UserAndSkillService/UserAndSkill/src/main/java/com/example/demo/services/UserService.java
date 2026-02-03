@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ClickedUserProfileDTO;
 import com.example.demo.dto.FullProfileDTO;
+import com.example.demo.dto.LearnSkillDTO;
 import com.example.demo.dto.MatchDTO;
 import com.example.demo.dto.NotificationDTO;
 import com.example.demo.dto.ProfileDTO;
@@ -58,7 +59,7 @@ public class UserService {
 		Role userRole = rrepo.findByRname("User");
 		
 		 user.setRole(userRole);
-		 
+		 user.setPoints(100);
 		return urepo.save(user);
 	}
 	
@@ -208,7 +209,7 @@ public class UserService {
 	                ts.setSkillName(t.getSkill().getSname());
 	                ts.setExperienceLevel(t.getExpLevel());
 	                ts.setCertificateUrl(
-	                    "http://localhost:8080/uploads/certificate/" + t.getCert_url()
+	                    "http://localhost:8081/uploads/certificate/" + t.getCert_url()
 	                );
 	                return ts;
 	            })
@@ -217,12 +218,17 @@ public class UserService {
 	    dto.setTeachSkills(teachList);
 
 	    // ===== Learn Skills =====
-	    List<String> learnList = user.getLearnSkills()
+	    List<LearnSkillDTO> learnList = user.getLearnSkills()
 	            .stream()
-	            .map(l -> l.getSkill().getSname())
+	            .map(l -> {
+	                LearnSkillDTO ldto = new LearnSkillDTO();
+	                ldto.setSkillId(l.getSkill().getSid());
+	                ldto.setSkillName(l.getSkill().getSname());
+	                return ldto;
+	            })
 	            .toList();
 
-	  dto.setLearnSkillId(learnList);
+	    dto.setLearnSkills(learnList);
 
 	    return dto;
 	}

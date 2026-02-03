@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-2026/02/02-15:31:43.612 5af8 Reusing MANIFEST C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/MANIFEST-000001
-2026/02/02-15:31:43.615 5af8 Recovering log #3
-2026/02/02-15:31:43.619 5af8 Reusing old log C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/000003.log 
-=======
-2026/02/02-18:23:11.735 6244 Reusing MANIFEST D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/MANIFEST-000001
-2026/02/02-18:23:11.737 6244 Recovering log #3
-2026/02/02-18:23:11.742 6244 Reusing old log D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/000003.log 
->>>>>>> mansi
+2026/02/03-10:56:34.019 5f98 Reusing MANIFEST D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/MANIFEST-000001
+2026/02/03-10:56:34.023 5f98 Recovering log #3
+2026/02/03-10:56:34.027 5f98 Reusing old log D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/000003.log 
