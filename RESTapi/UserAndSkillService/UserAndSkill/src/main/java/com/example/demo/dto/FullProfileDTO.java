@@ -15,5 +15,5 @@ public class FullProfileDTO {
 	private Integer uid;
     private String bio;
     private List<TeachSkillResponseDTO> teachSkills;
-    private List<String> learnSkillId;
+    private List<LearnSkillDTO> learnSkills;
 }

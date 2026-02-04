@@ -4,6 +4,7 @@ import com.example.demo.dto.ConfirmationDTO;
 import com.example.demo.dto.SessionConfirmDTO;
 import com.example.demo.entity.BookedSession;
 import com.example.demo.entity.Session;
+import com.example.demo.entity.User;
 import com.example.demo.repository.BookedSessionRepository;
 import com.example.demo.repository.SessionRepository;
 import org.springframework.stereotype.Service;
@@ -80,6 +81,8 @@ public class ConfirmationService {
         } else {
             b.setLearnerConfirm("yes");
             b.setFeedback(dto.getFeedback());
+//            b.setTeacherUid(dto.getTeacherUid());
+            
             
 //         // 🔥 SAVE FEEDBACK ONLY FROM LEARNER
 //            if (dto.getFeedback() != null && !dto.getFeedback().isBlank()) {
@@ -95,6 +98,13 @@ public class ConfirmationService {
 
         Session s = sessionRepo.findById(b.getSeid()).orElseThrow();
         int points = 20;
+
+        User u = new User();
+        Integer userPoints = u.getPoints();
+
+        if (userPoints != null) {
+            points = userPoints;
+        }
 
         if ("learn".equalsIgnoreCase(s.getMode())) {
 

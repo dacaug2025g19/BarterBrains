@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AppLayout from "../layouts/applayout_temp";
 import { registerUser } from "../api/authApi";
 
@@ -17,7 +17,7 @@ const Register = () => {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
- const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Registering user with data:", form);
     try {
@@ -47,10 +47,15 @@ const Register = () => {
                 ["uname", "Full Name", "text"],
                 ["email", "Email", "email"],
                 ["password", "Password", "password"],
-                ["phone", "Phone", "text"],
+
+                // Phone (10 digits)
+                ["phone", "Phone", "text", 10],
+
                 ["bdate", "Birth Date", "date"],
-                ["adhar_id", "Aadhar ID", "text"],
-              ].map(([name, label, type]) => (
+
+                // Aadhar (12 digits)
+                ["adhar_id", "Aadhar ID", "text", 12],
+              ].map(([name, label, type, maxLen]) => (
                 <div className="mb-3" key={name}>
                   <input
                     type={type}
@@ -58,11 +63,23 @@ const Register = () => {
                     className="form-control"
                     placeholder={label}
                     value={form[name]}
-                    onChange={handleChange}
+                    maxLength={maxLen}
+                    onChange={(e) => {
+                      // allow only numbers for phone & aadhar
+                      if (name === "phone" || name === "adhar_id") {
+                        const onlyNums = e.target.value.replace(/\D/g, "");
+                        handleChange({
+                          target: { name, value: onlyNums },
+                        });
+                      } else {
+                        handleChange(e);
+                      }
+                    }}
                     required
                   />
                 </div>
               ))}
+
 
               <button type="submit" className="btn btn-primary w-100 mt-3">
                 Create Account

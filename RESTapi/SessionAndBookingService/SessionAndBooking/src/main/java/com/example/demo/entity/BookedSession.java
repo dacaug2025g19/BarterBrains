@@ -23,12 +23,26 @@ public class BookedSession {
 
     private Integer seid;
     private Integer learnerUid;
+    
+    
 
     @Column(name = "teacher_confirm")
     private String teacherConfirm;
 
     @Column(name = "learner_confirm")
     private String learnerConfirm;
+    
+    
+    @Column(name = "teacher_uid")
+    private Integer teacherUid;
+
+    public Integer getTeacherUid() {
+        return teacherUid;
+    }
+
+    public void setTeacherUid(Integer teacherUid) {
+        this.teacherUid = teacherUid;
+    }
 
     private LocalDate bookingDate;
     private String feedback;
@@ -53,5 +67,7 @@ public class BookedSession {
     public Integer getSeid() {
         return seid;
     }
+    
+    
 }
 

@@ -19,6 +19,7 @@ public class ClickedUserProfileDTO {
     private String bio;
     private String cert_url;
     String exp_level;
+    private List<FeedbackDTO> feedbacks;
 
     private List<String> teachSkills;
     private List<String> learnSkills;

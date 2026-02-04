@@ -6,12 +6,13 @@ import { getAcceptedChatRequests } from "../api/authApi";
 import UserNavbar from "../components/UserNavbar";
 import UserSidebar from "../components/UserSidebar";
 import "../css/ChatDashboard.css";
+import { useRef } from "react";
 
 const ChatDashboard = () => {
   const loggedUser = useSelector((state) => state.auth.user);
 
   const [senders, setSenders] = useState([]);
-  const [conn, setConn] = useState(null);
+  const connRef = useRef(null);
   const [chatUser, setChatUser] = useState(null);
 
   // 🔴 CHAT STATES HERE
@@ -31,45 +32,49 @@ const ChatDashboard = () => {
   }, [loggedUser]);
 
   const startChat = async (otherUid, otherName) => {
-    const uid = loggedUser.uid;
+  const uid = loggedUser.uid;
+  setChatUserName(otherName);
 
+  const roomId =
+    uid < otherUid ? `${uid}_${otherUid}` : `${otherUid}_${uid}`;
 
-    setChatUserName(otherName);
-    const roomId =
-      uid < otherUid ? `${uid}_${otherUid}` : `${otherUid}_${uid}`;
+  // 🛑 STOP OLD CONNECTION FIRST
+  if (connRef.current) {
+    await connRef.current.stop();
+    connRef.current = null;
+  }
 
-    const connection = createConnection();
-    setConn(connection);
+  const connection = createConnection();
+  connRef.current = connection;
 
-    if (conn) {
-      await conn.stop();
-    }
-    // ✅ LISTEN FIRST
-    connection.on("LoadOldMessages", (msgs) => {
-      const formatted = msgs.map((m) => ({
+  // ✅ LISTENERS
+  connection.on("LoadOldMessages", (msgs) => {
+    setMessages(
+      msgs.map((m) => ({
         senderId: m.senderId,
         msg: m.message,
         time: m.time,
-      }));
-      setMessages(formatted);
-    });
+      }))
+    );
+  });
 
-    connection.on("ReceiveMessage", (senderId, msg, time) => {
-      setMessages((prev) => [...prev, { senderId, msg, time }]);
-    });
+  connection.on("ReceiveMessage", (senderId, msg, time) => {
+    setMessages((prev) => [...prev, { senderId, msg, time }]);
+  });
 
-    connection.on("UserTyping", (userId) => {
-      if (userId !== uid) {
-        setTypingUser("Typing...");
-        setTimeout(() => setTypingUser(""), 1500);
-      }
-    });
+  connection.on("UserTyping", (userId) => {
+    if (userId !== uid) {
+      setTypingUser("Typing...");
+      setTimeout(() => setTypingUser(""), 1500);
+    }
+  });
 
-    await connection.start();
-    await connection.invoke("JoinRoom", roomId);
+  await connection.start();
+  await connection.invoke("JoinRoom", roomId);
 
-    setChatUser(otherUid);
-  };
+  setChatUser(otherUid);
+};
+
 
   // ✅ Send message
   const handleSend = async () => {
@@ -79,7 +84,7 @@ const ChatDashboard = () => {
     const roomId =
       uid < chatUser ? `${uid}_${chatUser}` : `${chatUser}_${uid}`;
 
-    await conn.invoke("SendMessage", roomId, uid, message);
+    await connRef.current.invoke("SendMessage", roomId, uid, message);
     setMessage("");
   };
 
@@ -89,17 +94,19 @@ const ChatDashboard = () => {
     const roomId =
       uid < chatUser ? `${uid}_${chatUser}` : `${chatUser}_${uid}`;
 
-    await conn.invoke("Typing", roomId, uid);
+    await connRef.current.invoke("Typing", roomId, uid);
   };
 
 
-  useEffect(() => {
-    return () => {
-      if (conn) {
-        conn.stop();
-      }
-    };
-  }, [conn]);
+ useEffect(() => {
+  return () => {
+    if (connRef.current) {
+      connRef.current.stop();
+      connRef.current = null;
+    }
+  };
+}, []);
+
   return (
     <>
       <UserNavbar />

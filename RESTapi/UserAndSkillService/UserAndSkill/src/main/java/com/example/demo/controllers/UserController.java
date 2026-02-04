@@ -20,7 +20,6 @@ import com.example.demo.dto.MatchDTO;
 import com.example.demo.dto.NotificationDTO;
 import com.example.demo.dto.ProfileDTO;
 import com.example.demo.dto.RequestDTO;
-import com.example.demo.entities.Request;
 import com.example.demo.entities.User;
 import com.example.demo.services.UserService;
 

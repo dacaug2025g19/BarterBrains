@@ -1,9 +1,15 @@
-import React from "react";
+//Dashboard.js import React from "react";
+import { useNavigate } from "react-router-dom";
 import UserNavbar from "../components/UserNavbar";
 import UserSidebar from "../components/UserSidebar";
 import "../css/dashboard.css";
 
+// image import
+import dashboardImage from "../images/image.png";
+
 const UserDashboard = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <UserNavbar />
@@ -11,30 +17,34 @@ const UserDashboard = () => {
       <div className="d-flex user-layout">
         <UserSidebar />
 
-        {/* MAIN CONTENT */}
         <div className="dashboard-content">
+          
+          {/* LEFT CONTENT */}
           <div className="dashboard-text">
-            {/* Slogan */}
-            <h1>
-              🚀 Level Up Your Skills<br />
-              🌟 Share Knowledge<br />
-              💡 Make an Impact
+            <h1 className="dashboard-main-title">
+              Welcome to Your <br />
+              <span className="dashboard-main-title-accent">Learning Hub</span>
             </h1>
 
-            {/* Description */}
-            <p>
-              Step into BarterBrains and explore a world of learning. Discover new skills, 
-              share your expertise, earn rewards, and connect with a community of learners—all 
-              in one place.
+            <p className="dashboard-main-desc">
+              Track your progress, share skills, earn points, and connect with a
+              vibrant community of learners and teachers—all in one personalized
+              dashboard.
             </p>
 
-            {/* CTA */}
-            <button className="dashboard-btn">
-              Start Your Adventure →
+            <button
+              className="dashboard-btn"
+              onClick={() => navigate("/user/profile")}
+            >
+              View Profile →
             </button>
           </div>
 
-          
+          {/* RIGHT IMAGE */}
+          <div className="dashboard-image">
+            <img src={dashboardImage} alt="Skills Illustration" />
+          </div>
+
         </div>
       </div>
     </>

@@ -19,7 +19,6 @@ const AdminSidebar = () => {
         <NavLink to="/admin/users">Users</NavLink>
         <NavLink to="/admin/skills">Skills</NavLink>
         <NavLink to="/admin/categories">Categories</NavLink>
-        <NavLink to="/admin/reports">Reports</NavLink>
       </nav>
 
       <button className="logout-btn" onClick={logout}>

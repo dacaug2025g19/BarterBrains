@@ -664,3 +664,102 @@
 2026-02-02 21:44:24,986 [Stop Help Server] INFO  org.eclipse.jetty.server.Server - Stopped oejs.Server@2b96418a{STOPPING}[12.0.21,sto=0]
 2026-02-02 21:44:24,991 [Stop Help Server] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@40bf94a7{HTTP/1.1, (http/1.1)}{127.0.0.1:0}
 >>>>>>> mansi
+2026-02-03 10:49:59,114 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2026-02-03 10:50:15,796 [Worker-8: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:SessionAndBooking:0.0.1-SNAPSHOT @ C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\pom.xml.
+2026-02-03 10:50:20,551 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 10:50:20,650 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 10:50:20,662 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 13:05:13,594 [Worker-39: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 13:05:13,912 [Worker-39: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 13:05:13,929 [Worker-39: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 14:18:18,233 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2026-02-03 14:18:42,647 [Worker-11: Launching SessionAndBooking - SessionAndBookingApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 14:18:42,679 [Worker-11: Launching SessionAndBooking - SessionAndBookingApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 14:18:42,687 [Worker-11: Launching SessionAndBooking - SessionAndBookingApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 14:20:33,164 [Worker-3: Launching SessionAndBooking - SessionAndBookingApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 14:20:33,177 [Worker-3: Launching SessionAndBooking - SessionAndBookingApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 14:20:33,183 [Worker-3: Launching SessionAndBooking - SessionAndBookingApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 14:51:46,547 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 14:51:46,593 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 14:51:46,598 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 14:52:56,775 [Worker-0: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 14:52:56,828 [Worker-0: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 14:52:56,835 [Worker-0: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 14:52:59,104 [Worker-0: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 14:52:59,122 [Worker-0: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 14:52:59,127 [Worker-0: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 14:55:36,062 [Worker-18: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 14:55:36,074 [Worker-18: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 14:55:36,080 [Worker-18: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 14:55:49,192 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 14:55:49,203 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 14:55:49,209 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 14:56:24,399 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 14:56:24,404 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 14:56:24,408 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 14:56:38,310 [Worker-28: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 14:56:38,315 [Worker-28: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 14:56:38,319 [Worker-28: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 14:57:12,411 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 14:57:12,417 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 14:57:12,424 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 15:04:30,465 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 15:04:30,505 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 15:04:30,512 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 15:10:05,920 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 15:10:05,938 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 15:10:05,944 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 15:13:25,955 [Worker-28: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 15:13:25,973 [Worker-28: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 15:13:25,978 [Worker-28: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 20:14:41,784 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 20:14:41,850 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 20:14:41,857 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 20:22:06,167 [Worker-42: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 20:22:06,187 [Worker-42: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 20:22:06,195 [Worker-42: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 20:24:53,909 [Worker-37: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 20:24:53,929 [Worker-37: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 20:24:53,937 [Worker-37: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 20:25:37,830 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 20:25:37,843 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 20:25:37,850 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 20:28:35,158 [Worker-41: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 20:28:35,173 [Worker-41: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 20:28:35,183 [Worker-41: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 21:28:27,418 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2026-02-03 21:56:45,516 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 21:56:45,535 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 21:56:45,541 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Projects\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 23:01:39,215 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2026-02-03 23:14:38,016 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2026-02-03 23:14:46,225 [Worker-16: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:SessionAndBooking:0.0.1-SNAPSHOT @ D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\pom.xml.
+2026-02-03 23:14:48,709 [Worker-16: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 23:14:48,763 [Worker-16: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 23:14:48,771 [Worker-16: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-03 23:14:51,810 [Worker-8: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:SessionAndBooking:0.0.1-SNAPSHOT @ D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\pom.xml.
+2026-02-03 23:14:53,369 [Worker-8: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-03 23:14:53,403 [Worker-8: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-03 23:14:53,413 [Worker-8: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-04 00:54:46,355 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-04 00:54:46,374 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-04 00:54:46,381 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-04 00:54:52,658 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-04 00:54:52,675 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-04 00:54:52,680 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-04 00:55:20,911 [Worker-6: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-04 00:55:20,947 [Worker-6: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-04 00:55:20,957 [Worker-6: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-04 00:55:34,573 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-04 00:55:34,586 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-04 00:55:34,591 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-04 00:59:13,552 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-04 00:59:13,559 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-04 00:59:13,566 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-04 08:51:14,026 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2026-02-04 08:54:16,365 [Worker-8: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2026-02-04 08:54:16,386 [Worker-8: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-04 08:54:16,392 [Worker-8: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources
+2026-02-04 08:54:18,260 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-04 08:54:18,261 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-02-04 08:54:18,263 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\BarterBrainsProject\BarterBrains\RESTapi\SessionAndBookingService\SessionAndBooking\src\test\resources

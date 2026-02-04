@@ -40,6 +40,7 @@ public class SessionService {
         BookedSession b = new BookedSession();
         b.setSeid(saved.getSeid());
         b.setLearnerUid(dto.getLearnerUid());
+        b.setTeacherUid(dto.getTeacherUid()); 
         b.setTeacherConfirm("no");
         b.setLearnerConfirm("no");
         b.setBookingDate(LocalDate.now());

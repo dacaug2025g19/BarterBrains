@@ -4,7 +4,7 @@ import { getClickedProfile } from "../api/authApi";
 import UserNavbar from "../components/UserNavbar";
 import UserSidebar from "../components/UserSidebar";
 import { useSelector } from "react-redux";
-import { SendRequestapi,SendRequest } from "../api/authApi";
+import { SendRequestapi, SendRequest } from "../api/authApi";
 import "../css/Profile.css";
 
 
@@ -22,23 +22,23 @@ const Profile = () => {
     fetchProfile();
   }, [uid]);
 
-   useEffect(()=>{
-    if(profile && redux_uid){
+  useEffect(() => {
+    if (profile && redux_uid) {
       checkRequest();
     }
-   },[profile])
+  }, [profile])
 
-   const checkRequest = async () => {
-    try{
+  const checkRequest = async () => {
+    try {
       const res = await SendRequest(redux_uid, profile.uid);
-      if(res.data === true){
+      if (res.data === true) {
         setRequestSent(true);
       }
     }
     catch (err) {
-    console.error(err);
+      console.error(err);
+    }
   }
-   }
 
   const fetchProfile = async () => {
     try {
@@ -127,11 +127,30 @@ const Profile = () => {
 
                 <div>
                   <h5>Certification</h5>
-                  <a  href={`http://localhost:8081${profile.cert_url}`} target="_blank" rel="noreferrer">
+                  <a href={`http://localhost:8081${profile.cert_url}`} target="_blank" rel="noreferrer">
                     View Certificate
                   </a>
                 </div>
+
               </div>
+              {/* Feedback Section */}
+              <div className="cp-section">
+                <h4>Feedback from Learners</h4>
+
+                {profile.feedbacks?.length > 0 ? (
+                  <div className="feedback-list">
+                    {profile.feedbacks.map((f, i) => (
+                      <div key={i} className="feedback-card">
+                        <p className="feedback-text">“{f.feedback}”</p>
+                        <p className="feedback-user">— {f.learnerName}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="muted">No feedback yet</p>
+                )}
+              </div>
+
 
               {/* Button */}
               <button
@@ -141,6 +160,7 @@ const Profile = () => {
               >
                 {requestSent ? "Request Sent" : "Send Request"}
               </button>
+             
 
             </div>
           </div>

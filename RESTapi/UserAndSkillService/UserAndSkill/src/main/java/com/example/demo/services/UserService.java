@@ -12,7 +12,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ClickedUserProfileDTO;
+import com.example.demo.dto.FeedbackDTO;
 import com.example.demo.dto.FullProfileDTO;
+import com.example.demo.dto.LearnSkillDTO;
 import com.example.demo.dto.MatchDTO;
 import com.example.demo.dto.NotificationDTO;
 import com.example.demo.dto.ProfileDTO;
@@ -23,6 +25,7 @@ import com.example.demo.entities.Request;
 import com.example.demo.entities.RequestStatus;
 import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
+import com.example.demo.repositories.BookedSessionRepository;
 import com.example.demo.repositories.RequestRepository;
 import com.example.demo.repositories.RoleRepository;
 import com.example.demo.repositories.UserRepository;
@@ -41,6 +44,10 @@ public class UserService {
 	
 	@Autowired 
 	private RequestRepository reqrepo;
+	
+	@Autowired
+	private BookedSessionRepository bsRepo;
+
 
 	@Autowired
 	private JWTUtil jwtutil;
@@ -58,7 +65,7 @@ public class UserService {
 		Role userRole = rrepo.findByRname("User");
 		
 		 user.setRole(userRole);
-		 
+		 user.setPoints(100);
 		return urepo.save(user);
 	}
 	
@@ -128,7 +135,7 @@ public class UserService {
 		List<Object[]> rows = urepo.findByUid(id);
 		
 		
-		ClickedUserProfileDTO dto = 	new ClickedUserProfileDTO();
+		ClickedUserProfileDTO dto = new ClickedUserProfileDTO();
 		Set<String> teachSet = new HashSet<>();
 		Set<String> learnSet = new HashSet<>();
 		
@@ -150,6 +157,11 @@ public class UserService {
 		
 		   dto.setTeachSkills(new ArrayList<>(teachSet));
 		    dto.setLearnSkills(new ArrayList<>(learnSet));
+		    
+		    List<FeedbackDTO> feedbacks = bsRepo.findFeedbacksForTeacher(id);
+		    dto.setFeedbacks(feedbacks);
+
+
 		    return dto;
 	}
 	
@@ -208,7 +220,7 @@ public class UserService {
 	                ts.setSkillName(t.getSkill().getSname());
 	                ts.setExperienceLevel(t.getExpLevel());
 	                ts.setCertificateUrl(
-	                    "http://localhost:8080/uploads/certificate/" + t.getCert_url()
+	                    "http://localhost:8081/uploads/certificate/" + t.getCert_url()
 	                );
 	                return ts;
 	            })
@@ -217,12 +229,17 @@ public class UserService {
 	    dto.setTeachSkills(teachList);
 
 	    // ===== Learn Skills =====
-	    List<String> learnList = user.getLearnSkills()
+	    List<LearnSkillDTO> learnList = user.getLearnSkills()
 	            .stream()
-	            .map(l -> l.getSkill().getSname())
+	            .map(l -> {
+	                LearnSkillDTO ldto = new LearnSkillDTO();
+	                ldto.setSkillId(l.getSkill().getSid());
+	                ldto.setSkillName(l.getSkill().getSname());
+	                return ldto;
+	            })
 	            .toList();
 
-	  dto.setLearnSkillId(learnList);
+	    dto.setLearnSkills(learnList);
 
 	    return dto;
 	}

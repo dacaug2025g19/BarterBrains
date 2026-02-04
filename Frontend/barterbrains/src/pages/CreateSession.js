@@ -4,11 +4,13 @@ import "../css/Session.css";
 import { createSession } from "../api/sessionApi";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const CreateSession = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
+   const uid = useSelector((state)=>state.auth.user?.uid);
+  
   // 🔹 ALWAYS define hooks first
   const [mode, setMode] = useState("");
   const [skillId, setSkillId] = useState("");
@@ -22,13 +24,19 @@ const CreateSession = () => {
 
   // ✅ FETCH SKILLS
   useEffect(() => {
-    if (!state) return;
+  if (!uid) return;
 
-    axios
-      .get(`http://localhost:8082/skills/teacher/${state.teacherId}`)
-      .then((res) => setSkills(res.data || []))
-      .catch(() => setSkills([]));
-  }, [state]);
+  axios
+    .get(`http://localhost:8082/skills/teacher/${uid}`)
+    .then((res) => {
+      console.log("Fetched skills for session:", res.data);
+      setSkills(res.data || []);
+    })
+    .catch((err) => {
+      console.error("Skill fetch error:", err);
+      setSkills([]);
+    });
+}, [uid]);
 
   // ❗ conditional return AFTER hooks (this is OK)
   if (!state) {
@@ -127,3 +135,4 @@ const CreateSession = () => {
 };
 
 export default CreateSession;
+

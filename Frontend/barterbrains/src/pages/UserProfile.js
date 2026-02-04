@@ -9,7 +9,7 @@ import { getFullProfile } from "../api/authApi";
 
 
 import "../css/UserProfile.css";
-import { AddUserSkill, getAllSkills, loginUser } from "../api/authApi"
+import { AddUserSkill, getAllSkills} from "../api/authApi"
 
 
 // ================= CONSTANTS =================
@@ -27,10 +27,9 @@ const MSGS = {
 const UserProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const fileRef = useRef();
 
   const user = useSelector((state) => state.auth.user);
-  console.log("This is user from redux: " + user.email);
+  
   const token = localStorage.getItem("token");
 
 
@@ -58,7 +57,6 @@ const UserProfile = () => {
   // ================= FETCH PROFILE =================
   useEffect(() => {
     if (!user) return;
-
     const fetchProfile = async () => {
       try {
         const res = await getFullProfile(user.uid);
@@ -70,17 +68,23 @@ const UserProfile = () => {
         setAbout(data.bio || "");
 
         // LEARN SKILLS (names already)
-        setLearnSkills(data.learnSkillId || []);
-
+        setLearnSkills(data.learnSkills);
+        console.log("Learn skills from backend:", data.learnSkillId);
         // TEACH SKILLS (convert backend -> UI format)
-        const formattedTeach = (data.teachSkills || []).map(ts => ({
-          skillId: skills.find(s => s.sname === ts.skillName)?.sid, // convert name -> id
-          experienceLevel: ts.experienceLevel,
-          certificate: null,              // file only when uploading
-          certificateUrl: ts.certificateUrl
-        }));
+        const formattedTeach = (data.teachSkills || []).map(ts => {
+          const matchedSkill = skills.find(s => s.sname === ts.skillName);
+
+          return {
+            skillId: matchedSkill?.sid,     // 🔥 convert name → id
+            experienceLevel: ts.experienceLevel,
+            certificate: null,
+            certificateUrl: ts.certificateUrl
+          };
+        });
 
         setTeachSkills(formattedTeach);
+
+
 
       } catch (err) {
         console.error("Failed to load profile", err);
@@ -94,47 +98,11 @@ const UserProfile = () => {
 
   }, [user, skills]);
 
-
-
-
-  // ================= IMAGE =================
-
-  // ================= IMAGE =================
-  const handleImageChange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    setLoading(true);
-    try {
-      setProfileImg(URL.createObjectURL(file)); // fallback for now
-      setError("");
-    } catch {
-      setError("Image upload failed");
-    } finally {
-      setLoading(false);
-      setShowImgMenu(false);
-    }
-  };
-
-  const removeImage = () => {
-    setShowConfirm({ type: "removeImg", open: true });
-  };
-
   const confirmRemoveImage = () => {
     setProfileImg(DEFAULT_IMG);
     setShowImgMenu(false);
     setShowConfirm({ type: null, open: false });
   };
-  // ================= VALIDATION =================
-  const isValidUrl = (url) => {
-    try {
-      if (!url) return true;
-      new URL(url);
-      return true;
-    } catch {
-      return false;
-    }
-  };
-
   // ================= SAVE PROFILE =================
 
   useEffect(() => {
@@ -197,9 +165,10 @@ const UserProfile = () => {
         );
       });
 
-      learnSkills.forEach((id, index) =>
-        formData.append(`learnSkillId[${index}]`, id)
-      );
+      learnSkills.forEach((s, index) => {
+        formData.append(`learnSkillId[${index}]`, s.skillId);
+      });
+
 
       console.table("This fromdata" + [...formData.entries()]);
       for (let pair of formData.entries()) {
@@ -235,13 +204,21 @@ const UserProfile = () => {
 
   // ================= SKILL HANDLERS =================
   const addSkill = (type) => {
-    if (type === "learn" && learnInput) {
-      if (!learnSkills.includes(Number(learnInput))) {
-        setLearnSkills([...learnSkills, Number(learnInput)]);
-      }
+    if (type === "learn") {
+      const selected = skills.find(s => s.sid === Number(learnInput));
+
+      setLearnSkills(prev => [
+        ...prev,
+        {
+          skillId: selected.sid,
+          skillName: selected.sname
+        }
+      ]);
+
       setLearnInput("");
     }
   };
+
   // =================  HANDLERS =================
   const handleCertificateChange = (skillId, file) => {
     setTeachSkills(prev =>
@@ -319,7 +296,7 @@ const UserProfile = () => {
           )}
           {/* ================= HEADER ================= */}
           <div className="profile-header">
-            
+
             <div className="user-info">
               <h2 className="user-name">{user.uname}</h2>
 
@@ -393,16 +370,17 @@ const UserProfile = () => {
                           {skill.experienceLevel}
                         </span>
 
-                        {skill.certUrl && (
-                          <a
-                            href={`http://localhost:8080/${skill.certUrl}`}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="cert-link"
-                          >
-                            View Certificate
-                          </a>
-                        )}
+                        {skill.certificateUrl
+                          && (
+                            <a
+                              href={`http://localhost:8081/${skill.certificateUrl}`}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="cert-link"
+                            >
+                              View Certificate
+                            </a>
+                          )}
                       </div>
                     ))
                   )}
@@ -415,17 +393,12 @@ const UserProfile = () => {
                   <div className="skill-input">
 
                     {/* SELECT SKILL (RESTORED ✅) */}
-                    <select
-                      className="form-select"
-                      value={teachInput}
-                      onChange={(e) => setTeachInput(e.target.value)}
-                    >
+                    <select className="form-select" value={teachInput} onChange={(e) => setTeachInput(e.target.value)} >
                       <option value="">Select skill</option>
                       {skills.map(skill => (
                         <option key={skill.sid} value={skill.sid}>
                           {skill.sname}
-                        </option>
-                      ))}
+                        </option>))}
                     </select>
 
                     <button className="btn-skill-add" onClick={addTeachSkill}>
@@ -499,14 +472,30 @@ const UserProfile = () => {
             {/* I WANT TO LEARN */}
             <div className="profile-card">
               <h4><FaBookOpen /> I Want To Learn</h4>
+              {editMode && (
+                <div className="skill-input">
+                  <select className="form-select" value={learnInput} onChange={(e) => setLearnInput(e.target.value)} >
+                    <option value="">Select skill</option>
+                    {skills.map(skill =>
+                    (<option key={skill.sid} value={skill.sid}>
+                      {skill.sname}
+                    </option>))}
+                  </select>
 
+                  <button
+                    className="btn-skill-add"
+                    onClick={() => addSkill("learn")}
+                  >
+                    <FaPlus />
+                  </button>
+                </div>
+              )}
               <div className="skill-list">
                 {learnSkills.length > 0 ? (
-                  learnSkills.map((name, i) => (
-                    <span key={i} className="skill-chip">
-                      {name}
-                    </span>
+                  learnSkills.map((s, i) => (
+                    <span key={i}>{s.skillName}</span>
                   ))
+
                 ) : (
                   !editMode && <p className="muted">No skills selected</p>
                 )}
