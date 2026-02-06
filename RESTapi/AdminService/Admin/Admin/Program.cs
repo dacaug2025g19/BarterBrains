@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Steeltoe.Discovery.Client;
 using System.Text;
 
 namespace Admin
@@ -13,8 +14,14 @@ namespace Admin
     public class Program
     {
         public static void Main(string[] args)
+
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            // Add Steeltoe Discovery Client
+            builder.Services.AddDiscoveryClient(builder.Configuration);
+
+           
 
             // ===============================
             // Add services to the container
@@ -80,45 +87,14 @@ namespace Admin
             builder.Services.AddScoped<AdminSkillService>();
             builder.Services.AddScoped<AdminDashboardService>();
 
-            // ---------- JWT Authentication ----------
-            var jwtKey = builder.Configuration["Jwt:Key"];
-
-            builder.Services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(jwtKey)
-                    )
-                };
-            });
-
-            //CORS implementation
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowFrontend",
-                    policy =>
-                    {
-                        policy.WithOrigins("http://localhost:3000") // React
-                              .AllowAnyHeader()
-                              .AllowAnyMethod();
-                    });
-            });
-
             var app = builder.Build();
 
             // ===============================
             // HTTP request pipeline
             // ===============================
+
+            // Use Steeltoe Discovery Client
+            app.UseDiscoveryClient();
 
             if (app.Environment.IsDevelopment())
             {
@@ -126,7 +102,7 @@ namespace Admin
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             //CORS implementation
             app.UseCors("AllowFrontend");

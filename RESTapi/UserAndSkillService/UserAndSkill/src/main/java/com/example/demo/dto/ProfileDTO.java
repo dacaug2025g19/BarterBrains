@@ -16,10 +16,10 @@ import lombok.Setter;
  public class ProfileDTO {
 	Integer uid;
 	String uname;
+	String email;
 	String adhar_id;
 	Date bdate;
 	String phone;
 	Integer points;
 	String role;	
-	String token;
 }

@@ -1,10 +1,12 @@
 ﻿using Admin.DTOs;
 using Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+[AllowAnonymous]
 [ApiController]
-[Route("api/admin/skills")]
+[Route("admin/skills")]
 public class AdminSkillController : ControllerBase
 {
     private readonly P19BarterbrainsContext _context;

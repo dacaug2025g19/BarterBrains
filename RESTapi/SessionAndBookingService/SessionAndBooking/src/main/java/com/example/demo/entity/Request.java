@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,5 +15,8 @@ public class Request {
 
     private Integer sender_id;
     private Integer receiver_id;
-    private String status;
+    
+    
+    @Enumerated(EnumType.STRING)
+	private RequestStatus status;
 }

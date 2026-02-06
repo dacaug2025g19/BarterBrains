@@ -26,11 +26,6 @@ const UserSidebar = () => {
           Session
         </NavLink>
 
-
-        <NavLink to="/user/confirm" className="sidebar-link">
-          Confirmation <ConfirmBadge />
-        </NavLink>
-
         <NavLink to="/user/profile" className="sidebar-link">
           Profile
         </NavLink>

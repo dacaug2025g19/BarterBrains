@@ -1,10 +1,12 @@
 ﻿using Admin.DTOs;
 using Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+[AllowAnonymous]
 [ApiController]
-[Route("api/admin/categories")]
+[Route("admin/categories")]
 public class AdminCategoryController : ControllerBase
 {
     private readonly P19BarterbrainsContext _context;

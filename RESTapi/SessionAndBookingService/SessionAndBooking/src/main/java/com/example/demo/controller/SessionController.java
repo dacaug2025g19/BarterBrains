@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/session")
-@CrossOrigin
 public class SessionController {
 
     private final SessionService sessionService;
@@ -22,12 +21,6 @@ public class SessionController {
         this.requestRepository = requestRepository;
     }
 
-//    @GetMapping("/accepted-requests/{teacherId}")
-//    public List<AcceptedRequestDTO> getAcceptedRequests(
-//            @PathVariable Integer teacherId
-//    ) {
-//        return requestRepository.findAcceptedRequestsWithLearnerName(teacherId);
-//    }
 
     @PostMapping("/create")
     public void createSession(@RequestBody SessionCreateDTO dto) {

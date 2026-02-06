@@ -19,7 +19,8 @@ public class TeacherSkill {
     private Integer sid;
 
     @Column(name = "exp_level")
-    private String expLevel;
+    @Enumerated(EnumType.STRING)
+    private ExpLevel expLevel;
 
     @Column(name = "cert_url")
     private String certUrl;

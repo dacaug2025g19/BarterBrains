@@ -21,21 +21,17 @@ const Login = () => {
       const data = res.data;
 
       dispatch(setLogin({ ...data, email }));
-   
 
-    console.log("Login response data:", data);
-  
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("uid", data.uid);   // ✅ STORE UID
-      localStorage.setItem("role", data.role); // (optional but useful)
+      // ✅ store whole profile only once
+      localStorage.setItem("profile", JSON.stringify(data));
 
       if (data.role === "User") {
         navigate("/user/dashboard");
-
-      } else if(data.role === "Admin"){
+      } else if (data.role === "Admin") {
         navigate("/admin/dashboard");
       }
-     
+
+
     } catch (err) {
       console.error(err);
       alert("Login failed. Please check your credentials.");

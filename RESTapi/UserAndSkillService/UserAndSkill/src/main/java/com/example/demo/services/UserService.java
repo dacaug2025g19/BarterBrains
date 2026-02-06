@@ -29,7 +29,6 @@ import com.example.demo.repositories.BookedSessionRepository;
 import com.example.demo.repositories.RequestRepository;
 import com.example.demo.repositories.RoleRepository;
 import com.example.demo.repositories.UserRepository;
-import com.example.demo.security.JWTUtil;
 
 import jakarta.transaction.Transactional;
 
@@ -48,9 +47,6 @@ public class UserService {
 	@Autowired
 	private BookedSessionRepository bsRepo;
 
-
-	@Autowired
-	private JWTUtil jwtutil;
 	
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -59,42 +55,41 @@ public class UserService {
 	}
 
 	//user register
-	public User RegisterUser(User user) {
+	public void RegisterUser(User user) {
 		user.setPassword(encoder.encode(user.getPassword()));
 		
 		Role userRole = rrepo.findByRname("User");
 		
 		 user.setRole(userRole);
 		 user.setPoints(100);
-		return urepo.save(user);
+	  urepo.save(user);
 	}
 	
 	//User login
-		public ProfileDTO LoginUser(String email,String rawPassword) {
-			
-			 User user = urepo.findByEmail(email);
-			 
-			 if(user!=null && encoder.matches(rawPassword,user.getPassword())) {
-				 String token = jwtutil.generateToken(email);  //if valid credentials then give jwt token to user
-				 
-				 ProfileDTO dto = new ProfileDTO();
+	public ProfileDTO LoginUser(String email, String rawPassword) {
 
-		
+	    User user = urepo.findByEmail(email);
 
-				 
-				 dto.setUid(user.getUid());				 
-				 dto.setUname(user.getUname());
-				 dto.setAdhar_id(user.getAdhar_id());
-			     dto.setBdate(user.getBdate());
-			     dto.setPhone(user.getPhone());
-			     dto.setPoints(user.getPoints());
-			     dto.setRole(user.getRole().getRname());
-			     dto.setToken(token);
-			     
-			     return dto;
-			 }
-			 return null;  //invalid
-		}
+	    if (user != null && encoder.matches(rawPassword, user.getPassword())) {
+
+	        ProfileDTO dto = new ProfileDTO();
+
+	        dto.setUid(user.getUid());
+	        dto.setUname(user.getUname());
+	        dto.setEmail(user.getEmail());
+	        dto.setAdhar_id(user.getAdhar_id());
+	        dto.setBdate(user.getBdate());
+	        dto.setPhone(user.getPhone());
+	        dto.setPoints(user.getPoints());
+	        dto.setRole(user.getRole().getRname());
+
+
+	        return dto;
+	    }
+
+	    return null;  // invalid credentials
+	}
+
 		
 		public List<MatchDTO> findMatchUser(Integer teachSkillId,Integer learnSkillId) {
 			List<Object[]> rows = urepo.findMatchUser(teachSkillId, learnSkillId);

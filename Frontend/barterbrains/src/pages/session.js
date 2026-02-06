@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../css/Session.css";
-import { getAcceptedRequests } from "../api/sessionApi";
+import { getAcceptedRequests } from "../api/authApi";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getAcceptedChatRequests } from "../api/authApi";

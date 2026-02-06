@@ -16,7 +16,7 @@ const ConfirmPage = () => {
   const fetchConfirmations = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8082/confirm/${uid}`);
+        `http://localhost:8080/confirm/${uid}`);
       setSessions(res.data);
     } catch (err) {
       console.error("Failed to load confirmations", err);
@@ -34,7 +34,7 @@ const ConfirmPage = () => {
     }
 
     try {
-      await axios.post("http://localhost:8082/confirm", {
+      await axios.post("http://localhost:8080/confirm", {
         bsid: session.bsid,
         role,
         feedback:

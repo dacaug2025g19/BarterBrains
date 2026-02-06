@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const netAPI = axios.create({
-  baseURL: "https://localhost:7124/api", 
+  baseURL: "http://localhost:8080", 
   headers: {
     "Content-Type": "application/json",
   },

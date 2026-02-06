@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../css/Session.css";
 // import "../css/CreateSession.css";
-import { createSession } from "../api/sessionApi";
+import { createSession } from "../api/authApi";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -27,7 +27,7 @@ const CreateSession = () => {
   if (!uid) return;
 
   axios
-    .get(`http://localhost:8082/skills/teacher/${uid}`)
+    .get(`http://localhost:8080/skills/teacher/${uid}`)
     .then((res) => {
       console.log("Fetched skills for session:", res.data);
       setSkills(res.data || []);

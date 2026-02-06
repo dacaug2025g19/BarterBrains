@@ -1,8 +1,10 @@
 ﻿using Admin.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+[AllowAnonymous]
 [ApiController]
-[Route("api/admin/users")]
+[Route("admin/users")]
 public class AdminUserController : ControllerBase
 {
     private readonly AdminUserService _userService;

@@ -1,12 +1,14 @@
 ﻿using Admin.DTOs;
 using Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Admin.Controllers
 {
+    [AllowAnonymous]
     [ApiController]
-    [Route("api/admin/auth")]
+    [Route("admin/auth")]
     public class AdminAuthController : ControllerBase
     {
         private readonly P19BarterbrainsContext _context;

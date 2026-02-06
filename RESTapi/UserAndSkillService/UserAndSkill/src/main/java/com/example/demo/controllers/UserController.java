@@ -37,14 +37,15 @@ public class UserController {
 	}
 
 	@PostMapping("/register")
-	public User userRegister(@RequestBody User user) {
-		return userv.RegisterUser(user);
+	public void userRegister(@RequestBody User user) {
+		 userv.RegisterUser(user);
 	}
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> userLogin(@RequestBody LoginRequestDTO request) {
 	  ProfileDTO profile = userv.LoginUser(request.getEmail(), request.getPassword());
-	  
+	  System.out.println("Login attempt: " + request.getEmail());
+
 	  if(profile == null) {
 		  return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
 	  }

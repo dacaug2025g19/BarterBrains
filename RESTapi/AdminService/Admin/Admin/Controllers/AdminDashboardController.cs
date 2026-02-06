@@ -1,8 +1,10 @@
 ﻿using Admin.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+[AllowAnonymous]
 [ApiController]
-[Route("api/admin/dashboard")]
+[Route("admin/dashboard")]
 public class AdminDashboardController : ControllerBase
 {
     private readonly AdminDashboardService _dashboardService;

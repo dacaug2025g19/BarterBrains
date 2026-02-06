@@ -8,9 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.dto.ClickedUserProfileDTO;
-import com.example.demo.dto.FullProfileDTO;
-import com.example.demo.dto.MatchDTO;
 import com.example.demo.entities.User;
 
 @Repository

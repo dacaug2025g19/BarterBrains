@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/confirm")
-@CrossOrigin
 public class ConfirmationController {
 
     private final ConfirmationService service;
